@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
+
 import SingleAI from "./components/singleAI";
-import AddNewAIForm from './components/addNewAIForm';
+import SingleReview from './components/singleReview';
+
 import { TypeNewAI, TypeNewReview, TypeSingleAI, TypeSingleReview } from "./types";
+
 import aisService from "./service/aisService";
 import reviewsService from './service/reviewsService';
+
+import AddNewAIForm from './components/addNewAIForm';
 import AddNewReviewForm from './components/addNewReviewForm';
 
 const App = () => {
@@ -46,6 +51,14 @@ const App = () => {
       ))}
 
       <AddNewAIForm onSubmit={submitNewAI}/>
+
+      <h2>Reviews</h2>
+      {reviews.map(review => (
+        <div key={review.id}>
+          <SingleReview eachReview={review} />
+        </div>
+      ))}
+
       <AddNewReviewForm onSubmit={submitNewReview}/>
     </div>
   );

@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import aiRouter from './routes/ais';
+import reviewRouter from  './routes/reviews';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.get('/ping', (_req, res) => {
 });
 
 app.use('/api/ais', aiRouter);
+app.use('/api/reviews', reviewRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
