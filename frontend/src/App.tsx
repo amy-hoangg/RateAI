@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
-import SingleAI from "./components/singleAI";
 import SingleReview from './components/singleReview';
 
 import { TypeNewAI, TypeNewReview, TypeSingleAI, TypeSingleReview } from "./types";
@@ -10,6 +8,11 @@ import reviewsService from './service/reviewsService';
 
 import AddNewAIForm from './components/addNewAIForm';
 import AddNewReviewForm from './components/addNewReviewForm';
+
+import { Route, Routes } from "react-router-dom";
+
+import AIsList from './components/AIsList';
+import AIPage from './components/AIPage';
 
 const App = () => {
   const [ais, setAIs] = useState<TypeSingleAI[]>([]);
@@ -44,11 +47,10 @@ const App = () => {
     <div>
       <h1>{webName}</h1>
 
-      {ais.map(ai => (
-        <div key={ai.id}>
-          <SingleAI eachAI={ai} />
-        </div>
-      ))}
+      <Routes>
+          <Route path="/" element={<AIsList ais={ais} />} />
+          <Route path="/ais/:id" element={<AIPage />} />
+      </Routes>
 
       <AddNewAIForm onSubmit={submitNewAI}/>
 

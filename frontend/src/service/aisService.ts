@@ -19,7 +19,7 @@ const createNewAI = async (object: TypeNewAI) => {
 
   const getOneAI = async (id: string) => {
     const { data } = await axios.get<TypeSingleAI>(
-      `${baseUrl}/patients/${id}`
+      `${baseUrl}/${id}`
     );
     return data;
   };
