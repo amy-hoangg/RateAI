@@ -1,3 +1,4 @@
+import React from 'react'; 
 import { TypeSingleAI } from "./types";
 
 type Props = {
