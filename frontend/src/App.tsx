@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SingleAI from "./components/singleAI";
 import AddNewAIForm from './components/addNewAIForm';
-import { TypeSingleAI } from "./types";
+import { TypeNewAI, TypeSingleAI } from "./types";
 import aisService from "./service/aisService";
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
       .catch((error) => console.error('Error fetching AIs:', error));
   }, []);
 
-  const submitNewAI = async (values: TypeSingleAI) => {
+  const submitNewAI = async (values: TypeNewAI) => {
       const ai = await aisService.createNewAI(values);
       setAIs(ais.concat(ai));
   };
@@ -25,7 +25,7 @@ const App = () => {
       <h1>{webName}</h1>
 
       {ais.map(ai => (
-        <div key={ai.name}>
+        <div key={ai.id}>
           <SingleAI eachAI={ai} />
         </div>
       ))}

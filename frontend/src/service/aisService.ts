@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TypeSingleAI } from "../types";
+import { TypeNewAI, TypeSingleAI } from "../types";
 
 
 const baseUrl = "http://localhost:3003/api/ais";
@@ -10,14 +10,22 @@ const getAllAIs = () => {
     .then(response => response.data)
 };
 
-const createNewAI = async (object: TypeSingleAI) => {
+const createNewAI = async (object: TypeNewAI) => {
     const { data } = await axios
     .post<TypeSingleAI>(`${baseUrl}`, object);
   
     return data;
   };
 
+  const getOneAI = async (id: string) => {
+    const { data } = await axios.get<TypeSingleAI>(
+      `${baseUrl}/patients/${id}`
+    );
+    return data;
+  };
+
 export default {
     getAllAIs,
-    createNewAI
+    createNewAI,
+    getOneAI
 }

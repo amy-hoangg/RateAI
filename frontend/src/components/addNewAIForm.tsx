@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { TypeSingleAI, StarRating } from "../types";
+import { StarRating, TypeNewAI } from "../types";
 import { categoriesList } from '../utils/categoriesList';
 
 type Props = {
-  onSubmit: (newAI: TypeSingleAI) => void;
+  onSubmit: (newAI: TypeNewAI) => void;
 };
 
 const AddNewAIForm= ({ onSubmit } : Props) => {
@@ -13,18 +13,23 @@ const AddNewAIForm= ({ onSubmit } : Props) => {
   const [saves, setSaves] = useState(0);
   const [price, setPrice] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [reviewCount, setReviewCount] = useState(0);
+  const [reviews, setReviews] = useState<string[]>([]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
-    const newAI: TypeSingleAI = {
+    const newAI: TypeNewAI = {
       name,
       star_rating: starRating,
       description,
       saves,
       price,
       categories: selectedCategories,
+      review_count: reviewCount,
+      reviews: reviews
     };
+
     onSubmit(newAI);
     // Clear the form fields after submission
     setName('');
@@ -44,21 +49,12 @@ const AddNewAIForm= ({ onSubmit } : Props) => {
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
 
-        <div>
-          <label>Star Rating:</label>
-          {/* Replace the select element with radio buttons */}
-          {/* ... */}
-        </div>
 
         <div>
           <label>Description:</label>
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
 
-        <div>
-          <label>Saves:</label>
-          <input type="number" value={saves} onChange={(e) => setSaves(Number(e.target.value))} />
-        </div>
 
         <div>
           <label>Price:</label>

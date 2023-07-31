@@ -15,6 +15,8 @@ const SingleAI = ({ eachAI }: Props) => {
         <li>Saves: {eachAI.saves}</li>
         <li>Price: {eachAI.price}</li>
         <li>Categories: {eachAI.categories}</li>
+        <li>Review Count: {eachAI.review_count}</li>
+        <li>Reviews: {eachAI.reviews}</li>
       </ul>
     </div>
   );
