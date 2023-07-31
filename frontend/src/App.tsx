@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import SingleAI from "./components/singleAI";
 import AddNewAIForm from './components/addNewAIForm';
-import { TypeNewAI, TypeSingleAI } from "./types";
+import { TypeNewAI, TypeNewReview, TypeSingleAI, TypeSingleReview } from "./types";
 import aisService from "./service/aisService";
+import reviewsService from './service/reviewsService';
+import AddNewReviewForm from './components/addNewReviewForm';
 
 const App = () => {
   const [ais, setAIs] = useState<TypeSingleAI[]>([]);
+  const [reviews, setReviews] = useState<TypeSingleReview[]>([]);
 
   const webName = "MyAI.com";
 
@@ -15,10 +18,22 @@ const App = () => {
       .catch((error) => console.error('Error fetching AIs:', error));
   }, []);
 
+  useEffect(() => {
+    reviewsService.getAllReviews()
+      .then((data) => setReviews(data))
+      .catch((error) => console.error('Error fetching Reviews:', error));
+  }, []);
+
   const submitNewAI = async (values: TypeNewAI) => {
       const ai = await aisService.createNewAI(values);
       setAIs(ais.concat(ai));
   };
+
+  const submitNewReview = async (values: TypeNewReview) => {
+    const review = await reviewsService.createNewReview(values);
+    setReviews(reviews.concat(review));
+};
+
   
   return (
     <div>
@@ -31,6 +46,7 @@ const App = () => {
       ))}
 
       <AddNewAIForm onSubmit={submitNewAI}/>
+      <AddNewReviewForm onSubmit={submitNewReview}/>
     </div>
   );
 };

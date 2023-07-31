@@ -26,7 +26,7 @@ export enum StarRating {
     reviewer: string;
     star: StarRating;
     content: string;
-    time_review: Date;
+    time_review: string;
     like: number;
     dislike: number
   }
