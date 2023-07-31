@@ -7,6 +7,7 @@ export enum StarRating {
   }
   
   export interface TypeSingleAI {
+    id: string;
     name: string;
     star_rating: StarRating;
     description: string;
@@ -15,3 +16,4 @@ export enum StarRating {
     categories: string[];
   }
   
+  export type TypeNewAI = Omit<TypeSingleAI, 'id'>;
