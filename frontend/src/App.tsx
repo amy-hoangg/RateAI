@@ -14,6 +14,8 @@ import { Route, Routes } from "react-router-dom";
 import AIsList from './components/AIsList';
 import AIPage from './components/AIPage';
 import AppBar from './components/BaseComponents/AppBar';
+import SignInForm from './components/SignInForm';
+import { sign } from 'crypto';
 
 const App = () => {
   const [ais, setAIs] = useState<TypeSingleAI[]>([]);
@@ -42,6 +44,10 @@ const App = () => {
     const review = await reviewsService.createNewReview(values);
     setReviews(reviews.concat(review));
 };
+  
+  const signIn = ()=> {
+    return(null);
+  }
 
   
   return (
@@ -49,6 +55,9 @@ const App = () => {
       <AppBar currentUser={false}/>
 
       <h1>{webName}</h1>
+
+      <h2>Sign In</h2>
+      <SignInForm onSubmit={signIn}/>
 
       <Routes>
           <Route path="/" element={<AIsList ais={ais} />} />

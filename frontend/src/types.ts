@@ -45,3 +45,7 @@ export enum StarRating {
       currentUser?: any; 
       onSignOut?: () => void;
     }
+
+    export interface TypeSignInFormProps {
+      onSubmit: () => void;
+    }
