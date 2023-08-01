@@ -13,6 +13,7 @@ import { Route, Routes } from "react-router-dom";
 
 import AIsList from './components/AIsList';
 import AIPage from './components/AIPage';
+import AppBar from './components/BaseComponents/AppBar';
 
 const App = () => {
   const [ais, setAIs] = useState<TypeSingleAI[]>([]);
@@ -45,6 +46,8 @@ const App = () => {
   
   return (
     <div>
+      <AppBar currentUser={false}/>
+
       <h1>{webName}</h1>
 
       <Routes>

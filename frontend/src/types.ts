@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export enum StarRating {
       ONE = 1,
       TWO = 2,
@@ -32,3 +34,14 @@ export enum StarRating {
     }
   
     export type TypeNewReview = Omit<TypeSingleReview, 'id'>;
+
+    export interface TypeAppBarTabProps {
+      children: ReactNode;
+      to?: string;
+      [key: string]: any; // Allows any additional props
+    }
+
+    export interface TypeAppBarProps {
+      currentUser?: any; 
+      onSignOut?: () => void;
+    }
