@@ -1,6 +1,6 @@
 import React from 'react';
 import SingleAI from './singleAI';
-import { TypeSingleAI } from '../types';
+import { TypeSingleAI } from '../../../types';
 
 type Props = {
   ais: TypeSingleAI[];

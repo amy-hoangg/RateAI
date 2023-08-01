@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { TypeSignInFormProps } from '../types';
+import { TypeSignInFormProps } from '../../../types';
 
 const SignInForm = ({ onSubmit } : TypeSignInFormProps) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignIn = () => {
-    // Do something with the username and password (e.g., call an API for authentication)
     onSubmit();
   };
 

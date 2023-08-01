@@ -49,3 +49,7 @@ export enum StarRating {
     export interface TypeSignInFormProps {
       onSubmit: () => void;
     }
+
+    export interface TypeSignUpFormProps {
+      onSubmit: () => void;
+    }
