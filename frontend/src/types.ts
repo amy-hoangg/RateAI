@@ -65,8 +65,8 @@ export enum StarRating {
 
 
     export interface TypeSellSingleAI extends TypeSingleAI {
-      typename: 'TypeSellSingleAI'; 
-      sold: number; 
-      totalRevenue: number; 
-      date: string;
+      sold: number; // New property for the number of units sold
+      totalRevenue: number; // New property for the total revenue generated
+      date: string; // New property for the date of sale
     }
+    
