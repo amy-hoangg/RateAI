@@ -3,6 +3,7 @@ import SellRegisterForm from "./SellRegiterForm";
 import SellAIList from "./SellAIList";
 import SellAddNewAIForm from "./SellAddNewAIForm";
 import { TypeNewAI } from "../../../../types";
+import SellerInfo from "./SellerInfo";
 
 const fakeSellSingleAI = {
     id: 'ai1',
@@ -37,6 +38,8 @@ const SellAIPage = () => {
       <SellAddNewAIForm onSubmit={function (newAI: TypeNewAI): void {
               throw new Error("Function not implemented.");
           } } />
+
+      <SellerInfo />
     </div>
   );
 };
