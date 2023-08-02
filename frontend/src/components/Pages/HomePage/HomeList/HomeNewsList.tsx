@@ -12,6 +12,7 @@ const HomeNewsList = ({ news }: Props) => {
 
   return (
     <div>
+      <h2>News List</h2>
       {visibleNews.map((each_new) => (
         <div key={each_new.id}>
           <SingleNew eachNew={each_new} />
