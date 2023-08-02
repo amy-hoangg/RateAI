@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TypeSignUpFormProps } from '../types';
+import { TypeSignUpFormProps } from '../../../types';
 
 const SignUpForm = ({ onSubmit } : TypeSignUpFormProps) => {
     const [firstName, setFirstName] = useState('');

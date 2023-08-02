@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { StarRating, TypeNewAI } from "../types";
-import { categoriesList } from '../utils/categoriesList';
+import { StarRating, TypeNewAI } from '../../../../types';
+import { categoriesList } from '../../../../utils/categoriesList';
 
 type Props = {
   onSubmit: (newAI: TypeNewAI) => void;

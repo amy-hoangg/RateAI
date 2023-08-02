@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import AIService from "../service/aisService";
-import { TypeSingleAI } from "../types";
+import AIService from "../../../service/aisService";
+import { TypeSingleAI } from "../../../types";
 
 const AIPage = () => {
   const [ai, setAI] = useState<TypeSingleAI | null>(null);

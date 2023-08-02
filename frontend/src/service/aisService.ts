@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TypeNewAI, TypeSingleAI } from "../types";
+import { TypeNewAI, TypeSingleAI } from '../types'
 
 
 const baseUrl = "http://localhost:3003/api/ais";

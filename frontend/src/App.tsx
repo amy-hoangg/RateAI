@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import SingleReview from './components/Pages/AITools/singleReview';
-
-import { TypeNewAI, TypeNewReview, TypeSingleAI, TypeSingleReview } from "./types";
-
-import aisService from "./service/aisService";
-import reviewsService from './service/reviewsService';
-
-import AddNewAIForm from './components/Pages/AITools/addNewAIForm';
-import AddNewReviewForm from './components/Pages/AITools/addNewReviewForm';
-
-import { Route, Routes } from "react-router-dom";
-
-import AIsList from './components/Pages/AITools/AIsList';
-import AIPage from './components/Pages/AITools/AIToolsPage';
+import React from 'react';
+import { Navigate, Route, Routes } from "react-router-dom";
 import AppBar from './components/AppBar/AppBar';
-import SignInForm from './components/Pages/SignIn/SignInForm';
-import SignUpForm from './components/Pages/SignUp/SignUpForm';
 
 import Footer from './components/Footer/Footer';
+import HomePage from './components/Pages/HomePage/HomePage';
+import AIToolsPage from './components/Pages/AITools/AIToolsPage';
+import NewsList from './components/Pages/News/NewsList';
+import SignInPage from './components/Pages/SignIn/SignInPage';
+import SignUpPage from './components/Pages/SignUp/SignUpPage';
 
 const App = () => {
   
@@ -26,13 +16,11 @@ const App = () => {
     <AppBar/>
 
     <Routes>
-      <Route path="/" element={<HomePage />} exact />
-      <Route path="sign-in" element={<AITools />} exact />
-      <Route path="repositories/:id" element={<HowTos />} exact />
-      <Route path="create-review" element={<News />} exact />
-      <Route path="sign-up" element={<SignIn />} exact />
-      <Route path="sign-up" element={<SignIn />} exact />
-      <Route path="sign-up" element={<SignIn />} exact />
+      <Route path="/" element={<HomePage />} />
+      <Route path="sign-in" element={<AIToolsPage />} />
+      <Route path="create-review" element={<NewsList ais={[]} />} />
+      <Route path="sign-up" element={<SignInPage />} />
+      <Route path="sign-up" element={<SignUpPage />} />
 
       <Route path="*" element={<Navigate to="/" replace />} /> 
     </Routes>

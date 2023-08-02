@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { TypeSingleReview } from "../types";
+import { TypeSingleReview } from '../../../../types';
 
 type Props = {
     eachReview: TypeSingleReview
