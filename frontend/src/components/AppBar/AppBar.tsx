@@ -5,10 +5,10 @@ import { TypeAppBarProps } from '../../types';
 const AppBar = ({ currentUser, onSignOut }: TypeAppBarProps) => {
   return (
     <>
-      <AppBarTab to="/">AI Tools</AppBarTab>
-      <AppBarTab to="/">How to</AppBarTab>
-      <AppBarTab to="/">News</AppBarTab>
-      <AppBarTab to="/">Sell AI</AppBarTab>
+      <AppBarTab to='/'>My AI.com</AppBarTab>
+      <AppBarTab to="/ais">AI Tools</AppBarTab>
+      <AppBarTab to="/news">News</AppBarTab>
+      <AppBarTab to="/sell">Sell AI</AppBarTab>
 
       {currentUser 
        
@@ -20,7 +20,10 @@ const AppBar = ({ currentUser, onSignOut }: TypeAppBarProps) => {
         </>) 
         
         : (
-        <AppBarTab to="/sign-in">Sign in</AppBarTab>
+          <div>
+            <AppBarTab to="/sign-in">Sign in</AppBarTab>
+            <AppBarTab to="/sign-up">Sign Up</AppBarTab>
+          </div>
       )}
     </>
   );

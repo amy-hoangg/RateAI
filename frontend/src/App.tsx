@@ -17,9 +17,9 @@ const App = () => {
 
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="sign-in" element={<AIToolsPage />} />
-      <Route path="create-review" element={<NewsList ais={[]} />} />
-      <Route path="sign-up" element={<SignInPage />} />
+      <Route path="ais" element={<AIToolsPage />} />
+      <Route path="news" element={<NewsList ais={[]} />} />
+      <Route path="sign-in" element={<SignInPage />} />
       <Route path="sign-up" element={<SignUpPage />} />
 
       <Route path="*" element={<Navigate to="/" replace />} /> 
