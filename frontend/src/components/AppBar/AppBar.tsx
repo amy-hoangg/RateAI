@@ -9,6 +9,10 @@ const AppBar = ({ currentUser, onSignOut }: TypeAppBarProps) => {
     setShowProfileDropdown(!showProfileDropdown);
   };
 
+  const handleProfileDropdownMouseLeave = () => {
+    setShowProfileDropdown(false);
+  };
+
   return (
     <>
       <AppBarTab to="/">My AI.com</AppBarTab>
@@ -17,19 +21,21 @@ const AppBar = ({ currentUser, onSignOut }: TypeAppBarProps) => {
       <AppBarTab to="/sign-in">Sign in</AppBarTab>
       <AppBarTab to="/sign-up">Sign Up</AppBarTab>
 
-      <button
-        onMouseEnter={handleProfileDropdownHoverAndClick}
-        onMouseLeave={handleProfileDropdownHoverAndClick}
+      <div
+            onMouseEnter={handleProfileDropdownHoverAndClick}
+            onMouseLeave={handleProfileDropdownMouseLeave}
       >
-        Profile
-      </button>
 
-      {showProfileDropdown && (
-        <div>
-          <AppBarTab to="/sign-out">Sign out</AppBarTab>
-          <AppBarTab to="/profile">Profile</AppBarTab>
-        </div>
-      )}
+        <button>Profile</button>
+        {showProfileDropdown && (
+          <div>
+            <AppBarTab to="/sign-out">Sign out</AppBarTab>
+            <AppBarTab to="/profile">Profile Setting</AppBarTab>
+          </div>
+        )}
+        
+      </div>
+
 
       <AppBarTab to="/sell">Sell AI</AppBarTab>
       <AppBarTab to="/saves">Saves</AppBarTab>
