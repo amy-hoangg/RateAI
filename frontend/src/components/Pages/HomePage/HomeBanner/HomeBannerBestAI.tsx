@@ -1,22 +1,16 @@
-const BestToolsForBusiness: React.FC = () => {
+const HomeBannerBestAI = () => {
     return (
       <div>
         <h2>BEST TOOLS FOR BUSINESS</h2>
-        {toolList.map((tool, index) => (
-          <div key={index} className="tool-item">
-            <h3>{tool.name}</h3>
-            <p>
-              <span className="current-price">${tool.currentPrice.toFixed(2)}</span>
-              {tool.originalPrice !== tool.currentPrice && (
-                <span className="original-price">${tool.originalPrice.toFixed(2)}</span>
-              )}
+            <p>Welcome to our cutting-edge platform, 
+                where we empower businesses to harness the full potential of Artificial Intelligence 
+                and propel themselves into the future.
             </p>
-            <p>{tool.description}</p>
-            <button>VIEW DETAILS</button>
-          </div>
-        ))}
+            <p>discount...</p>
+            <button>Buy now</button>
+
       </div>
     );
   };
   
-  export default BestToolsForBusiness;
+  export default HomeBannerBestAI;

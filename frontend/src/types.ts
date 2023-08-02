@@ -57,6 +57,7 @@ export enum StarRating {
     export interface TypeSingleNew {
       id: string;
       title: string;
+      content: string;
       likes: number;
       dislikes: number;
       date: string;

@@ -1,33 +1,32 @@
 import React from 'react'; 
-import { TypeSingleAI } from '../../../../types'; 
+import { TypeSingleNew } from '../../../../types'; 
 import { Link } from "react-router-dom";
 
 
 type Props = {
-    eachAI: TypeSingleAI
+    eachNew: TypeSingleNew
 };
 
-const SingleAI = ({ eachAI }: Props) => {
+const SingleNew = ({ eachNew }: Props) => {
   return (
     <div>
       <ul>
       <li>
           Name: 
-          <Link to={`/ais/${eachAI.id}`}>
-            {eachAI.name}
+          <Link to={`/ais/${eachNew.id}`}>
+            {eachNew.title}
           </Link>
         </li>
 
-        <li>Star Rating: {eachAI.star_rating}</li>
-        <li>Description: {eachAI.description}</li>
-        <li>Saves: {eachAI.saves}</li>
-        <li>Price: {eachAI.price}</li>
-        <li>Categories: {eachAI.categories}</li>
-        <li>Review Count: {eachAI.review_count}</li>
-        <li>Reviews: {eachAI.reviews}</li>
+        <li>Title: {eachNew.title}</li>
+        <li>Content: {eachNew.content}</li>
+        <li>Likes: {eachNew.likes}</li>
+        <li>Dislikes: {eachNew.dislikes}</li>
+        <li>Date: {eachNew.date}</li>
       </ul>
     </div>
   );
 };
 
-export default SingleAI;
+export default SingleNew;
+

@@ -4,7 +4,7 @@ interface SearchBarProps {
   onSearch: (searchTerm: string) => void;
 }
 
-const SearchBar = ({ onSearch } : SearchBarProps) => {
+const HomeSearchBar = ({ onSearch } : SearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,4 +35,4 @@ const SearchBar = ({ onSearch } : SearchBarProps) => {
   );
 };
 
-export default SearchBar;
+export default HomeSearchBar;

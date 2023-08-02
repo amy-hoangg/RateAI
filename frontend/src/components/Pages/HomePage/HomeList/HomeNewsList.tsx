@@ -1,23 +1,24 @@
-//implement 6 news and a button see all news -> navigate import React from 'react';
-import SingleNews from '../../NewsTools/Other/singleNews';
+import React from 'react';
+import SingleNew from '../../AITools/Other/singleNew';
 import { TypeSingleNew } from '../../../../types';
+
 
 type Props = {
   news: TypeSingleNew[];
 };
 
-const NewssList = ({ news }: Props) => {
+const HomeNewsList = ({ news }: Props) => {
   const visibleNews = news.slice(0, 6);
 
   return (
     <div>
-      {visibleNews.map((new) => (
-        <div key={new.id}>
-          <SingleNews eachNews={new} />
+      {visibleNews.map((each_new) => (
+        <div key={each_new.id}>
+          <SingleNew eachNew={each_new} />
         </div>
       ))}
     </div>
-  );
+  )
 };
 
-export default NewssList;
+export default HomeNewsList;

@@ -6,7 +6,7 @@ type Props = {
   ais: TypeSingleAI[];
 };
 
-const AIsList = ({ ais }: Props) => {
+const HomeAIsList = ({ ais }: Props) => {
   const visibleAIs = ais.slice(0, 6);
 
   return (
@@ -20,4 +20,4 @@ const AIsList = ({ ais }: Props) => {
   );
 };
 
-export default AIsList;
+export default HomeAIsList;
