@@ -8,26 +8,34 @@ const AppBar = ({ currentUser, onSignOut }: TypeAppBarProps) => {
       <AppBarTab to='/'>My AI.com</AppBarTab>
       <AppBarTab to="/ais">AI Tools</AppBarTab>
       <AppBarTab to="/news">News</AppBarTab>
-      <AppBarTab to="/sell">Sell AI</AppBarTab>
-
-      {currentUser 
-       
-        ? (
-        <>
-          <AppBarTab onPress={onSignOut}>Sign out</AppBarTab>
-          <AppBarTab onPress={onSignOut}>Profile</AppBarTab>
-          <AppBarTab onPress={onSignOut}>Shopping List</AppBarTab>
-        </>) 
-        
-        : (
-          <div>
+          <AppBarTab to="/sell">Sell AI</AppBarTab>
+          <AppBarTab to="/sign-out">Sign out</AppBarTab>
+          <AppBarTab to="/profile">Profile</AppBarTab>
+          <AppBarTab to="/cart">Cart</AppBarTab>
             <AppBarTab to="/sign-in">Sign in</AppBarTab>
             <AppBarTab to="/sign-up">Sign Up</AppBarTab>
-          </div>
-      )}
+            <AppBarTab to="/saves">Saves</AppBarTab>
     </>
   );
 };
 
 export default AppBar;
 
+/**
+ *      {currentUser 
+       
+        ? (
+        <>
+          <AppBarTab to="/sell">Sell AI</AppBarTab>
+          <AppBarTab to="/sign-out">Sign out</AppBarTab>
+          <AppBarTab to="profile">Profile</AppBarTab>
+          <AppBarTab to="cart">Cart</AppBarTab>
+        </>) 
+        
+        : (
+          <>
+            <AppBarTab to="/sign-in">Sign in</AppBarTab>
+            <AppBarTab to="/sign-up">Sign Up</AppBarTab>
+          </>
+      )} 
+ */

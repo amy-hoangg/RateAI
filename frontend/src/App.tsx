@@ -8,6 +8,10 @@ import AIToolsPage from './components/Pages/AITools/AIToolsPage';
 import NewsList from './components/Pages/News/NewsList';
 import SignInPage from './components/Pages/SignIn/SignInPage';
 import SignUpPage from './components/Pages/SignUp/SignUpPage';
+import ProfilePage from './components/Pages/Profile/Profile/ProfilePage';
+import CartPage from './components/Pages/Profile/Cart/CartPage';
+import SavesPage from './components/Pages/Profile/Saves/SavesPage';
+import SellAIPage from './components/Pages/Profile/SellAI/SellAIPage';
 
 const App = () => {
   
@@ -21,6 +25,12 @@ const App = () => {
       <Route path="news" element={<NewsList ais={[]} />} />
       <Route path="sign-in" element={<SignInPage />} />
       <Route path="sign-up" element={<SignUpPage />} />
+      <Route path="profile" element={<ProfilePage />} />
+      <Route path="cart" element={<CartPage/>} />
+      <Route path="sign-up" element={<SignUpPage />} />
+      <Route path="sign-up" element={<SignUpPage />} />
+      <Route path="saves" element={<SavesPage />} />
+      <Route path="sell" element={<SellAIPage />} />
 
       <Route path="*" element={<Navigate to="/" replace />} /> 
     </Routes>

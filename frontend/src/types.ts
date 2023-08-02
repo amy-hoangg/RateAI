@@ -62,3 +62,11 @@ export enum StarRating {
       dislikes: number;
       date: string;
     }
+
+
+    export interface TypeSellSingleAI extends TypeSingleAI {
+      typename: 'TypeSellSingleAI'; 
+      sold: number; 
+      totalRevenue: number; 
+      date: string;
+    }
