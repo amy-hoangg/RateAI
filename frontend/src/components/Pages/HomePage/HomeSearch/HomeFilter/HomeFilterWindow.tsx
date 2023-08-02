@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-
-interface HomeFilterWindowProps {
-  onApplyHomeFilterWindow: (selectedCategories: string[], selectedPrice: string[]) => void;
-}
+import { HomeFilterWindowProps } from '../../../../../types';
 
 const categoriesList = [
   'social media',

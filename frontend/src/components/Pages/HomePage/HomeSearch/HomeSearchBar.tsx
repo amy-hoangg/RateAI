@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
+import { HomeSearchBarProps } from '../../../../types';
 
-interface SearchBarProps {
-  onSearch: (searchTerm: string) => void;
-}
-
-const HomeSearchBar = ({ onSearch } : SearchBarProps) => {
+const HomeSearchBar = ({ onSearch } : HomeSearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-
-//move the interface later to types
-interface SellRegisterFormProps {
-  onSubmit: (formData: SellFormData) => void;
-}
-
-interface SellFormData {
-  storeName: string;
-  phoneNumber: string;
-  address: string;
-}
+import { SellRegisterFormProps, TypeNewSeller } from '../../../../types';
 
 const SellRegisterForm: React.FC<SellRegisterFormProps> = ({ onSubmit }) => {
+  const [user_id, setUserID] = useState('currentid')
+  const [username, setUserName] = useState('currentUser')
+  const [password, setPassword] = useState('currentPassword')
+  const [firstName, setFirstName] = useState('currentFirstName')
+  const [lastName, setLastName] = useState('currentLastName')
+  const [email, setEmail] = useState('currentEmail')
+  const [saves, setSaves] = useState([])
+  const [purchases, setPurchases] = useState([])  
   const [storeName, setStoreName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
+  const [ai_list, setAIList] = useState([])
 
   const handleStoreNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStoreName(e.target.value);
@@ -30,10 +29,19 @@ const SellRegisterForm: React.FC<SellRegisterFormProps> = ({ onSubmit }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const formData: SellFormData = {
+    const formData: TypeNewSeller = {
+      id: user_id,
+      username,
+      password,
+      firstname: firstName,
+      lastname: lastName,
+      email,
+      saves,
+      purchases,
       storeName,
       phoneNumber,
       address,
+      ai_list
     };
     onSubmit(formData);
   };

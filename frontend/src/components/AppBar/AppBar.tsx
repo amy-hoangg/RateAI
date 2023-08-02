@@ -25,7 +25,6 @@ const AppBar = ({ currentUser, onSignOut }: TypeAppBarProps) => {
             onMouseEnter={handleProfileDropdownHoverAndClick}
             onMouseLeave={handleProfileDropdownMouseLeave}
       >
-
         <button>Profile</button>
         {showProfileDropdown && (
           <div>
@@ -33,9 +32,8 @@ const AppBar = ({ currentUser, onSignOut }: TypeAppBarProps) => {
             <AppBarTab to="/profile">Profile Setting</AppBarTab>
           </div>
         )}
-        
-      </div>
 
+      </div>
 
       <AppBarTab to="/sell">Sell AI</AppBarTab>
       <AppBarTab to="/saves">Saves</AppBarTab>
