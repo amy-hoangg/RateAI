@@ -7,6 +7,7 @@ type Props = {
 };
 
 const AIsList = ({ ais }: Props) => {
+  
   return (
     <div>
       {ais.map((ai) => (
