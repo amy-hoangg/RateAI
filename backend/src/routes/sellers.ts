@@ -1,17 +1,17 @@
 import express from 'express';
-import aisService from '../services/aisService';
+import sellersService from '../services/sellersService';
 
 const router = express.Router();
 
 router.get('/', (_req, res) => {
-  res.send(aisService.getAll());
+  res.send(sellersService.getAll());
 });
 
 router.post('/', (req, res) => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const newAI = aisService.createNewAI(req.body);
-    res.send(newAI);
+    const newSeller = sellersService.createNewSeller(req.body);
+    res.send(newSeller);
   } 
   catch (error: unknown) {
     let errorMessage = 'Something went wrong.';
@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const id = req.params.id ;
-  res.send(aisService.getOneAI(id));
+  res.send(sellersService.getOneSeller(id));
 });
 
 export default router;

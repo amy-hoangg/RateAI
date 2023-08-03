@@ -3,6 +3,8 @@ import cors from 'cors';
 
 import aiRouter from './routes/ais';
 import reviewRouter from  './routes/reviews';
+import userRouter from './routes/users';
+import sellerRouter from './routes/sellers';
 
 const app = express();
 
@@ -18,6 +20,8 @@ app.get('/ping', (_req, res) => {
 
 app.use('/api/ais', aiRouter);
 app.use('/api/reviews', reviewRouter);
+app.use('/api/users', userRouter);
+app.use('/api/sellers', sellerRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

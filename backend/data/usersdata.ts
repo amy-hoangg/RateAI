@@ -1,51 +1,37 @@
-const userData = [
-    {
-      "username": "user1",
-      "password": "password1",
-      "first_name": "John",
-      "last_name": "Doe",
-      "email": "john.doe@example.com",
-      "seller_id": false,
-      "their_reviews": [
-        "r2773336-f723-11e9-8f0b-362b9e155667",
-        "r2773336-f723-11e9-8f0b-362b9e155670",
-        "r2773336-f723-11e9-8f0b-362b9e155675"
-      ],
-      "their_ai_saves": [
-        "d2773336-f723-11e9-8f0b-362b9e155668",
-        "d2773336-f723-11e9-8f0b-362b9e155671",
-        "d2773336-f723-11e9-8f0b-362b9e155674"
-      ],
-      "their_shopping_carts": [
-        "d2773336-f723-11e9-8f0b-362b9e155669",
-        "d2773336-f723-11e9-8f0b-362b9e155672",
-        "d2773336-f723-11e9-8f0b-362b9e155676"
-      ]
-    },
-    {
-      "username": "user2",
-      "password": "password2",
-      "first_name": "Jane",
-      "last_name": "Smith",
-      "email": "jane.smith@example.com",
-      "seller_id": "s1234567",
-      "their_reviews": [
-        "r2773336-f723-11e9-8f0b-362b9e155668",
-        "r2773336-f723-11e9-8f0b-362b9e155672",
-        "r2773336-f723-11e9-8f0b-362b9e155676"
-      ],
-      "their_ai_saves": [
-        "d2773336-f723-11e9-8f0b-362b9e155669",
-        "d2773336-f723-11e9-8f0b-362b9e155673",
-        "d2773336-f723-11e9-8f0b-362b9e155674"
-      ],
-      "their_shopping_carts": [
-        "d2773336-f723-11e9-8f0b-362b9e155667",
-        "d2773336-f723-11e9-8f0b-362b9e155671",
-        "d2773336-f723-11e9-8f0b-362b9e155675"
-      ]
-    },
-  ];
-  
-  export default userData;
-  
+const usersData = [
+  {
+    id: "1",
+    username: "john_doe",
+    password: "password123",
+    firstname: "John",
+    lastname: "Doe",
+    email: "john.doe@example.com",
+    saves: ["ai_1", "ai_3", "ai_5"],
+    purchases: ["ai_2", "ai_4"],
+    seller_id: "seller_1",
+  },
+  {
+    id: "2",
+    username: "alice_smith",
+    password: "abc123",
+    firstname: "Alice",
+    lastname: "Smith",
+    email: "alice.smith@example.com",
+    saves: ["ai_3", "ai_6"],
+    purchases: ["ai_1", "ai_5", "ai_8"],
+    seller_id: "seller_2",
+  },
+  {
+    id: "3",
+    username: "bob_johnson",
+    password: "bob987",
+    firstname: "Bob",
+    lastname: "Johnson",
+    email: "bob.johnson@example.com",
+    saves: ["ai_2", "ai_4", "ai_7"],
+    purchases: ["ai_3", "ai_6"],
+    seller_id: "seller_1",
+  }
+];
+
+export default usersData;
