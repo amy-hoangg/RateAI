@@ -26,3 +26,29 @@ app.use('/api/sellers', sellerRouter);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+/**
+ * // app.ts or index.ts
+
+import User from './user'; // Import all your Sequelize models here
+
+async function startServer() {
+  try {
+    // Connect to the database
+    await sequelize.authenticate();
+    console.log('Connected to the database.');
+
+    // Sync Sequelize models with the database
+    await sequelize.sync();
+    console.log('Sequelize models synchronized with the database.');
+
+    // Start your Express.js server here
+    // ... (rest of your server code)
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
+
+startServer();
+
+ */
