@@ -2,9 +2,16 @@
 
 import mongoose from 'mongoose';
 import app from './app';
+// Load environment variables from .env file
+import dotenv from 'dotenv';
+dotenv.config();
+const PORT = process.env.PORT;
+const MONGODB_URI = process.env.MONGODB_URI;
 
-const MONGODB_URI = 'mongodb+srv://amyishere0602:Amyit0602@cluster0.glogh2t.mongodb.net/mydatabase?retryWrites=true&w=majority'; // Replace with your actual MongoDB connection URI
-const PORT = 3003;
+if (!MONGODB_URI) {
+  console.error('Error: MongoDB URI not defined in environment variables.');
+  process.exit(1);
+}
 
 mongoose
   .connect(MONGODB_URI)

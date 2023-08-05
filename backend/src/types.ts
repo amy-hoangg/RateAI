@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export enum StarRating {
   ONE = 1,
   TWO = 2,
@@ -44,16 +46,21 @@ export interface TypeSellSingleAI extends TypeSingleAI {
   date: string; 
 }
 
-export interface TypeUser {
-  id: string;
-  username: string;
-  password: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-  saves: string [];
-  purchases: string[];
-  seller_id: string
+export interface TypeUser extends Document {
+  user_name: string;
+  user_password: string;
+  user_firstname: string;
+  user_lastname: string;
+  user_email: string;
+  user_saves_ai_id?: Types.ObjectId[];
+  user_carts_ai_id?: Types.ObjectId[];
+  user_reviews_review_id?: Types.ObjectId[];
+  user_likes_review_id?: Types.ObjectId[];
+  user_dislikes_review_id?: Types.ObjectId[];
+  user_likes_new_id?: Types.ObjectId[];
+  user_dislikes_new_id?: Types.ObjectId[];
+  user_purchases_ai_id?: Types.ObjectId[];
+  user_seller_id?: Types.ObjectId;
 }
 
 export interface TypeSeller extends TypeUser {
