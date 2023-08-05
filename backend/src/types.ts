@@ -6,8 +6,6 @@ export enum StarRating {
   FIVE = 5,
 }
 
-
-
 export interface TypeSingleAI {
   id: string;
   name: string;
