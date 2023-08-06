@@ -1,4 +1,4 @@
-import sellers from '../../data/sellersdata';
+/*import sellers from '../../data/sellersdata';
 import { v1 as uuid } from 'uuid';
 import {TypeNewSeller, TypeSeller} from '../types';
 
@@ -25,3 +25,4 @@ const createNewSeller = (newSeller: TypeNewSeller): TypeSeller=> {
   };
 
 //how can it fetch data from database
+*/

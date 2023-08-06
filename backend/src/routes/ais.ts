@@ -1,19 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import express from 'express';
 import aisService from '../services/aisService';
 
 const router = express.Router();
 
-router.get('/', (_req, res) => {
-  res.send(aisService.getAll());
+router.get('/', async (_req, res) => {
+  const allAI = await aisService.getAll();
+  res.send(allAI);
 });
 
-router.post('/', (req, res) => {
+
+router.post('/', async (req, res) => {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const newAI = aisService.createNewAI(req.body);
+    const newAI = await aisService.createNewAI(req.body);
     res.send(newAI);
-  } 
-  catch (error: unknown) {
+  } catch (error: unknown) {
     let errorMessage = 'Something went wrong.';
     if (error instanceof Error) {
       errorMessage += ' Error: ' + error.message;
@@ -22,11 +24,15 @@ router.post('/', (req, res) => {
   }
 });
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id ;
-  res.send(aisService.getOneAI(id));
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+  const ai = await aisService.getOneAI(id);
+  if (ai) {
+    res.send(ai);
+  } else {
+    res.status(404).send('AI not found');
+  }
 });
 
 export default router;
-
-//push data to the server

@@ -1,4 +1,4 @@
-import users from '../../data/usersdata';
+/*import users from '../../data/usersdata';
 import { v1 as uuid } from 'uuid';
 import {TypeNewUser, TypeUser} from '../types';
 
@@ -25,3 +25,4 @@ const createNewUser = (newUser: TypeNewUser): TypeUser=> {
   };
 
 //how can it fetch data from database
+*/

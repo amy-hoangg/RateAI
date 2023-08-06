@@ -1,4 +1,4 @@
-import reviews from '../../data/reviewsdata';
+/*import reviews from '../../data/reviewsdata';
 import { v1 as uuid } from 'uuid';
 import {TypeNewReview, TypeSingleReview} from '../types';
 
@@ -23,3 +23,4 @@ const createNewReview = (newreview: TypeNewReview): TypeSingleReview=> {
     createNewReview,
     getOneReview
   };
+*/
