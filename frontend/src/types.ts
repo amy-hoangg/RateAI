@@ -43,65 +43,74 @@ export enum StarRating {
 }
 
 
+
 export interface TypeSingleAI {
   id: string;
-  name: string;
-  star_rating: StarRating;
-  description: string;
-  saves: number;
-  price: string;
-  categories: string[];
-  review_count: number;
-  reviews: string[];
+  ai_name: string;
+  ai_star_rating: number;
+  ai_description: string;
+  ai_saves: number;
+  ai_price: string;
+  ai_categories: string[];
+  ai_timecreated: Date;
+  ai_sold: number;
+  ai_reviews_review_id: string[];
+  ai_seller_id?: string;
 }
 
 export interface TypeSingleNew {
   id: string;
-  title: string;
-  content: string;
-  likes: number;
-  dislikes: number;
-  date: string;
+  new_title: string;
+  new_content: string;
+  new_likes: number;
+  new_dislikes: number;
+  new_date: Date;
 }
 
 export interface TypeSingleReview {
   id: string;
-  app_id: string;
-  reviewer: string;
-  star: StarRating;
-  content: string;
-  time_review: string;
-  like: number;
-  dislike: number;
-}
-
-export interface TypeSellSingleAI extends TypeSingleAI {
-  sold: number; 
-  totalRevenue: number; 
-  date: string; 
+  review_ai_id: string;
+  review_reviewer_id: string;
+  review_star: number;
+  review_content: string;
+  review_time: Date;
+  review_like: number;
+  review_dislike: number;
 }
 
 export interface TypeUser {
   id: string;
-  username: string;
-  password: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-  saves: string [];
-  purchases: string[];
-  seller_id: string
+  user_name: string;
+  user_password: string;
+  user_firstname: string;
+  user_lastname: string;
+  user_email: string;
+  user_saves_ai_id?: string[];
+  user_carts_ai_id?: string[];
+  user_reviews_review_id: string[];
+  user_likes_review_id?: string[];
+  user_dislikes_review_id?: string[];
+  user_likes_new_id?: string[];
+  user_dislikes_new_id?: string[];
+  user_purchases_ai_id?: string[];
+  user_seller_id?: string;
 }
 
-export interface TypeSeller extends TypeUser {
-  storeName: string;
-  phoneNumber: string;
-  address: string;
-  ai_list: string[]
+export interface TypeSeller {
+  id: string;
+  seller_storeName: string;
+  seller_phoneNumber: string;
+  seller_Address: string;
+  seller_user_id: string;
+  seller_list_ai_id: string[];
+  seller_sold_ai_id?: string[];
 }
 
 
-export type TypeNewSeller = Omit<TypeSeller, 'seller_id'>
+
+
+
+export type TypeNewSeller = Omit<TypeSeller, 'id'>
 
 export type TypeNewAI = Omit<TypeSingleAI, "id">;
 

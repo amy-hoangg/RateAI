@@ -39,11 +39,7 @@ export interface TypeSingleReview extends Document {
   review_dislike: number;
 }
 
-export interface TypeSellSingleAI extends TypeSingleAI {
-  sold: number; 
-  totalRevenue: number; 
-  date: string; 
-}
+
 
 export interface TypeUser extends Document {
   user_name: string;
@@ -74,7 +70,11 @@ export interface TypeSeller extends Document {
 
 
 
-
+export interface TypeSellSingleAI extends TypeSingleAI {
+  sold: number; 
+  totalRevenue: number; 
+  date: string; 
+}
 
 export type TypeNewSeller = Omit<TypeSeller, 'seller_id'>;
 

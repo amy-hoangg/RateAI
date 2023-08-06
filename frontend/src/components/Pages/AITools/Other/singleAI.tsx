@@ -2,29 +2,31 @@ import React from 'react';
 import { TypeSingleAI } from '../../../../types'; 
 import { Link } from "react-router-dom";
 
-
 type Props = {
-    eachAI: TypeSingleAI
+  eachAI: TypeSingleAI;
 };
 
 const SingleAI = ({ eachAI }: Props) => {
   return (
     <div>
       <ul>
-      <li>
+        <li>
           Name: 
           <Link to={`/ais/${eachAI.id}`}>
-            {eachAI.name}
+            {eachAI.ai_name}
           </Link>
         </li>
 
-        <li>Star Rating: {eachAI.star_rating}</li>
-        <li>Description: {eachAI.description}</li>
-        <li>Saves: {eachAI.saves}</li>
-        <li>Price: {eachAI.price}</li>
-        <li>Categories: {eachAI.categories}</li>
-        <li>Review Count: {eachAI.review_count}</li>
-        <li>Reviews: {eachAI.reviews}</li>
+        <li>Star Rating: {eachAI.ai_star_rating}</li>
+        <li>Description: {eachAI.ai_description}</li>
+        <li>Saves: {eachAI.ai_saves}</li>
+        <li>Sold: {eachAI.ai_sold}</li>
+        <li>Price: {eachAI.ai_price}</li>
+        <li>Categories: {eachAI.ai_categories.join(', ')}</li>
+        <li>Time created: {eachAI.ai_timecreated.toLocaleString()}</li>
+        <li>Review Count: {eachAI.ai_reviews_review_id.length}</li>
+        <li>Reviews: {eachAI.ai_reviews_review_id.join(', ')}</li>
+        <li>Seller: {eachAI.ai_seller_id}</li>
       </ul>
     </div>
   );
