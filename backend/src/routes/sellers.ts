@@ -1,19 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import express from 'express';
 import sellersService from '../services/sellersService';
 
 const router = express.Router();
 
-router.get('/', (_req, res) => {
-  res.send(sellersService.getAll());
+router.get('/', async (_req, res) => {
+  const allSeller  = await sellersService.getAll();
+  res.send(allSeller );
 });
 
-router.post('/', (req, res) => {
+
+router.post('/', async (req, res) => {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const newSeller = sellersService.createNewSeller(req.body);
-    res.send(newSeller);
-  } 
-  catch (error: unknown) {
+    const newSeller  = await sellersService.createNewSeller (req.body);
+    res.send(newSeller );
+  } catch (error: unknown) {
     let errorMessage = 'Something went wrong.';
     if (error instanceof Error) {
       errorMessage += ' Error: ' + error.message;
@@ -22,11 +24,15 @@ router.post('/', (req, res) => {
   }
 });
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id ;
-  res.send(sellersService.getOneSeller(id));
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+  const seller  = await sellersService.getOneSeller (id);
+  if (seller ) {
+    res.send(seller );
+  } else {
+    res.status(404).send('Seller  not found');
+  }
 });
 
 export default router;
-
-//push data to the server
