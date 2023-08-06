@@ -1,15 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 // services/aisService.ts
-import { Types } from 'mongoose';
-import AI from '../models/ai';
-import { TypeNewAI, TypeSingleAI } from '../types';
+import { Types } from "mongoose";
+import AI from "../models/ai";
+import Seller from '../models/seller';
+
+import { TypeNewAI, TypeSingleAI } from "../types";
 
 const getAll = async (): Promise<TypeSingleAI[]> => {
   try {
     const allAI = await AI.find();
-    console.log('All AI fetched successfully:', allAI);
+    console.log("All AI fetched successfully:", allAI);
     return allAI;
   } catch (error) {
-    console.error('Error fetching all AI:', error);
+    console.error("Error fetching all AI:", error);
     throw error; // Rethrow the error to be caught in the route handler
   }
 };
@@ -17,10 +21,24 @@ const getAll = async (): Promise<TypeSingleAI[]> => {
 const createNewAI = async (newAI: TypeNewAI): Promise<TypeSingleAI> => {
   try {
     const createdAI = await AI.create(newAI);
-    console.log('New AI created successfully:', createdAI);
+
+    // Get the seller_id from the newly created AI
+    const seller_id = createdAI.ai_seller_id;
+
+    // Fetch the corresponding seller from the database
+    const seller = await Seller.findById(seller_id);
+
+    // Update the seller's seller_list_ai_id property
+    if (seller) {
+      seller.seller_list_ai_id.push(createdAI._id);
+      await seller.save();
+    }
+    console.log("New AI created successfully:", createdAI);
     return createdAI;
-  } catch (error) {
-    console.error('Error creating new AI:', error);
+  } 
+  
+  catch (error) {
+    console.error("Error creating new AI:", error);
     throw error; // Rethrow the error to be caught in the route handler
   }
 };
@@ -28,10 +46,10 @@ const createNewAI = async (newAI: TypeNewAI): Promise<TypeSingleAI> => {
 const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
   try {
     const ai = await AI.findOne({ _id: new Types.ObjectId(id) });
-    console.log('AI fetched by ID:', ai);
+    console.log("AI fetched by ID:", ai);
     return ai ? ai.toObject() : undefined;
   } catch (error) {
-    console.error('Error fetching AI by ID:', error);
+    console.error("Error fetching AI by ID:", error);
     throw error; // Rethrow the error to be caught in the route handler
   }
 };
@@ -41,5 +59,3 @@ export default {
   createNewAI,
   getOneAI,
 };
-
-

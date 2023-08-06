@@ -17,7 +17,7 @@ export interface TypeSingleAI extends Document {
   ai_categories: string[];
   ai_timecreated: Date;
   ai_sold: number;
-  ai_reviews_review_id?: Types.ObjectId[];
+  ai_reviews_review_id: Types.ObjectId[];
   ai_seller_id?: Types.ObjectId;
 }
 
@@ -53,7 +53,7 @@ export interface TypeUser extends Document {
   user_email: string;
   user_saves_ai_id?: Types.ObjectId[];
   user_carts_ai_id?: Types.ObjectId[];
-  user_reviews_review_id?: Types.ObjectId[];
+  user_reviews_review_id: Types.ObjectId[];
   user_likes_review_id?: Types.ObjectId[];
   user_dislikes_review_id?: Types.ObjectId[];
   user_likes_new_id?: Types.ObjectId[];
@@ -68,7 +68,7 @@ export interface TypeSeller extends Document {
   seller_Address: string;
 
   seller_user_id: Types.ObjectId;
-  seller_list_ai_id?: Types.ObjectId[];
+  seller_list_ai_id: Types.ObjectId[];
   seller_sold_ai_id?: Types.ObjectId[]
 }
 

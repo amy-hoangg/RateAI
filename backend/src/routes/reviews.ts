@@ -1,19 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import express from 'express';
 import reviewsService from '../services/reviewsService';
 
 const router = express.Router();
 
-router.get('/', (_req, res) => {
-  res.send(reviewsService.getAll());
+router.get('/', async (_req, res) => {
+  const allReview = await reviewsService.getAll();
+  res.send(allReview);
 });
 
-router.post('/', (req, res) => {
+
+router.post('/', async (req, res) => {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const newReview = reviewsService.createNewReview(req.body);
+    const newReview = await reviewsService.createNewReview(req.body);
     res.send(newReview);
-  } 
-  catch (error: unknown) {
+  } catch (error: unknown) {
     let errorMessage = 'Something went wrong.';
     if (error instanceof Error) {
       errorMessage += ' Error: ' + error.message;
@@ -22,10 +24,15 @@ router.post('/', (req, res) => {
   }
 });
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id ;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  res.send(reviewsService.getOneReview(id));
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+  const review = await reviewsService.getOneReview(id);
+  if (review) {
+    res.send(review);
+  } else {
+    res.status(404).send('Review not found');
+  }
 });
 
 export default router;

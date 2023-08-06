@@ -1,1 +1,27 @@
-GET http://localhost:3003/api/ais
+POST http://localhost:3003/api/ais
+Content-Type: application/json
+
+{
+    "ai_name": "AI Model Amy",
+    "ai_star_rating": 5,
+    "ai_description": "AI model for stdy",
+    "ai_saves": 100,
+    "ai_price": "$50",
+    "ai_categories": ["Machine Learning"],
+    "ai_timecreated": "2023-08-05T00:00:00.000Z",
+    "ai_sold": 0,
+    "ai_seller_id": "64cf68540b792b2e8739390c"
+}
+####
+POST http://localhost:3003/api/reviews
+Content-Type: application/json
+
+{
+    "review_ai_id": "64cf6aa9ccd6062e6f909700",
+    "review_reviewer_id": "64ceb53dfc3940a3d389b73a",
+    "review_star": 4,
+    "review_content": "This AI model is amazing!",
+    "review_time": "2023-08-05T12:00:00Z",
+    "review_like": 10,
+    "review_dislike": 2
+}
