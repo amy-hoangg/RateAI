@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { SellRegisterFormProps, TypeNewSeller } from '../../../../types';
+import { TypeNewSeller } from '../../../../types';
+
+interface SellRegisterFormProps {
+  onSubmit: (newSeller: TypeNewSeller) => void;
+}
 
 const SellRegisterForm: React.FC<SellRegisterFormProps> = ({ onSubmit }) => {
-  const [user_id, setUserID] = useState('currentid')
-  const [username, setUserName] = useState('currentUser')
-  const [password, setPassword] = useState('currentPassword')
-  const [firstName, setFirstName] = useState('currentFirstName')
-  const [lastName, setLastName] = useState('currentLastName')
-  const [email, setEmail] = useState('currentEmail')
-  const [saves, setSaves] = useState([])
-  const [purchases, setPurchases] = useState([])  
+  const [user_id, setUserID] = useState('currentid');
   const [storeName, setStoreName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
-  const [ai_list, setAIList] = useState([])
+  const [ai_list, setAIList] = useState<string[]>([]);
 
   const handleStoreNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStoreName(e.target.value);
@@ -30,18 +27,11 @@ const SellRegisterForm: React.FC<SellRegisterFormProps> = ({ onSubmit }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData: TypeNewSeller = {
-      id: user_id,
-      username,
-      password,
-      firstname: firstName,
-      lastname: lastName,
-      email,
-      saves,
-      purchases,
-      storeName,
-      phoneNumber,
-      address,
-      ai_list
+      seller_storeName: storeName,
+      seller_phoneNumber: phoneNumber,
+      seller_Address: address,
+      seller_user_id: user_id,
+      seller_list_ai_id: ai_list,
     };
     onSubmit(formData);
   };

@@ -6,25 +6,25 @@ type Props = {
 };
 
 const AddNewReviewForm = ({ onSubmit }: Props) => {
-  const [appID, setAppID] = useState('');
-  const [reviewer, setReviewer] = useState('');
-  const [star, setStar] = useState(StarRating.ONE);
-  const [content, setContent] = useState('');
-  const [timeReview, setTimeReview] = useState('');
-  const [like, setLike] = useState(0);
-  const [dislike, setDislike] = useState(0);
+  const [review_ai_id, setAppID] = useState('');
+  const [review_reviewer_id, setReviewer] = useState('');
+  const [review_star, setStar] = useState(StarRating.ONE);
+  const [review_content, setContent] = useState('');
+  const [review_time, setTimeReview] = useState('');
+  const [review_like, setLike] = useState(0);
+  const [review_dislike, setDislike] = useState(0);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const newReview: TypeNewReview = {
-      app_id: appID,
-      reviewer,
-      star,
-      content,
-      time_review: timeReview,
-      like,
-      dislike
+      review_ai_id,
+      review_reviewer_id,
+      review_star,
+      review_content,
+      review_time: new Date(review_time), // Convert to Date object
+      review_like,
+      review_dislike,
     };
 
     onSubmit(newReview);
@@ -45,20 +45,20 @@ const AddNewReviewForm = ({ onSubmit }: Props) => {
         <label>App ID:</label>
         <input
           type="text"
-          value={appID}
+          value={review_ai_id}
           onChange={(e) => setAppID(e.target.value)}
         />
 
         <label>Reviewer:</label>
         <input
           type="text"
-          value={reviewer}
+          value={review_reviewer_id}
           onChange={(e) => setReviewer(e.target.value)}
         />
 
         <label>Star Rating:</label>
         <select
-          value={star}
+          value={review_star}
           onChange={(e) => setStar(Number(e.target.value) as StarRating)}
         >
           {Object.values(StarRating).map((rating) => (
@@ -70,15 +70,8 @@ const AddNewReviewForm = ({ onSubmit }: Props) => {
 
         <label>Review Content:</label>
         <textarea
-          value={content}
+          value={review_content}
           onChange={(e) => setContent(e.target.value)}
-        />
-
-        <label>Time of Review:</label>
-        <input
-          type="datetime-local"
-          value={timeReview}
-          onChange={(e) => setTimeReview(e.target.value)}
         />
 
         <button type="submit">Add Review</button>
@@ -88,4 +81,3 @@ const AddNewReviewForm = ({ onSubmit }: Props) => {
 };
 
 export default AddNewReviewForm;
-

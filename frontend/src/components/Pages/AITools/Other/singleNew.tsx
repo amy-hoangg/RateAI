@@ -14,19 +14,18 @@ const SingleNew = ({ eachNew }: Props) => {
       <li>
           Name: 
           <Link to={`/ais/${eachNew.id}`}>
-            {eachNew.title}
+            {eachNew.new_title}
           </Link>
         </li>
 
-        <li>Title: {eachNew.title}</li>
-        <li>Content: {eachNew.content}</li>
-        <li>Likes: {eachNew.likes}</li>
-        <li>Dislikes: {eachNew.dislikes}</li>
-        <li>Date: {eachNew.date}</li>
+        <li>Title: {eachNew.new_title}</li>
+        <li>Content: {eachNew.new_content}</li>
+        <li>Likes: {eachNew.new_likes}</li>
+        <li>Dislikes: {eachNew.new_dislikes}</li>
+        <li>Date: {eachNew.new_date.toLocaleString()}</li>
       </ul>
     </div>
   );
 };
 
 export default SingleNew;
-

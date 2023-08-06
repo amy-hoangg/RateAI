@@ -1,56 +1,67 @@
-import React from 'react';
-import HomeBanner from './HomeBanner/HomeBanner';
-import HomeBannerBestAI from './HomeBanner/HomeBannerBestAI';
-import HomeAIsList from './HomeList/HomeAIList';
-import HomeNewsList from './HomeList/HomeNewsList';
-import HomeFilterButton from './HomeSearch/HomeFilter/HomeFilterButton';
-import HomeSearchBar from './HomeSearch/HomeSearchBar';
-import HomeNewsLetter from './HomeNewsLetter';
+import React, { useEffect, useState } from "react";
+import HomeBanner from "./HomeBanner/HomeBanner";
+import HomeBannerBestAI from "./HomeBanner/HomeBannerBestAI";
+import HomeAIsList from "./HomeList/HomeAIList";
+import HomeNewsList from "./HomeList/HomeNewsList";
+import HomeFilterButton from "./HomeSearch/HomeFilter/HomeFilterButton";
+import HomeSearchBar from "./HomeSearch/HomeSearchBar";
+import HomeNewsLetter from "./HomeNewsLetter";
+import { TypeSingleAI, TypeSingleNew } from "../../../types";
+import aisService from "../../../service/aisService";
+import newsService from "../../../service/newsService";
 
 const HomePage = () => {
   const handleSearch = (searchTerm: string) => {
-    console.log('Searching for:', searchTerm);
+    console.log("Searching for:", searchTerm);
   };
 
-  const fakeAIs = [
-    {
-        "id": "d2773336-f723-11e9-8f0b-362b9e155667",
-        "name": "ChatGenius",
-        "star_rating": 4,
-        "description": "AI-powered chatbot for customer support.",
-        "saves": 1234,
-        "price": "Free",
-        "categories": ["chatbot", "management"],
-        "review_count": 1,
-        "reviews": [
-          "r2773336-f723-11e9-8f0b-362b9e155667",
-        ]
-      },
-    // Add more fake AI data here...
-  ];
+  const [ais, setAIs] = useState<TypeSingleAI[]>([]);
+
+  useEffect(() => {
+    aisService
+      .getAllAIs()
+      .then((data) => setAIs(data))
+      .catch((error) => console.error("Error fetching AIs:", error));
+  }, []);
+
+  if (!ais) {
+    return <div>Loading...</div>; // You can add a loading indicator while waiting for data to load.
+  }
+
+  const [news, setNews] = useState<TypeSingleNew[]>([]);
+
+  useEffect(() => {
+    newsService
+      .getAllNews()
+      .then((data) => setNews(data))
+      .catch((error) => console.error("Error fetching News:", error));
+  }, []);
+
+  if (!news) {
+    return <div>Loading...</div>; // You can add a loading indicator while wnewting for data to load.
+  }
 
   // Fake data for HomeNewsList
   const fakeNews = [
     {
-      id: 'news1',
-      title: 'News 1',
-      content: 'This is News 1',
+      id: "news1",
+      title: "News 1",
+      content: "This is News 1",
       likes: 12,
       dislikes: 23,
-      date: "ffss"
+      date: "ffss",
     },
     // Add more fake news data here...
   ];
-
 
   return (
     <div>
       <HomeSearchBar onSearch={handleSearch} />
       <HomeFilterButton />
       <HomeBanner />
-      <HomeAIsList ais={fakeAIs} />
+      <HomeAIsList ais={ais} />
       <HomeBannerBestAI />
-      <HomeNewsList news={fakeNews} />
+      <HomeNewsList news={news} />
       <HomeNewsLetter />
     </div>
   );

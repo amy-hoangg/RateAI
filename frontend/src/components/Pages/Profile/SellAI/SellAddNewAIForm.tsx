@@ -6,28 +6,32 @@ type Props = {
   onSubmit: (newAI: TypeNewAI) => void;
 };
 
-const SellAddNewAIForm = ({ onSubmit } : Props) => {
-  const [name, setName] = useState('');
-  const [starRating, setStarRating] = useState(StarRating.ONE);
-  const [description, setDescription] = useState('');
-  const [saves, setSaves] = useState(0);
-  const [price, setPrice] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [reviewCount, setReviewCount] = useState(0);
-  const [reviews, setReviews] = useState<string[]>([]);
+const SellAddNewAIForm= ({ onSubmit } : Props) => {
+  const [ai_name, setName] = useState('');
+  const [ai_star_rating, setStarRating] = useState(StarRating.ONE);
+  const [ai_description, setDescription] = useState('');
+  const [ai_saves, setSaves] = useState(0);
+  const [ai_sold, setSolds] = useState(0);
+  const [ai_price, setPrice] = useState('');
+  const [ai_categories, setSelectedCategories] = useState<string[]>([]);
+  const [ai_timecreated, setTimeCreated] = useState(new Date)
+  const [ai_reviews_review_id, setReviews] = useState<string[]>([]);
+  const [ai_seller_id, setSeller] = useState("")
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
     const newAI: TypeNewAI = {
-      name,
-      star_rating: starRating,
-      description,
-      saves,
-      price,
-      categories: selectedCategories,
-      review_count: reviewCount,
-      reviews: reviews
+      ai_name,
+      ai_star_rating,
+      ai_description,
+      ai_saves,
+      ai_sold,
+      ai_price,
+      ai_categories,
+      ai_timecreated,
+      ai_reviews_review_id,
+      ai_seller_id
     };
 
     onSubmit(newAI);
@@ -36,8 +40,12 @@ const SellAddNewAIForm = ({ onSubmit } : Props) => {
     setStarRating(StarRating.ONE);
     setDescription('');
     setSaves(0);
+    setSolds(0);
     setPrice('');
     setSelectedCategories([]);
+    setTimeCreated(new Date);
+    setReviews([]);
+    setSeller("")
   };
 
   return (
@@ -46,19 +54,27 @@ const SellAddNewAIForm = ({ onSubmit } : Props) => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          <input 
+          type="text" 
+          value={ai_name} 
+          onChange={(e) => setName(e.target.value)} />
         </div>
 
 
         <div>
           <label>Description:</label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+          <textarea 
+          value={ai_description} 
+          onChange={(e) => setDescription(e.target.value)} />
         </div>
 
 
         <div>
           <label>Price:</label>
-          <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
+          <input 
+          type="text" 
+          value={ai_price} 
+          onChange={(e) => setPrice(e.target.value)} />
         </div>
 
         <div>
@@ -70,7 +86,7 @@ const SellAddNewAIForm = ({ onSubmit } : Props) => {
                 type="checkbox"
                 name="categories"
                 value={category}
-                checked={selectedCategories.includes(category)}
+                checked={ai_categories.includes(category)}
                 onChange={(e) =>
                   e.target.checked
                     ? setSelectedCategories((prev) => [...prev, category])
@@ -91,6 +107,11 @@ const SellAddNewAIForm = ({ onSubmit } : Props) => {
 };
 
 export default SellAddNewAIForm;
+
+
+
+
+
 
 
 

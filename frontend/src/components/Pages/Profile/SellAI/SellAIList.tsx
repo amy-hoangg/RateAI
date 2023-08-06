@@ -1,9 +1,9 @@
 import React from 'react';
 import SellSingleAI from './SellSingleAI';
-import { TypeSellSingleAI } from '../../../../types'; 
+import { TypeSingleAI } from '../../../../types'; 
 
 type Props = {
-  ais: TypeSellSingleAI[];
+  ais: TypeSingleAI[];
 };
 
 const SellAIList = ({ ais }: Props) => {

@@ -1,25 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SellRegisterForm from "./SellRegiterForm";
 import SellAIList from "./SellAIList";
 import SellAddNewAIForm from "./SellAddNewAIForm";
-import { TypeNewAI } from "../../../../types";
+import { TypeNewAI, TypeSingleAI } from "../../../../types";
 import SellerInfo from "./SellerInfo";
-
-const fakeSellSingleAI = {
-    id: 'ai1',
-    name: 'AI Tool 1',
-    star_rating: 4,
-    description: 'This is AI Tool 1',
-    saves: 100,
-    price: '$10/month',
-    categories: ['category1', 'category2'],
-    review_count: 10,
-    reviews: ['review1', 'review2'],
-    sold: 50,
-    totalRevenue: 1000,
-    date: '2023-08-01',
-
-  };
+import aisService from "../../../../service/aisService";
 
 
 const SellAIPage = () => {
@@ -28,12 +13,24 @@ const SellAIPage = () => {
     console.log("Form submitted with data:", formData);
   };
 
+  const [ais, setAIs] = useState<TypeSingleAI[]>([]);
+
+  useEffect(() => {
+    aisService.getAllAIs()
+      .then((data) => setAIs(data))
+      .catch((error) => console.error('Error fetching AIs:', error));
+  }, []);
+
+  if (!ais) {
+    return <div>Loading...</div>; // You can add a loading indicator while waiting for data to load.
+  }
+
   return (
     <div>
       <h1>This is the Sell AI page</h1>
       <SellRegisterForm onSubmit={handleSubmit} />
 
-      <SellAIList ais={[fakeSellSingleAI]} />
+      <SellAIList ais={ais} />
 
       <SellAddNewAIForm onSubmit={function (newAI: TypeNewAI): void {
               throw new Error("Function not implemented.");

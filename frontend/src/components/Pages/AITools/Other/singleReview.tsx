@@ -9,13 +9,13 @@ const SingleReview = ({ eachReview }: Props) => {
   return (
     <div>
       <ul>
-        <li>App: {eachReview.app_id}</li>
-        <li>Reviewer: {eachReview.reviewer}</li>
-        <li>Star: {eachReview.star}</li>
-        <li>Content: {eachReview.content}</li>
-        <li>Time Review: {eachReview.time_review}</li>
-        <li>Likes: {eachReview.like}</li>
-        <li>Dislikes: {eachReview.dislike}</li>
+        <li>App: {eachReview.review_ai_id}</li>
+        <li>Reviewer: {eachReview.review_reviewer_id}</li>
+        <li>Star: {eachReview.review_star}</li>
+        <li>Content: {eachReview.review_content}</li>
+        <li>Time Review: {eachReview.review_time.toLocaleString()}</li>
+        <li>Likes: {eachReview.review_like}</li>
+        <li>Dislikes: {eachReview.review_dislike}</li>
       </ul>
     </div>
   );
