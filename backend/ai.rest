@@ -38,3 +38,29 @@ Content-Type: application/json
     "seller_list_ai_id": [],
     "seller_sold_ai_id": []
 }
+
+####
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "user_name": "john_doe",
+  "user_password": "password123",
+  "user_firstname": "John",
+  "user_lastname": "Doe",
+  "user_email": "john.doe@example.com",
+  "user_seller_id": "64cf9b56e42f2a127709767e"
+}
+
+####
+POST http://localhost:3003/api/news
+Content-Type: application/json
+
+{
+  "new_title": "New Title",
+  "new_content": "New Content",
+  "new_likes": 10,
+  "new_dislikes": 2,
+  "new_date": "2023-08-05"
+}
+
