@@ -64,3 +64,5 @@ Content-Type: application/json
   "new_date": "2023-08-05"
 }
 
+####
+GET http://localhost:3003/api/search/model?term=model

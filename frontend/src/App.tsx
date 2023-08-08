@@ -13,7 +13,7 @@ import CartPage from './components/Pages/Profile/Cart/CartPage';
 import SavesPage from './components/Pages/Profile/Saves/SavesPage';
 import SellAIPage from './components/Pages/Profile/SellAI/SellAIPage';
 import HomeSearchPage from './components/Pages/HomePage/HomeSearch/HomeSearchPage';
-import SingleAI from './components/Pages/AITools/Other/singleAI';
+import SingleAIPage from './components/Pages/AITools/Other/singleAIPage';
 
 const App = () => {
   
@@ -35,8 +35,7 @@ const App = () => {
       <Route path="sell" element={<SellAIPage />} />
 
       <Route path="search/:term" element={<HomeSearchPage />} />
-
-      <Route path="ais/:id" element={<SingleAI />} />
+      <Route path="ais/fetch/:id" element={<SingleAIPage />} />
 
     
 

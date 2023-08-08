@@ -62,26 +62,8 @@ const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
   }
 };
 
-
-
-const searchAI = async (searchTerm: string): Promise<TypeSingleAI[]> => {
-  try {
-    const searchResults = await AI.find({
-      $text: { $search: searchTerm } // Perform a text search on relevant fields
-    });
-
-    console.log("Search results:", searchResults);
-    return searchResults || [];
-  } catch (error) {
-    console.error("Error searching AI:", error);
-    throw error; // Rethrow the error to be caught in the route handler
-  }
-};
-
-
 export default {
   getAll,
   createNewAI,
-  getOneAI,
-  searchAI
+  getOneAI
 };

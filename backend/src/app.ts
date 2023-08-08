@@ -21,13 +21,15 @@ import reviewRouter from './routes/reviews';
 import sellerRouter from './routes/sellers';
 import userRouter from './routes/users';
 import newRouter from './routes/news';
+import searchRouter from './routes/search';
 
 app.use('/api/ais', aiRouter);
 app.use('/api/reviews', reviewRouter);
 app.use('/api/sellers', sellerRouter);
 app.use('/api/users', userRouter);
 app.use('/api/news', newRouter);
-
+// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+app.use('/api/search', searchRouter);
 
 
 export default app;

@@ -12,7 +12,7 @@ const SingleAI = ({ eachAI }: Props) => {
       <ul>
         <li>
           Name: 
-          <Link to={`/ais/fetch/${eachAI._id}`}> {/* Use eachAI._id */}
+          <Link to={`/ais/fetch/${eachAI._id}`}>
             {eachAI.ai_name}
           </Link>
         </li>
