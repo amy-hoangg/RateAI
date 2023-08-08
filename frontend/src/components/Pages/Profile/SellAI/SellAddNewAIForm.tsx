@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StarRating, TypeNewAI } from '../../../../types';
 import { categoriesList } from '../../../../utils/categoriesList';
+import aisService from '../../../../service/aisService';
 
 type Props = {
   onSubmit: (newAI: TypeNewAI) => void;
@@ -16,9 +17,11 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
   const [ai_categories, setSelectedCategories] = useState<string[]>([]);
   const [ai_timecreated, setTimeCreated] = useState(new Date)
   const [ai_reviews_review_id, setReviews] = useState<string[]>([]);
-  const [ai_seller_id, setSeller] = useState("")
+  const [ai_seller_id, setSeller] = useState("64cf68540b792b2e8739390b")
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
     const newAI: TypeNewAI = {
@@ -34,7 +37,16 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
       ai_seller_id
     };
 
-    onSubmit(newAI);
+    try {
+      const createdAI = await aisService.createNewAI(newAI);
+      console.log('AI created:', createdAI);
+      onSubmit(newAI);
+    } 
+    
+    catch (error) {
+      console.error('Error creating user:', error);
+    }
+
     // Clear the form fields after submission
     setName('');
     setStarRating(StarRating.ONE);
@@ -45,7 +57,7 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
     setSelectedCategories([]);
     setTimeCreated(new Date);
     setReviews([]);
-    setSeller("")
+    setSeller("64cf68540b792b2e8739390b")
   };
 
   return (

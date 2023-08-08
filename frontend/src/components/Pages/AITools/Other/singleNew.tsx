@@ -13,7 +13,7 @@ const SingleNew = ({ eachNew }: Props) => {
       <ul>
       <li>
           Name: 
-          <Link to={`/ais/${eachNew.id}`}>
+          <Link to={`/ais/${eachNew._id}`}>
             {eachNew.new_title}
           </Link>
         </li>

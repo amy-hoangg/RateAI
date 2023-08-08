@@ -8,10 +8,11 @@ import aisService from "../../../../service/aisService";
 
 
 const SellAIPage = () => {
-  // Fake onSubmit function to handle form submission
-  const handleSubmit = (formData: any) => {
-    console.log("Form submitted with data:", formData);
-  };
+
+  const handleSellerRegister = async () => {
+      console.log("Form submitted with data:");
+  }
+
 
   const [ais, setAIs] = useState<TypeSingleAI[]>([]);
 
@@ -28,7 +29,7 @@ const SellAIPage = () => {
   return (
     <div>
       <h1>This is the Sell AI page</h1>
-      <SellRegisterForm onSubmit={handleSubmit} />
+      <SellRegisterForm onSubmit={handleSellerRegister} />
 
       <SellAIList ais={ais} />
 

@@ -9,9 +9,9 @@ type Props = {
 const SellAIList = ({ ais }: Props) => {
   return (
     <div>
-        <h2>sell ai list</h2>
+      <h2>sell ai list</h2>
       {ais.map((ai) => (
-        <div key={ai.id}>
+        <div key={ai._id}>
           <SellSingleAI eachAI={ai} />
         </div>
       ))}

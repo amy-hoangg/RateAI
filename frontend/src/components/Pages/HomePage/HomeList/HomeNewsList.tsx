@@ -14,7 +14,7 @@ const HomeNewsList = ({ news }: Props) => {
     <div>
       <h2>News List</h2>
       {visibleNews.map((each_new) => (
-        <div key={each_new.id}>
+        <div key={each_new._id}>
           <SingleNew eachNew={each_new} />
         </div>
       ))}

@@ -12,7 +12,7 @@ const HomeAIsList = ({ ais }: Props) => {
   return (
     <div>
       {visibleAIs.map((ai) => (
-        <div key={ai.id}>
+        <div key={ai._id}>
           <SingleAI eachAI={ai} />
         </div>
       ))}

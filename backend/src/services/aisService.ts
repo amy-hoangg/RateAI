@@ -45,17 +45,43 @@ const createNewAI = async (newAI: TypeNewAI): Promise<TypeSingleAI> => {
 
 const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
   try {
+
     const ai = await AI.findOne({ _id: new Types.ObjectId(id) });
+    if (!ai) {
+      console.log("AI not found");
+      return undefined;
+    }
+
     console.log("AI fetched by ID:", ai);
-    return ai ? ai.toObject() : undefined;
-  } catch (error) {
+    return ai.toObject();
+  } 
+  
+  catch (error) {
     console.error("Error fetching AI by ID:", error);
     throw error; // Rethrow the error to be caught in the route handler
   }
 };
 
+
+
+const searchAI = async (searchTerm: string): Promise<TypeSingleAI[]> => {
+  try {
+    const searchResults = await AI.find({
+      $text: { $search: searchTerm } // Perform a text search on relevant fields
+    });
+
+    console.log("Search results:", searchResults);
+    return searchResults || [];
+  } catch (error) {
+    console.error("Error searching AI:", error);
+    throw error; // Rethrow the error to be caught in the route handler
+  }
+};
+
+
 export default {
   getAll,
   createNewAI,
   getOneAI,
+  searchAI
 };

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { HomeSearchBarProps } from '../../../../types';
+import { useNavigate } from 'react-router-dom';
 
-const HomeSearchBar = ({ onSearch } : HomeSearchBarProps) => {
+const HomeSearchBar = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -9,12 +10,12 @@ const HomeSearchBar = ({ onSearch } : HomeSearchBarProps) => {
   };
 
   const handleSearch = () => {
-    onSearch(searchTerm);
+    navigate(`/search/${encodeURIComponent(searchTerm)}`);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      onSearch(searchTerm);
+      handleSearch();
     }
   };
 

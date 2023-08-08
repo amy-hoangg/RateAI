@@ -13,7 +13,7 @@ const SellSingleAI = ({ eachAI }: Props) => {
       <ul>
         <li>
           Name: 
-          <Link to={`/ais/${eachAI.id}`}>
+          <Link to={`/ais/${eachAI._id}`}>
             {eachAI.ai_name}
           </Link>
         </li>

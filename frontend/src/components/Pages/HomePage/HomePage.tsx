@@ -11,9 +11,6 @@ import aisService from "../../../service/aisService";
 import newsService from "../../../service/newsService";
 
 const HomePage = () => {
-  const handleSearch = (searchTerm: string) => {
-    console.log("Searching for:", searchTerm);
-  };
 
   const [ais, setAIs] = useState<TypeSingleAI[]>([]);
 
@@ -56,7 +53,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <HomeSearchBar onSearch={handleSearch} />
+      <HomeSearchBar/>
       <HomeFilterButton />
       <HomeBanner />
       <HomeAIsList ais={ais} />

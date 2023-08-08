@@ -10,7 +10,7 @@ const NewsList = ({ ais }: Props) => {
   return (
     <div>
       {ais.map((ai) => (
-        <div key={ai.id}>
+        <div key={ai._id}>
           <SingleNew eachNew={ai} />
         </div>
       ))}

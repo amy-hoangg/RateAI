@@ -1,3 +1,4 @@
+
 import { ReactNode } from "react";
 
 export interface TypeAppBarTabProps {
@@ -45,7 +46,8 @@ export enum StarRating {
 
 
 export interface TypeSingleAI {
-  id: string;
+
+  _id: string;
   ai_name: string;
   ai_star_rating: number;
   ai_description: string;
@@ -59,7 +61,8 @@ export interface TypeSingleAI {
 }
 
 export interface TypeSingleNew {
-  id: string;
+
+  _id: string;
   new_title: string;
   new_content: string;
   new_likes: number;
@@ -68,7 +71,8 @@ export interface TypeSingleNew {
 }
 
 export interface TypeSingleReview {
-  id: string;
+
+  _id: string;
   review_ai_id: string;
   review_reviewer_id: string;
   review_star: number;
@@ -79,7 +83,8 @@ export interface TypeSingleReview {
 }
 
 export interface TypeUser {
-  id: string;
+
+  _id: string;
   user_name: string;
   user_password: string;
   user_firstname: string;
@@ -97,7 +102,8 @@ export interface TypeUser {
 }
 
 export interface TypeSeller {
-  id: string;
+
+  _id: string;
   seller_storeName: string;
   seller_phoneNumber: string;
   seller_Address: string;
@@ -110,12 +116,12 @@ export interface TypeSeller {
 
 
 
-export type TypeNewSeller = Omit<TypeSeller, 'id'>
+export type TypeNewSeller = Omit<TypeSeller, '_id'>
 
-export type TypeNewAI = Omit<TypeSingleAI, "id">;
+export type TypeNewAI = Omit<TypeSingleAI, "_id">;
 
-export type TypeNewReview = Omit<TypeSingleReview, "id">;
+export type TypeNewReview = Omit<TypeSingleReview, "_id">;
 
-export type TypeNewUser = Omit<TypeUser, 'id'>
+export type TypeNewUser = Omit<TypeUser, '_id'>
 
-export type TypeNewNew = Omit<TypeSingleNew, "id">;
+export type TypeNewNew = Omit<TypeSingleNew, "_id">;
