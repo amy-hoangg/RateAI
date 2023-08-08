@@ -87,7 +87,7 @@ export interface TypeUser {
   user_email: string;
   user_saves_ai_id?: string[];
   user_carts_ai_id?: string[];
-  user_reviews_review_id: string[];
+  user_reviews_review_id?: string[];
   user_likes_review_id?: string[];
   user_dislikes_review_id?: string[];
   user_likes_new_id?: string[];

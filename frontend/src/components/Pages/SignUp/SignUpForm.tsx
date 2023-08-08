@@ -1,22 +1,52 @@
 import React, { useState } from 'react';
 import { TypeSignUpFormProps } from '../../../types';
+import usersService from '../../../service/usersService';
 
 const SignUpForm = ({ onSubmit } : TypeSignUpFormProps) => {
+    const [username, setUsername] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
   
-    const handleSignUp = () => {
-      // Do something with the form data (e.g., call an API for user registration)
-      onSubmit();
+    const handleSignUp = async () => {
+      // Check if passwords match
+      if (password !== repeatPassword) {
+        console.log('Passwords do not match');
+        return;
+      }
+  
+      const newUser = {
+        user_name: username,
+        user_firstname: firstName,
+        user_lastname: lastName,
+        user_email: email,
+        user_password: password,
+      };
+
+      try {
+        const createdUser = await usersService.createNewUser(newUser);
+        console.log('User created:', createdUser);
+        onSubmit();
+      } catch (error) {
+        console.error('Error creating user:', error);
+      }
     };
   
     return (
         <div>
           <div>
-            <label>First Name:</label>
+          <label>Username:</label>
+          <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="username"
+            />
+          </div>
+          <div>
+            <label>Firstname:</label>
             <input
               type="text"
               value={firstName}
