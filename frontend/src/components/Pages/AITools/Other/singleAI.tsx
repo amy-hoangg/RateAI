@@ -1,12 +1,30 @@
-import React from 'react'; 
+import React, { useState } from 'react'; 
 import { TypeSingleAI } from '../../../../types'; 
 import { Link } from "react-router-dom";
+import aisService from '../../../../service/aisService';
 
 type Props = {
   eachAI: TypeSingleAI;
 };
 
 const SingleAI = ({ eachAI }: Props) => {
+  const [saves, setSaves] = useState(eachAI.ai_saves); // Initialize saves state
+
+  const handleSave = async () => {
+    try {
+      // Send a request to update the saves in the backend
+      await aisService.updateSaves(eachAI._id);
+  
+      // Update the UI to reflect the updated saves
+      setSaves((prevSaves) => prevSaves + 1);
+      console.log('save successfully');
+    } 
+    
+    catch (error) {
+      console.error('Error saving AI:', error);
+    }
+  };
+
   return (
     <div>
       <ul>
@@ -27,6 +45,7 @@ const SingleAI = ({ eachAI }: Props) => {
         <li>Review Count: {eachAI.ai_reviews_review_id.length}</li>
         <li>Reviews: {eachAI.ai_reviews_review_id.join(', ')}</li>
         <li>Seller: {eachAI.ai_seller_id}</li>
+        <button onClick={handleSave}>save</button>
       </ul>
     </div>
   );

@@ -62,8 +62,32 @@ const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
   }
 };
 
+
+const updateSaves = async (id: string): Promise<TypeSingleAI | undefined> => {
+  try {
+    const ai = await AI.findOne({ _id: new Types.ObjectId(id) });
+
+    if (!ai) {
+      console.log("AI not found");
+      return undefined;
+    }
+    ai.ai_saves += 1;
+    await ai.save();
+
+    console.log("AI saves updated:", ai);
+    return ai.toObject();
+  } 
+  
+  catch (error) {
+    console.error("Error updating AI saves:", error);
+    throw error; // Rethrow the error to be caught in the route handler
+  }
+};
+
+
 export default {
   getAll,
   createNewAI,
-  getOneAI
+  getOneAI,
+  updateSaves
 };

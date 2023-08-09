@@ -18,15 +18,28 @@ const createNewAI = async (object: TypeNewAI) => {
   };
 
   const getOneAI = async (id: string) => {
-    const { data } = await axios.get<TypeSingleAI>(
+    const { data } = await axios
+    .get<TypeSingleAI>(
       `${baseUrl}/fetch/${id}`
     );
     return data;
   };
 
+  const updateSaves = async (id: string) => {
+    try {
+      const response = await axios.patch<TypeSingleAI>(
+        `${baseUrl}/saves/${id}`
+      );
+      return response.data; // You can return any data from the response if needed
+    } 
+    catch (error) {
+      throw error;
+    }
+  };
 
 export default {
     getAllAIs,
     createNewAI,
     getOneAI,
+    updateSaves
 }

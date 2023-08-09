@@ -73,3 +73,6 @@ GET http://localhost:3003/api/search/model?term=model
 
 ####
 GET http://localhost:3003/api/filter/category=social%20media&price=free,paid
+
+
+

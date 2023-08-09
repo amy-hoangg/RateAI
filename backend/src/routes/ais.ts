@@ -38,6 +38,23 @@ router.get('/fetch/:id', async (req, res) => {
   }
 });
 
+router.patch('/saves/:id', async (req, res) => {
+  const aiId = req.params.id;
 
+  try {
+    // Update the saves count for the AI
+    const updatedAI = await aisService.updateSaves(aiId);
+
+    if (!updatedAI) {
+      return res.status(404).json({ error: "AI not found" });
+    }
+
+    // Respond with the updated AI
+    return res.json(updatedAI); // Add the "return" statement here
+  } catch (error) {
+    console.error("Error updating AI saves:", error);
+    return res.status(500).json({ error: "An error occurred while updating AI saves" });
+  }
+});
 
 export default router;
