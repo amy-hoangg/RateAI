@@ -1,21 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import filterService from '../../../../../service/filterService';
 import { TypeSingleAI } from '../../../../../types';
 import AIsList from '../../../AITools/AIsList';
 
 const HomeFilterResultsPage = () => {
-  const { selectedCategories, selectedPrice } = useParams<{ selectedCategories: string, selectedPrice: string }>();
   const [results, setResults] = useState<TypeSingleAI[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (selectedCategories && selectedPrice) {
-      const categoriesArray = selectedCategories.split('&');
-      const priceArray = selectedPrice.split('&');
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
 
-      filterService.filterAI(categoriesArray, priceArray)
+  const selectedCategoryParams = queryParams.get('category');
+  const selectedPriceParams = queryParams.get('price');
+
+  useEffect(() => {
+    console.log(
+      'Effect triggered with categories:',
+      selectedCategoryParams,
+      'and price:',
+      selectedPriceParams
+    );
+
+    if (selectedCategoryParams && selectedPriceParams) {
+      const categoriesArray = selectedCategoryParams.split('+');
+      const priceArray = selectedPriceParams.split('+');
+
+      console.log('Categories array:', categoriesArray, 'Price array:', priceArray);
+
+      filterService
+        .filterAI(categoriesArray, priceArray)
         .then((data) => {
+          console.log('Data received:', data);
           setResults(data);
           setLoading(false);
         })
@@ -24,7 +40,7 @@ const HomeFilterResultsPage = () => {
           setLoading(false);
         });
     }
-  }, [selectedCategories, selectedPrice]);
+  }, [selectedCategoryParams, selectedPriceParams]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -33,7 +49,7 @@ const HomeFilterResultsPage = () => {
   return (
     <div>
       <h2>Filter Results</h2>
-      <AIsList ais={results}/> 
+      <AIsList ais={results} />
     </div>
   );
 };

@@ -37,7 +37,7 @@ const App = () => {
 
       <Route path="search/:term" element={<HomeSearchPage />} />
       <Route path="ais/fetch/:id" element={<SingleAIPage />} />
-      <Route path="filter/:term" element={<HomeFilterResultsPage />} />
+      <Route path="filter" element={<HomeFilterResultsPage />} />
     
 
       <Route path="*" element={<Navigate to="/" replace />} /> 

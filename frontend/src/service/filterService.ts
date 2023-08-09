@@ -3,21 +3,20 @@ import { TypeSingleAI } from "../types";
 
 const baseUrl = "http://localhost:3003/api/filter";
 
-// constructs a URL using the baseUrl and filterTerm, properly encoding the filter term.
 const filterAI = async (selectedCategories: string[], selectedPrice: string[]): Promise<TypeSingleAI[]> => {
   try {
-    const selectedCategoryParams = selectedCategories.map((category) => `&category=${encodeURIComponent(category)}`).join("");
-    const selectedPriceParams = selectedPrice.map((price) => `&price=${encodeURIComponent(price)}`).join("");
+    const selectedCategoryParams = selectedCategories.map((category) => `category=${encodeURIComponent(category)}`).join("&");
+    const selectedPriceParams = selectedPrice.map((price) => `price=${encodeURIComponent(price)}`).join("&");
 
+    // Construct the URL with query parameters
+    const url = `${baseUrl}?${selectedCategoryParams}&${selectedPriceParams}`;
 
-    const response = await axios.get<TypeSingleAI[]>(
-      `${baseUrl}/filter?${selectedCategoryParams}${selectedPriceParams}`
-    );
+    const response = await axios.get<TypeSingleAI[]>(url);
     return response.data;
   } 
   catch (error) {
     console.error("Error fetching filter results:", error);
-    throw error; // Rethrow the error to be caught by the caller
+    throw error;
   }
 };
 

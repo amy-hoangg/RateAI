@@ -32,6 +32,6 @@ app.use('/api/users', userRouter);
 app.use('/api/news', newRouter);
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 app.use('/api/search', searchRouter);
-app.use('/api/filer', filterRouter);
+app.use('/api/filter', filterRouter);
 
 export default app;

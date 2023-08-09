@@ -32,15 +32,15 @@ const HomeFilterPage = () => {
       }
     });
   };
-
   const handleApplyHomeFilterWindow = () => {
-    const selectedCategoryParams = selectedCategories.map((category) => `&${category}`).join("");
-    const selectedPriceParams = selectedPrice.map((price) => `&${price}`).join("");
-
+    const selectedCategoryParams = selectedCategories.map((category) => encodeURIComponent(category)).join("+");
+    const selectedPriceParams = selectedPrice.map((price) => encodeURIComponent(price)).join("+");
+  
     // Construct the URL with selected categories and prices as query parameters
-    const newUrl = `/filter/?${selectedCategoryParams}${selectedPriceParams}`;
+    const newUrl = `/filter?category=${selectedCategoryParams}&price=${selectedPriceParams}`;
     navigate(newUrl); // Use the navigate function
-  };
+  };  
+  
 
   return (
     <div>
