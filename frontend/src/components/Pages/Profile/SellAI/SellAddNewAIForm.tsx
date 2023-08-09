@@ -19,8 +19,6 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
   const [ai_reviews_review_id, setReviews] = useState<string[]>([]);
   const [ai_seller_id, setSeller] = useState("64cf68540b792b2e8739390b")
 
-
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     

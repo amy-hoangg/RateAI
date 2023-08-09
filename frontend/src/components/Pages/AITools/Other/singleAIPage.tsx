@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TypeSingleAI } from '../../../../types';
 import aisService from '../../../../service/aisService';
+import AddNewReviewForm from './addNewReviewForm';
 
 type Params = {
   id: string;
@@ -10,6 +11,7 @@ type Params = {
 const SingleAIDetails = () => {
   const { id } = useParams<Params>();
   const [aiDetails, setAIDetails] = useState<TypeSingleAI | null>(null);
+  const [showAddReviewForm, setShowAddReviewForm] = useState(false); // State to control form visibility
 
   useEffect(() => {
     const fetchAIDetails = async () => {
@@ -25,6 +27,12 @@ const SingleAIDetails = () => {
 
     fetchAIDetails();
   }, [id]);
+
+
+  const handleAddReviewClick = () => {
+    setShowAddReviewForm(!showAddReviewForm); // Show the AddNewReviewForm when the button is clicked
+  };
+
 
   if (!aiDetails) {
     return <div>Loading...</div>;
@@ -44,7 +52,18 @@ const SingleAIDetails = () => {
         <li>Review Count: {aiDetails.ai_reviews_review_id.length}</li>
         <li>Reviews: {aiDetails.ai_reviews_review_id.join(', ')}</li>
         <li>Seller: {aiDetails.ai_seller_id}</li>
+      <button onClick={handleAddReviewClick}>Add Review</button>
       </ul>
+
+      {showAddReviewForm && (
+        <AddNewReviewForm 
+          onSubmit={(newReview) => {
+            console.log('New review:', newReview);
+            setShowAddReviewForm(false); // Hide the form after submission
+          }}
+        />
+      )}
+
     </div>
   );
 };

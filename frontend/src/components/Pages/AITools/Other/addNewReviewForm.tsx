@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StarRating, TypeNewReview } from '../../../../types'
+import reviewsService from '../../../../service/reviewsService';
 
 type Props = {
   onSubmit: (newReview: TypeNewReview) => void;
@@ -7,14 +8,14 @@ type Props = {
 
 const AddNewReviewForm = ({ onSubmit }: Props) => {
   const [review_ai_id, setAppID] = useState('');
-  const [review_reviewer_id, setReviewer] = useState('');
+  const [review_reviewer_id, setReviewer] = useState('64ceb53dfc3940a3d389b73a');
   const [review_star, setStar] = useState(StarRating.ONE);
   const [review_content, setContent] = useState('');
-  const [review_time, setTimeReview] = useState('');
+  const [review_time, setTimeReview] = useState(new Date)
   const [review_like, setLike] = useState(0);
   const [review_dislike, setDislike] = useState(0);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const newReview: TypeNewReview = {
@@ -22,18 +23,26 @@ const AddNewReviewForm = ({ onSubmit }: Props) => {
       review_reviewer_id,
       review_star,
       review_content,
-      review_time: new Date(review_time), // Convert to Date object
+      review_time,// Convert to ISO date string
       review_like,
       review_dislike,
     };
 
-    onSubmit(newReview);
-    // Clear the form fields after submission
+    try {
+      const createdReview = await reviewsService.createNewReview(newReview);
+      console.log('Review created:', createdReview);
+
+      onSubmit(newReview);
+    } 
+    catch (error) {
+      console.error('Error creating user:', error);
+    }
+
     setAppID('');
-    setReviewer('');
+    setReviewer('64ceb53dfc3940a3d389b73a');
     setStar(StarRating.ONE);
     setContent('');
-    setTimeReview('');
+    setTimeReview(new Date);
     setLike(0);
     setDislike(0);
   };
@@ -42,18 +51,11 @@ const AddNewReviewForm = ({ onSubmit }: Props) => {
     <div>
       <h2>Add New Review</h2>
       <form onSubmit={handleSubmit}>
-        <label>App ID:</label>
+        <label>AI ID:</label>
         <input
           type="text"
           value={review_ai_id}
           onChange={(e) => setAppID(e.target.value)}
-        />
-
-        <label>Reviewer:</label>
-        <input
-          type="text"
-          value={review_reviewer_id}
-          onChange={(e) => setReviewer(e.target.value)}
         />
 
         <label>Star Rating:</label>

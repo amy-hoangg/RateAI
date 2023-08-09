@@ -25,6 +25,8 @@ const SingleAI = ({ eachAI }: Props) => {
     }
   };
 
+
+
   return (
     <div>
       <ul>
@@ -46,6 +48,8 @@ const SingleAI = ({ eachAI }: Props) => {
         <li>Reviews: {eachAI.ai_reviews_review_id.join(', ')}</li>
         <li>Seller: {eachAI.ai_seller_id}</li>
         <button onClick={handleSave}>save</button>
+        <button>put on cart</button>
+        <button>add review</button>
       </ul>
     </div>
   );
