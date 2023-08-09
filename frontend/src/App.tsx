@@ -15,6 +15,7 @@ import SellAIPage from './components/Pages/Profile/SellAI/SellAIPage';
 import HomeSearchPage from './components/Pages/HomePage/HomeSearch/HomeSearchPage';
 import SingleAIPage from './components/Pages/AITools/Other/singleAIPage';
 import HomeFilterResultsPage from './components/Pages/HomePage/HomeSearch/HomeFilter/HomeFilterResultsPage';
+import NewsPage from './components/Pages/News/NewsPage';
 
 const App = () => {
   
@@ -25,7 +26,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="ais" element={<AIToolsPage />} />
-      <Route path="news" element={<NewsList ais={[]} />} />
+      <Route path="news" element={<NewsPage />} />
       <Route path="sign-in" element={<SignInPage />} />
       <Route path="sign-up" element={<SignUpPage />} />
       <Route path="profile" element={<ProfilePage />} />

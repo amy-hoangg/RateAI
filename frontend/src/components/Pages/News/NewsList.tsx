@@ -3,15 +3,15 @@ import SingleNew from '../AITools/Other/singleNew';
 import { TypeSingleNew } from '../../../types';
 
 type Props = {
-  ais: TypeSingleNew[];
+  news: TypeSingleNew[];
 };
 
-const NewsList = ({ ais }: Props) => {
+const NewsList = ({ news }: Props) => {
   return (
     <div>
-      {ais.map((ai) => (
-        <div key={ai._id}>
-          <SingleNew eachNew={ai} />
+      {news.map((each_new) => (
+        <div key={each_new._id}>
+          <SingleNew eachNew={each_new} />
         </div>
       ))}
     </div>
