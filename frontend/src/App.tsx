@@ -5,7 +5,6 @@ import AppBar from './components/AppBar/AppBar';
 import Footer from './components/Footer/Footer';
 import HomePage from './components/Pages/HomePage/HomePage';
 import AIToolsPage from './components/Pages/AITools/AIToolsPage';
-import NewsList from './components/Pages/News/NewsList';
 import SignInPage from './components/Pages/SignIn/SignInPage';
 import SignUpPage from './components/Pages/SignUp/SignUpPage';
 import ProfilePage from './components/Pages/Profile/Profile/ProfilePage';
@@ -16,6 +15,7 @@ import HomeSearchPage from './components/Pages/HomePage/HomeSearch/HomeSearchPag
 import SingleAIPage from './components/Pages/AITools/Other/singleAIPage';
 import HomeFilterResultsPage from './components/Pages/HomePage/HomeSearch/HomeFilter/HomeFilterResultsPage';
 import NewsPage from './components/Pages/News/NewsPage';
+import NewsSinglePage from './components/Pages/News/NewsSinglePage';
 
 const App = () => {
   
@@ -39,7 +39,8 @@ const App = () => {
       <Route path="search/:term" element={<HomeSearchPage />} />
       <Route path="ais/fetch/:id" element={<SingleAIPage />} />
       <Route path="filter" element={<HomeFilterResultsPage />} />
-    
+      <Route path="news/:id" element={<NewsSinglePage />} />
+
 
       <Route path="*" element={<Navigate to="/" replace />} /> 
     </Routes>
