@@ -1,52 +1,38 @@
-import React, { useState } from 'react';
-import { HomeFilterWindowProps } from '../../../../../types';
+import React from 'react';
+
+type Props = {
+  selectedCategories: string[];
+  selectedPrice: string[];
+  handleCategoryChange: (category: string) => void;
+  handlePriceChange: (price: string) => void;
+  handleApplyHomeFilterWindow: () => void;
+};
 
 const categoriesList = [
-  'social media',
-  'marketing',
-  'SEO',
-  'art/image',
-  'video',
-  'audio',
-  'management',
-  'study',
-  'website',
-  'developer tools',
-  'copy writing',
-  'content creation',
-  'chat bot',
+  "social media",
+  "marketing",
+  "SEO",
+  "art/image",
+  "video",
+  "audio",
+  "management",
+  "study",
+  "website",
+  "developer tools",
+  "copy writing",
+  "content creation",
+  "chat bot",
 ];
 
-const priceList = ['free', 'paid'];
+const priceList = ["free", "paid"];
 
-const HomeFilterWindow: React.FC<HomeFilterWindowProps> = ({ onApplyHomeFilterWindow }) => {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedPrice, setSelectedPrice] = useState<string[]>([]);
-
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategories((prevSelectedCategories) => {
-      if (prevSelectedCategories.includes(category)) {
-        return prevSelectedCategories.filter((c) => c !== category);
-      } else {
-        return [...prevSelectedCategories, category];
-      }
-    });
-  };
-
-  const handlePriceChange = (price: string) => {
-    setSelectedPrice((prevSelectedPrices) => {
-      if (prevSelectedPrices.includes(price)) {
-        return prevSelectedPrices.filter((p) => p !== price);
-      } else {
-        return [...prevSelectedPrices, price];
-      }
-    });
-  };
-
-  const handleApplyHomeFilterWindow = () => {
-    onApplyHomeFilterWindow(selectedCategories, selectedPrice);
-  };
-
+const HomeFilterWindow: React.FC<Props> = ({
+  selectedCategories,
+  selectedPrice,
+  handleCategoryChange,
+  handlePriceChange,
+  handleApplyHomeFilterWindow
+}) => {
   return (
     <div className="filter-popup">
       <h3>Home Filter Search</h3>
@@ -76,6 +62,7 @@ const HomeFilterWindow: React.FC<HomeFilterWindowProps> = ({ onApplyHomeFilterWi
           </label>
         ))}
       </div>
+
       <button onClick={handleApplyHomeFilterWindow}>Apply</button>
     </div>
   );

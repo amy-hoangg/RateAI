@@ -11,10 +11,6 @@ export interface TypeAppBarProps {
   onSignOut?: () => void;
 }
 
-export interface HomeFilterWindowProps {
-  onApplyHomeFilterWindow: (selectedCategories: string[], selectedPrice: string[]) => void;
-}
-
 export interface HomeSearchBarProps {
   onSearch: (searchTerm: string) => void;
 }

@@ -3,7 +3,7 @@ import HomeBanner from "./HomeBanner/HomeBanner";
 import HomeBannerBestAI from "./HomeBanner/HomeBannerBestAI";
 import HomeAIsList from "./HomeList/HomeAIList";
 import HomeNewsList from "./HomeList/HomeNewsList";
-import HomeFilterButton from "./HomeSearch/HomeFilter/HomeFilterButton";
+import HomeFilterButton from "./HomeSearch/HomeFilter/HomeFilterPage";
 import HomeSearchBar from "./HomeSearch/HomeSearchBar";
 import HomeNewsLetter from "./HomeNewsLetter";
 import { TypeSingleAI, TypeSingleNew } from "../../../types";

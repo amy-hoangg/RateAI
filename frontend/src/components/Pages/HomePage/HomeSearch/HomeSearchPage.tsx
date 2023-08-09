@@ -6,7 +6,7 @@ import AIsList from '../../AITools/AIsList';
 
 const HomeSearchPage = () => {
   const location = useLocation(); // Get the current location
-  const searchParams = new URLSearchParams(location.search);
+  const searchParams = new URLSearchParams(location.search); //get the search term from the url
   const searchTerm = searchParams.get('term') || ''; // Use an empty string as default
 
   const [results, setResults] = useState<TypeSingleAI[]>([]); // Provide the correct type here

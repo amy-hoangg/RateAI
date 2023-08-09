@@ -14,6 +14,7 @@ import SavesPage from './components/Pages/Profile/Saves/SavesPage';
 import SellAIPage from './components/Pages/Profile/SellAI/SellAIPage';
 import HomeSearchPage from './components/Pages/HomePage/HomeSearch/HomeSearchPage';
 import SingleAIPage from './components/Pages/AITools/Other/singleAIPage';
+import HomeFilterResultsPage from './components/Pages/HomePage/HomeSearch/HomeFilter/HomeFilterResultsPage';
 
 const App = () => {
   
@@ -36,7 +37,7 @@ const App = () => {
 
       <Route path="search/:term" element={<HomeSearchPage />} />
       <Route path="ais/fetch/:id" element={<SingleAIPage />} />
-
+      <Route path="filter/:term" element={<HomeFilterResultsPage />} />
     
 
       <Route path="*" element={<Navigate to="/" replace />} /> 
