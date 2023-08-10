@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StarRating, TypeNewAI, TypeSeller, TypeSingleReview } from '../../../../types';
 import { categoriesList } from '../../../../utils/categoriesList';
 import aisService from '../../../../service/aisService';
+import sellersService from '../../../../service/sellersService';
 
 type Props = {
   onSubmit: (newAI: TypeNewAI) => void;
@@ -20,12 +21,26 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
   const [ai_description, setDescription] = useState('');
   const [ai_saves, setSaves] = useState(0);
   const [ai_sold, setSolds] = useState(0);
-  const [ai_price, setPrice] = useState('');
+  const [ai_price, setPrice] = useState(0);
   const [ai_categories, setSelectedCategories] = useState<string[]>([]);
   const [ai_timecreated, setTimeCreated] = useState(new Date)
   const [ai_reviews_review_id, setReviews] = useState<TypeSingleReview[]>([]);
   const [ai_seller_id, setSeller] = useState(emptySeller)
+  
+  useEffect(() => {
+    const fetchDefaultSeller = async () => {
+      try {
+        const sellers = await sellersService.getAllSellers();
+        if (sellers.length > 0) {
+          setSeller(sellers[0]); // Set the first user as the default reviewer
+        }
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
 
+    fetchDefaultSeller();
+  }, []);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
@@ -58,7 +73,7 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
     setDescription('');
     setSaves(0);
     setSolds(0);
-    setPrice('');
+    setPrice(0);
     setSelectedCategories([]);
     setTimeCreated(new Date);
     setReviews([]);
@@ -89,9 +104,9 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
         <div>
           <label>Price:</label>
           <input 
-          type="text" 
+          type="number" 
           value={ai_price} 
-          onChange={(e) => setPrice(e.target.value)} />
+          onChange={(e) => setPrice(Number(e.target.value))} />
         </div>
 
         <div>

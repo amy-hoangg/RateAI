@@ -9,7 +9,16 @@ import { TypeNewAI, TypeSingleAI } from "../types";
 
 const getAll = async (): Promise<TypeSingleAI[]> => {
   try {
-    const allAI = await AI.find();
+    const allAI = await AI.find()
+    .populate({
+      path: 'ai_reviews_review_id',
+      populate: {
+        path: 'review_reviewer_id',
+        model: 'User' // Change 'User' to the actual model name for reviewers
+      }
+    })
+    .populate('ai_seller_id')
+    .exec();
     console.log("All AI fetched successfully:", allAI);
     return allAI;
   } catch (error) {
@@ -24,10 +33,8 @@ const createNewAI = async (newAI: TypeNewAI): Promise<TypeSingleAI> => {
 
     // Get the seller_id from the newly created AI
     const seller_id = createdAI.ai_seller_id;
-
     // Fetch the corresponding seller from the database
     const seller = await Seller.findById(seller_id);
-
     // Update the seller's seller_list_ai_id property
     if (seller) {
       seller.seller_list_ai_id.push(createdAI._id);

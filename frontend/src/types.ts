@@ -48,7 +48,7 @@ export interface TypeSingleAI {
   ai_star_rating: number;
   ai_description: string;
   ai_saves: number;
-  ai_price: string;
+  ai_price: number;
   ai_categories: string[];
   ai_timecreated: Date;
   ai_sold: number;
