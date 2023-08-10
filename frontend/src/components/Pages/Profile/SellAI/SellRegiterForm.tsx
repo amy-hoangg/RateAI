@@ -1,39 +1,40 @@
-import React, { useState } from 'react';
-import { TypeNewSeller } from '../../../../types';
+import React, { useState } from "react";
+import { TypeNewSeller } from "../../../../types";
+import sellersService from "../../../../service/sellersService";
 
-interface SellRegisterFormProps {
-  onSubmit: (newSeller: TypeNewSeller) => void;
-}
 
-const SellRegisterForm: React.FC<SellRegisterFormProps> = ({ onSubmit }) => {
-  const [user_id, setUserID] = useState('currentid');
-  const [storeName, setStoreName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [address, setAddress] = useState('');
+const SellRegisterForm = () => {
+  const [user_id, setUserID] = useState("currentid");
+  const [storeName, setStoreName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
   const [ai_list, setAIList] = useState<string[]>([]);
 
-  const handleStoreNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStoreName(e.target.value);
-  };
-
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAddress(e.target.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formData: TypeNewSeller = {
+    
+    const newSeller: TypeNewSeller = {
       seller_storeName: storeName,
       seller_phoneNumber: phoneNumber,
       seller_Address: address,
       seller_user_id: user_id,
       seller_list_ai_id: ai_list,
     };
-    onSubmit(formData);
+
+    try {
+      const createdSeller = await sellersService.createNewSeller(newSeller);
+      console.log("Seller created:", createdSeller);
+
+    } catch (error) {
+      console.error("Error creating seller:", error);
+    }
+
+    // Clear the form fields after submission
+    setUserID("");
+    setStoreName("");
+    setPhoneNumber("");
+    setAddress("");
+    setAIList([])
   };
 
   return (
@@ -44,7 +45,7 @@ const SellRegisterForm: React.FC<SellRegisterFormProps> = ({ onSubmit }) => {
           type="text"
           id="storeName"
           value={storeName}
-          onChange={handleStoreNameChange}
+          onChange={(e) => setStoreName(e.target.value)}
           required
         />
       </div>
@@ -54,7 +55,7 @@ const SellRegisterForm: React.FC<SellRegisterFormProps> = ({ onSubmit }) => {
           type="tel"
           id="phoneNumber"
           value={phoneNumber}
-          onChange={handlePhoneNumberChange}
+          onChange={(e) => setPhoneNumber(e.target.value)}
           required
         />
       </div>
@@ -64,7 +65,7 @@ const SellRegisterForm: React.FC<SellRegisterFormProps> = ({ onSubmit }) => {
           type="text"
           id="address"
           value={address}
-          onChange={handleAddressChange}
+          onChange={(e) => setAddress(e.target.value)}
           required
         />
       </div>

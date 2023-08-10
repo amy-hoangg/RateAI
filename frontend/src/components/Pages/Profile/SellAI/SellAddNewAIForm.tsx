@@ -4,9 +4,6 @@ import { categoriesList } from '../../../../utils/categoriesList';
 import aisService from '../../../../service/aisService';
 import sellersService from '../../../../service/sellersService';
 
-type Props = {
-  onSubmit: (newAI: TypeNewAI) => void;
-};
 const emptySeller : TypeSeller = {
   _id: '',
   seller_storeName: '',
@@ -15,7 +12,8 @@ const emptySeller : TypeSeller = {
   seller_user_id: '',
   seller_list_ai_id: []
 }
-const SellAddNewAIForm= ({ onSubmit } : Props) => {
+
+const SellAddNewAIForm = () => {
   const [ai_name, setName] = useState('');
   const [ai_star_rating, setStarRating] = useState(StarRating.ONE);
   const [ai_description, setDescription] = useState('');
@@ -41,6 +39,7 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
 
     fetchDefaultSeller();
   }, []);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
@@ -60,7 +59,6 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
     try {
       const createdAI = await aisService.createNewAI(newAI);
       console.log('AI created:', createdAI);
-      onSubmit(newAI);
     } 
     
     catch (error) {

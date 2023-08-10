@@ -2,17 +2,12 @@ import React, { useEffect, useState } from "react";
 import SellRegisterForm from "./SellRegiterForm";
 import SellAIList from "./SellAIList";
 import SellAddNewAIForm from "./SellAddNewAIForm";
-import { TypeNewAI, TypeSingleAI } from "../../../../types";
+import { TypeSingleAI } from "../../../../types";
 import SellerInfo from "./SellerInfo";
 import aisService from "../../../../service/aisService";
 
 
 const SellAIPage = () => {
-
-  const handleSellerRegister = async () => {
-      console.log("Form submitted with data:");
-  }
-
 
   const [ais, setAIs] = useState<TypeSingleAI[]>([]);
 
@@ -29,13 +24,11 @@ const SellAIPage = () => {
   return (
     <div>
       <h1>This is the Sell AI page</h1>
-      <SellRegisterForm onSubmit={handleSellerRegister} />
+      <SellRegisterForm />
 
       <SellAIList ais={ais} />
 
-      <SellAddNewAIForm onSubmit={function (newAI: TypeNewAI): void {
-              throw new Error("Function not implemented.");
-          } } />
+      <SellAddNewAIForm/>
 
       <SellerInfo />
     </div>

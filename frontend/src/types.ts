@@ -27,10 +27,6 @@ export interface TypeSignUpFormProps {
   onSubmit: () => void;
 }
 
-
-
-
-
 export enum StarRating {
   ONE = 1,
   TWO = 2,
@@ -39,10 +35,7 @@ export enum StarRating {
   FIVE = 5,
 }
 
-
-
 export interface TypeSingleAI {
-
   _id: string;
   ai_name: string;
   ai_star_rating: number;
@@ -103,9 +96,9 @@ export interface TypeSeller {
   seller_storeName: string;
   seller_phoneNumber: string;
   seller_Address: string;
-  seller_user_id: string;
-  seller_list_ai_id: string[];
-  seller_sold_ai_id?: string[];
+  seller_user_id: TypeUser;
+  seller_list_ai_id?: TypeSingleAI[];
+  seller_sold_ai_id?: TypeSingleAI[];
 }
 
 
