@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StarRating, TypeNewAI } from '../../../../types';
+import { StarRating, TypeNewAI, TypeSingleReview } from '../../../../types';
 import { categoriesList } from '../../../../utils/categoriesList';
 import aisService from '../../../../service/aisService';
 
@@ -16,7 +16,7 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
   const [ai_price, setPrice] = useState('');
   const [ai_categories, setSelectedCategories] = useState<string[]>([]);
   const [ai_timecreated, setTimeCreated] = useState(new Date)
-  const [ai_reviews_review_id, setReviews] = useState<string[]>([]);
+  const [ai_reviews_review_id, setReviews] = useState<TypeSingleReview[]>([]);
   const [ai_seller_id, setSeller] = useState("64cf68540b792b2e8739390b")
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

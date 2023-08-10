@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { TypeSingleAI } from '../../../../types';
+import { TypeSingleAI, TypeSingleReview } from '../../../../types';
 import aisService from '../../../../service/aisService';
 import AddNewReviewForm from './addNewReviewForm';
 
@@ -50,7 +50,18 @@ const SingleAIDetails = () => {
         <li>Categories: {aiDetails.ai_categories.join(', ')}</li>
         <li>Time created: {new Date(aiDetails.ai_timecreated).toLocaleString()}</li>
         <li>Review Count: {aiDetails.ai_reviews_review_id.length}</li>
-        <li>Reviews: {aiDetails.ai_reviews_review_id.join(', ')}</li>
+        <li>
+          Reviews:
+          <ul>
+            {aiDetails.ai_reviews_review_id.map((review: TypeSingleReview) => (
+              <li key={review._id}>
+                Reviewer: {review.review_reviewer_id}
+                Star Rating: {review.review_star}
+                Content: {review.review_content}
+              </li>
+            ))}
+          </ul>
+        </li>        
         <li>Seller: {aiDetails.ai_seller_id}</li>
       <button onClick={handleAddReviewClick}>Add Review</button>
       </ul>

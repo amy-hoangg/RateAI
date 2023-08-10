@@ -52,7 +52,7 @@ export interface TypeSingleAI {
   ai_categories: string[];
   ai_timecreated: Date;
   ai_sold: number;
-  ai_reviews_review_id: string[];
+  ai_reviews_review_id: TypeSingleReview[]; // Update to an array of TypeSingleReview
   ai_seller_id?: string;
 }
 

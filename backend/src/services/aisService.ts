@@ -45,22 +45,23 @@ const createNewAI = async (newAI: TypeNewAI): Promise<TypeSingleAI> => {
 
 const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
   try {
+    const ai = await AI.findOne({ _id: new Types.ObjectId(id) })
+      .populate('ai_reviews_review_id') // Populate the reviews
+      .exec();
 
-    const ai = await AI.findOne({ _id: new Types.ObjectId(id) });
     if (!ai) {
-      console.log("AI not found");
+      console.log('AI not found');
       return undefined;
     }
 
-    console.log("AI fetched by ID:", ai);
+    console.log('AI fetched by ID:', ai);
     return ai.toObject();
-  } 
-  
-  catch (error) {
-    console.error("Error fetching AI by ID:", error);
+  } catch (error) {
+    console.error('Error fetching AI by ID:', error);
     throw error; // Rethrow the error to be caught in the route handler
   }
 };
+
 
 
 const updateSaves = async (id: string): Promise<TypeSingleAI | undefined> => {
