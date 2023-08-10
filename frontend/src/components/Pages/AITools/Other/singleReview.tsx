@@ -10,7 +10,7 @@ const SingleReview = ({ eachReview }: Props) => {
     <div>
       <ul>
         <li>App: {eachReview.review_ai_id}</li>
-        <li>Reviewer: {eachReview.review_reviewer_id}</li>
+        <li>Reviewer: {eachReview.review_reviewer_id.user_lastname}</li>
         <li>Star: {eachReview.review_star}</li>
         <li>Content: {eachReview.review_content}</li>
         <li>Time Review: {eachReview.review_time.toLocaleString()}</li>

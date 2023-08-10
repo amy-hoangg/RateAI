@@ -54,14 +54,16 @@ const createNewReview = async (
   }
 };
 
-const getOneReview = async (
-  id: string
-): Promise<TypeSingleReview | undefined> => {
+const getOneReview = async (id: string): Promise<TypeSingleReview | undefined> => {
   try {
-    const review = await Review.findOne({ _id: new Types.ObjectId(id) });
+    const review = await Review.findOne({ _id: new Types.ObjectId(id) })
+    .populate('review_reviewer_id') // Populate the reviews
+    .exec();
+
     console.log("Review fetched by ID:", review);
     return review ? review.toObject() : undefined;
-  } catch (error) {
+  } 
+  catch (error) {
     console.error("Error fetching Review by ID:", error);
     throw error; // Rethrow the error to be caught in the route handler
   }

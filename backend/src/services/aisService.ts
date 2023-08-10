@@ -46,9 +46,15 @@ const createNewAI = async (newAI: TypeNewAI): Promise<TypeSingleAI> => {
 const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
   try {
     const ai = await AI.findOne({ _id: new Types.ObjectId(id) })
-      .populate('ai_reviews_review_id') // Populate the reviews
+      .populate({
+        path: 'ai_reviews_review_id',
+        populate: {
+          path: 'review_reviewer_id',
+          model: 'User' // Change 'User' to the actual model name for reviewers
+        }
+      })
+      .populate('ai_seller_id')
       .exec();
-
     if (!ai) {
       console.log('AI not found');
       return undefined;

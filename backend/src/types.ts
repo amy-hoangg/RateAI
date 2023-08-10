@@ -18,7 +18,7 @@ export interface TypeSingleAI extends Document {
   ai_timecreated: Date;
   ai_sold: number;
   ai_reviews_review_id: Types.ObjectId[];
-  ai_seller_id?: Types.ObjectId;
+  ai_seller_id: Types.ObjectId;
 }
 
 export interface TypeSingleNew extends Document {

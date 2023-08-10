@@ -46,7 +46,7 @@ const SingleAI = ({ eachAI }: Props) => {
         <li>Time created: {eachAI.ai_timecreated.toLocaleString()}</li>
         <li>Review Count: {eachAI.ai_reviews_review_id.length}</li>
         <li>Reviews: {eachAI.ai_reviews_review_id.join(', ')}</li>
-        <li>Seller: {eachAI.ai_seller_id}</li>
+        <li>Seller: {eachAI.ai_seller_id.seller_storeName}</li>
         <button onClick={handleSave}>save</button>
         <button>put on cart</button>
         <button>add review</button>

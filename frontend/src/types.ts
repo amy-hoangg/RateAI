@@ -53,7 +53,7 @@ export interface TypeSingleAI {
   ai_timecreated: Date;
   ai_sold: number;
   ai_reviews_review_id: TypeSingleReview[]; // Update to an array of TypeSingleReview
-  ai_seller_id?: string;
+  ai_seller_id: TypeSeller;
 }
 
 export interface TypeSingleNew {
@@ -70,7 +70,7 @@ export interface TypeSingleReview {
 
   _id: string;
   review_ai_id: string;
-  review_reviewer_id: string;
+  review_reviewer_id: TypeUser;
   review_star: number;
   review_content: string;
   review_time: Date;

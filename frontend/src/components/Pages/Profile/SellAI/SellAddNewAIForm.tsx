@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import { StarRating, TypeNewAI, TypeSingleReview } from '../../../../types';
+import { StarRating, TypeNewAI, TypeSeller, TypeSingleReview } from '../../../../types';
 import { categoriesList } from '../../../../utils/categoriesList';
 import aisService from '../../../../service/aisService';
 
 type Props = {
   onSubmit: (newAI: TypeNewAI) => void;
 };
-
+const emptySeller : TypeSeller = {
+  _id: '',
+  seller_storeName: '',
+  seller_phoneNumber: '',
+  seller_Address: '',
+  seller_user_id: '',
+  seller_list_ai_id: []
+}
 const SellAddNewAIForm= ({ onSubmit } : Props) => {
   const [ai_name, setName] = useState('');
   const [ai_star_rating, setStarRating] = useState(StarRating.ONE);
@@ -17,7 +24,7 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
   const [ai_categories, setSelectedCategories] = useState<string[]>([]);
   const [ai_timecreated, setTimeCreated] = useState(new Date)
   const [ai_reviews_review_id, setReviews] = useState<TypeSingleReview[]>([]);
-  const [ai_seller_id, setSeller] = useState("64cf68540b792b2e8739390b")
+  const [ai_seller_id, setSeller] = useState(emptySeller)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -55,7 +62,7 @@ const SellAddNewAIForm= ({ onSubmit } : Props) => {
     setSelectedCategories([]);
     setTimeCreated(new Date);
     setReviews([]);
-    setSeller("64cf68540b792b2e8739390b")
+    setSeller(emptySeller)
   };
 
   return (
