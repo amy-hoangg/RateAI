@@ -21,9 +21,9 @@ const getAll = async (): Promise<TypeUser[]> => {
 
 const createNewUser = async (newUser: TypeNewUser): Promise<TypeUser> => {
   try {
+
+    
     const createdUser = await User.create(newUser);
-
-
     // Get the seller_id from the newly created User
     const seller_id = createdUser.user_seller_id;
     // Fetch the corresponding seller from the database

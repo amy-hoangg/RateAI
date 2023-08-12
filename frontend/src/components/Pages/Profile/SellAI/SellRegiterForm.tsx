@@ -8,17 +8,15 @@ const SellRegisterForm = () => {
   const [storeName, setStoreName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [ai_list, setAIList] = useState<string[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const newSeller: TypeNewSeller = {
       seller_storeName: storeName,
       seller_phoneNumber: phoneNumber,
       seller_Address: address,
       seller_user_id: user_id,
-      seller_list_ai_id: ai_list,
     };
 
     try {
