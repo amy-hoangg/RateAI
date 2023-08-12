@@ -11,3 +11,4 @@
 | 08.08.23 | 10:00 - 23 :00|  create more endpoints, interact with mongodb| 10
 | 09.08.23 | 10:00 - 23 :00|  interact with mongodb, fix reviews endpoints| 8
 | 10.08.23 | 15:00 - 22 :00|  update filter, create new ai, reviews,..| 5
+| 12.08.23 | 10:00 - 19 :30|  user authentification, still not fix the bug| 8

@@ -11,13 +11,11 @@ router.get('/', async (_req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/', extractUser, async (req: Request, res: Response) => {
   try {
-    const newAI = await aisService.createNewAI(req.body);
+    const newAI = await aisService.createNewAI(req.body, req.user.id); // Use req.user.id as the authenticated user's ID
     res.send(newAI);
-  } 
-  
-  catch (error: unknown) {
+  } catch (error) {
     let errorMessage = 'Something went wrong.';
     if (error instanceof Error) {
       errorMessage += ' Error: ' + error.message;
