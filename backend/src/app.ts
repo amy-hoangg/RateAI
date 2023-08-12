@@ -24,6 +24,7 @@ import userRouter from './routes/users';
 import newRouter from './routes/news';
 import searchRouter from './routes/search';
 import filterRouter from './routes/filter';
+import loginRouter from './routes/login';
 
 app.use('/api/ais', aiRouter);
 app.use('/api/reviews', reviewRouter);
@@ -33,5 +34,6 @@ app.use('/api/news', newRouter);
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 app.use('/api/search', searchRouter);
 app.use('/api/filter', filterRouter);
+app.use('/api/login', loginRouter);
 
 export default app;

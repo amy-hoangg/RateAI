@@ -47,8 +47,8 @@ POST http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-  "user_name": "john_doe",
-  "user_password": "password123",
+  "user_name": "sonya",
+  "user_password": "thisismypassword",
   "user_firstname": "John",
   "user_lastname": "Doe",
   "user_email": "john.doe@example.com",
@@ -74,5 +74,14 @@ GET http://localhost:3003/api/search/model?term=model
 ####
 GET http://localhost:3003/api/filter/category=social%20media&price=free,paid
 
+
+####
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "user_name": "sonya",
+  "user_password": "thisismypassword"
+}
 
 

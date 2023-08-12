@@ -4,19 +4,20 @@ import loginService from '../services/loginService';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-  const { username, password } = req.body;
+  const { user_name, user_password } = req.body;
 
-  if (!username || !password) {
+  if (!user_name|| !user_password) {
     return res.status(400).json({ error: 'Missing credentials' });
   }
 
   try {
-    const token = await loginService.loginUser(username, password);
+    const token = await loginService.loginUser(user_name, user_password);
 
     if (!token) {
       return res.status(401).json({ error: 'Invalid username or password' });
     }
 
+    console.log('Token:', token);
     return res.json({ token }); // Add a return statement here
   } 
   
