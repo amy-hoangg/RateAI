@@ -16,6 +16,7 @@ import SingleAIPage from './components/Pages/AITools/Other/singleAIPage';
 import HomeFilterResultsPage from './components/Pages/HomePage/HomeSearch/HomeFilter/HomeFilterResultsPage';
 import NewsPage from './components/Pages/News/NewsPage';
 import NewsSinglePage from './components/Pages/News/NewsSinglePage';
+import SignOut from './components/SignOut/SignOut';
 
 const App = () => {
   
@@ -31,8 +32,6 @@ const App = () => {
       <Route path="sign-up" element={<SignUpPage />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="cart" element={<CartPage/>} />
-      <Route path="sign-up" element={<SignUpPage />} />
-      <Route path="sign-up" element={<SignUpPage />} />
       <Route path="saves" element={<SavesPage />} />
       <Route path="sell" element={<SellAIPage />} />
 
@@ -40,6 +39,10 @@ const App = () => {
       <Route path="ais/fetch/:id" element={<SingleAIPage />} />
       <Route path="filter" element={<HomeFilterResultsPage />} />
       <Route path="news/:id" element={<NewsSinglePage />} />
+
+      <Route path="sign-out" element={<SignOut />} />
+
+      
 
 
       <Route path="*" element={<Navigate to="/" replace />} /> 
