@@ -25,12 +25,11 @@ router.post('/', async (req: Request, res: Response) => {
   try {
     // Extract the token from the authorization header
     const authorizationHeader = req.get('authorization');
+    
     if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
       return res.status(401).send('Unauthorized');
     }
-
     const token = authorizationHeader.substring(7);
-
     // Verify and decode the token
     const decodedToken = jwt.verify(token, process.env.SECRET || " ") as unknown as DecodedToken;
 
@@ -87,4 +86,3 @@ router.patch('/saves/:id', async (req, res) => {
 });
 
 export default router;
-

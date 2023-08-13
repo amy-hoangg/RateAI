@@ -1,5 +1,6 @@
 import axios from "axios";
 import { TypeNewSeller, TypeSeller } from '../types'
+import axiosInstance from './axiosInstance';
 
  
 const baseUrl = "http://localhost:3003/api/sellers";
@@ -11,11 +12,9 @@ const getAllSellers = () => {
 };
 
 const createNewSeller = async (object: TypeNewSeller) => {
-    const { data } = await axios
-    .post<TypeSeller>(`${baseUrl}`, object);
-  
-    return data;
-  };
+  const { data } = await axiosInstance.post<TypeSeller>('/sellers', object);
+  return data;
+};
 
   const getOneSeller = async (id: string) => {
     const { data } = await axios.get<TypeSeller>(

@@ -64,7 +64,7 @@ export interface TypeSeller extends Document {
   seller_phoneNumber: string;
   seller_Address: string;
 
-  seller_user_id: Types.ObjectId;
+  seller_user_id?: Types.ObjectId;
   seller_list_ai_id: Types.ObjectId[];
   seller_sold_ai_id?: Types.ObjectId[]
 }
@@ -86,3 +86,11 @@ export type TypeNewReview = Omit<TypeSingleReview, "id">;
 export type TypeNewUser = Omit<TypeUser, 'id'>;
 
 export type TypeNewNew = Omit<TypeSingleNew, "id">;
+
+
+export type UserForTokenType = {
+  username: string;
+  id: string;
+};
+
+export type DecodedToken = UserForTokenType;

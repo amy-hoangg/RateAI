@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { Types } from "mongoose";
+import mongoose, { Types } from "mongoose";
 import Seller from "../models/seller";
 import User from "../models/user";
 
@@ -19,14 +19,12 @@ const getAll = async (): Promise<TypeSeller[]> => {
   }
 };
 
-const createNewSeller = async (
-  newSeller: TypeNewSeller
-): Promise<TypeSeller > => {
+
+const createNewSeller = async (newSeller: TypeNewSeller, user_id: string): Promise<TypeSeller> => {
   try {
+    newSeller.seller_user_id = new mongoose.Types.ObjectId(user_id); // Convert user_id to ObjectId
     const createdSeller = await Seller.create(newSeller);
 
-    // Get the user_id from the newly created Seller
-    const user_id = createdSeller.seller_user_id;
     // Fetch the corresponding user from the database
     const user = await User.findById(user_id);
     // Update the user's user_list_seller_id property

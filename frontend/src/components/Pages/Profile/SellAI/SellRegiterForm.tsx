@@ -16,7 +16,6 @@ const SellRegisterForm = () => {
       seller_storeName: storeName,
       seller_phoneNumber: phoneNumber,
       seller_Address: address,
-      seller_user_id: user_id,
     };
 
     try {
@@ -32,7 +31,6 @@ const SellRegisterForm = () => {
     setStoreName("");
     setPhoneNumber("");
     setAddress("");
-    setAIList([])
   };
 
   return (

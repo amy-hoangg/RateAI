@@ -105,9 +105,9 @@ export interface TypeSeller {
 
 
 
-export type TypeNewSeller = Omit<TypeSeller, '_id'>
+export type TypeNewSeller = Omit<TypeSeller, '_id' | 'seller_user_id'>
 
-export type TypeNewAI = Omit<TypeSingleAI, "_id">;
+export type TypeNewAI = Omit<TypeSingleAI, '_id' | 'ai_seller_id'>;
 
 export type TypeNewReview = Omit<TypeSingleReview, "_id">;
 

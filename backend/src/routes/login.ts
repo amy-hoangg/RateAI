@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   const { user_name, user_password } = req.body;
 
-  if (!user_name|| !user_password) {
+  if (!user_name || !user_password) {
     return res.status(400).json({ error: 'Missing credentials' });
   }
 

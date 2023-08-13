@@ -2,16 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StarRating, TypeNewAI, TypeSeller, TypeSingleReview } from '../../../../types';
 import { categoriesList } from '../../../../utils/categoriesList';
 import aisService from '../../../../service/aisService';
-import sellersService from '../../../../service/sellersService';
 
-const emptySeller : TypeSeller = {
-  _id: '',
-  seller_storeName: '',
-  seller_phoneNumber: '',
-  seller_Address: '',
-  seller_user_id: '',
-  seller_list_ai_id: []
-}
 
 const SellAddNewAIForm = () => {
   const [ai_name, setName] = useState('');
@@ -23,23 +14,7 @@ const SellAddNewAIForm = () => {
   const [ai_categories, setSelectedCategories] = useState<string[]>([]);
   const [ai_timecreated, setTimeCreated] = useState(new Date)
   const [ai_reviews_review_id, setReviews] = useState<TypeSingleReview[]>([]);
-  const [ai_seller_id, setSeller] = useState(emptySeller)
   
-  useEffect(() => {
-    const fetchDefaultSeller = async () => {
-      try {
-        const sellers = await sellersService.getAllSellers();
-        if (sellers.length > 0) {
-          setSeller(sellers[0]); // Set the first user as the default reviewer
-        }
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    };
-
-    fetchDefaultSeller();
-  }, []);
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
@@ -52,8 +27,7 @@ const SellAddNewAIForm = () => {
       ai_price,
       ai_categories,
       ai_timecreated,
-      ai_reviews_review_id,
-      ai_seller_id
+      ai_reviews_review_id
     };
 
     try {
@@ -75,7 +49,7 @@ const SellAddNewAIForm = () => {
     setSelectedCategories([]);
     setTimeCreated(new Date);
     setReviews([]);
-    setSeller(emptySeller)
+
   };
 
   return (
