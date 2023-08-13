@@ -4,7 +4,6 @@ import sellersService from "../../../../service/sellersService";
 
 
 const SellRegisterForm = () => {
-  const [user_id, setUserID] = useState("currentid");
   const [storeName, setStoreName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
@@ -27,7 +26,7 @@ const SellRegisterForm = () => {
     }
 
     // Clear the form fields after submission
-    setUserID("");
+
     setStoreName("");
     setPhoneNumber("");
     setAddress("");

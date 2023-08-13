@@ -43,7 +43,12 @@ const SingleAI = ({ eachAI }: Props) => {
         <li>Categories: {eachAI.ai_categories.join(', ')}</li>
         <li>Time created: {eachAI.ai_timecreated.toLocaleString()}</li>
         <li>Review Count: {eachAI.ai_reviews_review_id.length}</li>
-        <li>Seller: {eachAI.ai_seller_id.seller_storeName}</li>
+        {/* Add a null check for ai.ai_seller_id */}
+        {eachAI.ai_seller_id ? (
+          <p>Seller: {eachAI.ai_seller_id.seller_storeName}</p>
+        ) : (
+          <p>No Seller Available</p>
+        )}
         <button onClick={handleSave}>save</button>
         <button>put on cart</button>
         <button>add review</button>

@@ -10,7 +10,9 @@ import { TypeNewSeller, TypeSeller } from "../types";
 
 const getAll = async (): Promise<TypeSeller[]> => {
   try {
-    const allSeller = await Seller.find();
+    const allSeller = await Seller.find()
+    .populate('seller_user_id')
+    .exec();
     console.log("All Seller fetched successfully:", allSeller);
     return allSeller;
   } catch (error) {

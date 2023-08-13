@@ -89,7 +89,8 @@ const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
 
     console.log('AI fetched by ID:', ai);
     return ai.toObject();
-  } catch (error) {
+  } 
+  catch (error) {
     console.error('Error fetching AI by ID:', error);
     throw error; // Rethrow the error to be caught in the route handler
   }
