@@ -4,6 +4,7 @@
 import { Types } from "mongoose";
 import AI from "../models/ai";
 import Seller from '../models/seller';
+import User from "../models/user";
 
 import { TypeNewAI, TypeSingleAI } from "../types";
 
@@ -27,28 +28,47 @@ const getAll = async (): Promise<TypeSingleAI[]> => {
   }
 };
 
-const createNewAI = async (newAI: TypeNewAI): Promise<TypeSingleAI> => {
+const createNewAI = async (newAI: TypeNewAI, user_id: string): Promise<TypeSingleAI> => {
   try {
     const createdAI = await AI.create(newAI);
 
-    // Get the seller_id from the newly created AI
-    const seller_id = createdAI.ai_seller_id;
+    // Fetch the user based on the user_id
+    const user = await User.findById(user_id);
+
+    console.log(user_id);
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    // Get the seller_id from the user
+    const seller_id = user.user_seller_id;
+    console.log(seller_id)
+
+    if (!seller_id) {
+      throw new Error('Seller ID not found for the user');
+    }
+    // Set the seller_id in the new AI
+    createdAI.ai_seller_id = seller_id;
+
     // Fetch the corresponding seller from the database
     const seller = await Seller.findById(seller_id);
-    // Update the seller's seller_list_ai_id property
+
     if (seller) {
+      // Update the seller's seller_list_ai_id property
       seller.seller_list_ai_id.push(createdAI._id);
       await seller.save();
+    } else {
+      throw new Error('Seller not found');
     }
+
     console.log("New AI created successfully:", createdAI);
     return createdAI;
-  } 
-  
-  catch (error) {
+  } catch (error) {
     console.error("Error creating new AI:", error);
-    throw error; // Rethrow the error to be caught in the route handler
+    throw error;
   }
 };
+
 
 const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
   try {
