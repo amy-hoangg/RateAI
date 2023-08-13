@@ -12,6 +12,7 @@ const SignInForm = () => {
 
       // Assuming your backend sends a token upon successful login
       const token = response.token;
+      console.log(token);
       // Store the token in local storage
       localStorage.setItem('token', token);
       

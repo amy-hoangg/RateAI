@@ -30,16 +30,13 @@ const getAll = async (): Promise<TypeSingleAI[]> => {
 
 const createNewAI = async (newAI: TypeNewAI, user_id: string): Promise<TypeSingleAI> => {
   try {
-    const createdAI = await AI.create(newAI);
-
     // Fetch the user based on the user_id
     const user = await User.findById(user_id);
-
     console.log(user_id);
+
     if (!user) {
       throw new Error('User not found');
     }
-
     // Get the seller_id from the user
     const seller_id = user.user_seller_id;
     console.log(seller_id)
@@ -47,9 +44,11 @@ const createNewAI = async (newAI: TypeNewAI, user_id: string): Promise<TypeSingl
     if (!seller_id) {
       throw new Error('Seller ID not found for the user');
     }
-    // Set the seller_id in the new AI
-    createdAI.ai_seller_id = seller_id;
 
+    newAI.ai_seller_id = seller_id;
+    const createdAI = await AI.create(newAI);
+    // Set the seller_id in the new AI
+    
     // Fetch the corresponding seller from the database
     const seller = await Seller.findById(seller_id);
 
@@ -57,7 +56,8 @@ const createNewAI = async (newAI: TypeNewAI, user_id: string): Promise<TypeSingl
       // Update the seller's seller_list_ai_id property
       seller.seller_list_ai_id.push(createdAI._id);
       await seller.save();
-    } else {
+    } 
+    else {
       throw new Error('Seller not found');
     }
 

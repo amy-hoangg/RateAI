@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { StarRating, TypeNewAI, TypeSeller, TypeSingleReview } from '../../../../types';
+import React, { useState } from 'react';
+import { StarRating, TypeNewAI, TypeSingleReview } from '../../../../types';
 import { categoriesList } from '../../../../utils/categoriesList';
 import aisService from '../../../../service/aisService';
 

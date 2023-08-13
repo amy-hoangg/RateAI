@@ -2,16 +2,17 @@ import axios from 'axios';
 
 const baseUrl = 'http://localhost:3003/api/login'; // Update the URL accordingly
 
-const login = async (username: string, password: string) => {
+const login = async (user_name: string, user_password: string) => {
   try {
     const response = await axios.post(baseUrl, {
-      username,
-      password,
+      user_name,
+      user_password,
     });
     return response.data;
-  } catch (error) {
+  } 
+  catch (error) {
     console.error('Error logging in:', error);
-    throw error; // Rethrow the error to be caught by the caller
+    throw error;
   }
 };
 
