@@ -98,7 +98,7 @@ const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
 
 
 
-const updateSaves = async (id: string): Promise<TypeSingleAI | undefined> => {
+const updateSaves = async (id: string, user_id: string): Promise<TypeSingleAI | undefined> => {
   try {
     const ai = await AI.findOne({ _id: new Types.ObjectId(id) });
 
@@ -108,6 +108,17 @@ const updateSaves = async (id: string): Promise<TypeSingleAI | undefined> => {
     }
     ai.ai_saves += 1;
     await ai.save();
+
+    //increase the save in user
+    const user = await User.findById(user_id);
+    if (user) {
+      // Update the seller's seller_list_ai_id property
+      user.user_saves_ai_id.push(ai._id);
+      await user.save();
+    } 
+    else {
+      throw new Error('user not found');
+    }
 
     console.log("AI saves updated:", ai);
     return ai.toObject();

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import usersService from "../../../../service/usersService"; // Import your API service
+import usersService from "../../../../service/usersService";
 import { TypeSingleAI } from "../../../../types";
 import AIsList from "../../AITools/AIsList";
 
@@ -8,20 +8,21 @@ const SavesPage = () => {
   const [aisSaved, setAisSaved] = useState<TypeSingleAI[]>([]);
 
   useEffect(() => {
-    // Check if token is present in local storage
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
   }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
-      const user_id = localStorage.getItem("userid");
-      // Retrieve user's saved AIs from backend
+      const user_id = localStorage.getItem("userId");
+      console.log("user_id:", user_id); // Add this line to check if user_id is correctly retrieved
       if (user_id) {
         usersService
-          .getOneUser(user_id) // Pass the appropriate user ID
+          .getOneUser(user_id)
           .then((user) => {
+            console.log("user:", user); // Add this line to see the user object received
             if (user.user_saves_ai_id) {
+              console.log("user.user_saves_ai_id:", user.user_saves_ai_id); // Add this line to see the saved AI IDs
               setAisSaved(user.user_saves_ai_id);
             }
           })
@@ -29,6 +30,8 @@ const SavesPage = () => {
       }
     }
   }, [isLoggedIn]);
+
+  console.log("aisSaved:", aisSaved); // Add this line to see the final aisSaved array
 
   return (
     <>

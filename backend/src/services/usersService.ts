@@ -47,7 +47,9 @@ const createNewUser = async (newUser: TypeNewUser): Promise<TypeUser> => {
 
 const getOneUser = async (id: string): Promise<TypeUser | undefined> => {
   try {
-    const user = await User.findOne({ _id: new Types.ObjectId(id) });
+    const user = await User.findOne({ _id: new Types.ObjectId(id) })
+    .populate('user_saves_ai_id')
+    .exec();;
     console.log("User fetched by ID:", user);
     return user ? user.toObject() : undefined;
   } catch (error) {

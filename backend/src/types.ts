@@ -48,7 +48,7 @@ export interface TypeUser extends Document {
   user_firstname: string;
   user_lastname: string;
   user_email: string;
-  user_saves_ai_id?: Types.ObjectId[];
+  user_saves_ai_id: Types.ObjectId[];
   user_carts_ai_id?: Types.ObjectId[];
   user_reviews_review_id: Types.ObjectId[];
   user_likes_review_id?: Types.ObjectId[];

@@ -20,7 +20,7 @@ const getOneAI = async (id: string) => {
 
 const updateSaves = async (id: string) => {
   try {
-    const response = await axios.patch<TypeSingleAI>(`${baseUrl}/saves/${id}`);
+    const response = await axiosInstance.patch<TypeSingleAI>(`/ais/saves/${id}`);
     return response.data; // You can return any data from the response if needed
   } catch (error) {
     throw error;
