@@ -79,7 +79,7 @@ export interface TypeUser {
   user_firstname: string;
   user_lastname: string;
   user_email: string;
-  user_saves_ai_id?: string[];
+  user_saves_ai_id?: TypeSingleAI[];
   user_carts_ai_id?: string[];
   user_reviews_review_id?: string[];
   user_likes_review_id?: string[];

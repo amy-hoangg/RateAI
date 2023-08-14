@@ -17,10 +17,10 @@ const SignInForm = () => {
       localStorage.setItem('token', token);
       
       // Decode the token
-      //const decodedToken = jwt_decode(token) as { id: string }; // Use jwt_decode to extract the user ID
+      const decodedToken = jwt_decode(token) as { id: string }; // Use jwt_decode to extract the user ID
 
       // Store the user ID in local storage
-      //localStorage.setItem('userId', decodedToken.id);
+      localStorage.setItem('userId', decodedToken.id);
   
       // Reset the form
       setUsername('');
