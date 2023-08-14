@@ -39,7 +39,7 @@ const SavesPage = () => {
         <div>
           <h1>Welcome to Your Wishlist</h1>
           <p>
-            Please log in to add AIs to your wishlist. Don't have an account
+            Please <a href="http://localhost:3000/sign-in">log in</a> to add AIs to your wishlist. Don't have an account
             yet?
             <a href="http://localhost:3000/sign-up"> Sign up</a>
           </p>
