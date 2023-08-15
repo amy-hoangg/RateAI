@@ -33,7 +33,9 @@ const SellRegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+  <>
+  <h2>Want to sell AI? Register Now</h2>
+      <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="storeName">Store Name:</label>
         <input
@@ -66,6 +68,7 @@ const SellRegisterForm = () => {
       </div>
       <button type="submit">Submit</button>
     </form>
+  </>
   );
 };
 

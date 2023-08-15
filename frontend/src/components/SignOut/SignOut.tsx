@@ -10,7 +10,7 @@ const SignOut: React.FC = () => {
 
     // Delete the token from local storage
     localStorage.removeItem('token');
-
+    localStorage.removeItem('userId');
     // Redirect to the login page
     navigate('/login');
   }, [navigate]);

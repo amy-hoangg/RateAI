@@ -87,7 +87,7 @@ export interface TypeUser {
   user_likes_new_id?: string[];
   user_dislikes_new_id?: string[];
   user_purchases_ai_id?: string[];
-  user_seller_id?: string;
+  user_seller_id?: TypeSeller;
 }
 
 export interface TypeSeller {
