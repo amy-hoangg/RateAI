@@ -64,8 +64,30 @@ const getOneUser = async (id: string): Promise<TypeUser | undefined> => {
   }
 };
 
+const putOnCart = async (ai_id: string, user_id: string): Promise<TypeUser | undefined> => {
+  try {
+    // Find the user by user_id
+    const user = await User.findById(user_id);
+    
+    if (user) {
+      // Update the user's user_carts_ai_id array
+      user.user_carts_ai_id.push(new Types.ObjectId(ai_id));
+      await user.save();
+      
+      console.log("User carts updated:", user);
+      return user.toObject(); // Return the updated user object
+    } else {
+      throw new Error('User not found');
+    }
+  } catch (error) {
+    console.error("Error updating user carts:", error);
+    throw error; // Rethrow the error to be caught in the route handler
+  }
+};
+
 export default {
   getAll,
   createNewUser,
   getOneUser,
+  putOnCart
 };

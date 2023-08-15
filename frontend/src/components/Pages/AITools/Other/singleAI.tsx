@@ -2,21 +2,19 @@ import React, { useState } from 'react';
 import { TypeSingleAI } from '../../../../types'; 
 import { Link } from "react-router-dom";
 import aisService from '../../../../service/aisService';
+import usersService from '../../../../service/usersService';
 
 type Props = {
   eachAI: TypeSingleAI;
 };
 
 const SingleAI = ({ eachAI }: Props) => {
-  const [saves, setSaves] = useState(eachAI.ai_saves); // Initialize saves state
 
   const handleSave = async () => {
     try {
       // Send a request to update the saves in the backend
       await aisService.updateSaves(eachAI._id);
-  
       // Update the UI to reflect the updated saves
-      setSaves((prevSaves) => prevSaves + 1);
       console.log('save successfully');
     } 
     
@@ -25,6 +23,16 @@ const SingleAI = ({ eachAI }: Props) => {
     }
   };
 
+  const handlePutOnCart = async () => {
+    try {
+      await usersService.putOnCart(eachAI._id);
+      console.log('put on cart successfully');
+    }
+    catch(error) {
+      console.error('Error putting on cart', error);
+    }
+  }
+ 
   return (
     <div>
       <ul>
@@ -50,7 +58,7 @@ const SingleAI = ({ eachAI }: Props) => {
           <p>No Seller Available</p>
         )}
         <button onClick={handleSave}>save</button>
-        <button>put on cart</button>
+        <button onClick={handlePutOnCart}>put on cart</button>
         <button>add review</button>
       </ul>
     </div>

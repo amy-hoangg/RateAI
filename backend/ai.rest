@@ -93,5 +93,7 @@ Content-Type: application/json
 }
 
 
+PATCH http://localhost:3003/api/ais/saves/your_ai_id_here
+Authorization: Bearer your_valid_jwt_token_here
 
 

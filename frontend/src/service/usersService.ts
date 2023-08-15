@@ -1,5 +1,6 @@
 import axios from "axios";
-import { TypeNewUser, TypeUser } from '../types'
+import { TypeNewUser, TypeSingleAI, TypeUser } from '../types'
+import axiosInstance from "./axiosInstance";
 
  
 const baseUrl = "http://localhost:3003/api/users";
@@ -24,8 +25,19 @@ const createNewUser = async (object: TypeNewUser) => {
     return data;
   };
 
+  const putOnCart = async (id: string) => {
+    try {
+      const response = await axiosInstance.patch<TypeSingleAI>(`/users/putoncart/${id}`);
+      return response.data;
+    }
+    catch (error) {
+      throw error;
+    }
+  };
+
 export default {
     getAllUsers,
     createNewUser,
-    getOneUser
+    getOneUser,
+    putOnCart
 }

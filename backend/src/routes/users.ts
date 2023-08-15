@@ -4,6 +4,9 @@ import express from 'express';
 import usersService from '../services/usersService';
 import User from "../models/user";
 import bcrypt from 'bcrypt';
+import { Request, Response } from 'express';
+import { DecodedToken } from '../types';
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
@@ -51,5 +54,38 @@ router.get('/:id', async (req, res) => {
     res.status(404).send('User not found');
   }
 });
+
+router.patch("/putoncart/:id", async (req: Request, res: Response) => {
+  const aiId = req.params.id;
+
+  try {
+    // Extract the token from the authorization header
+    const authorizationHeader = req.get("authorization");
+
+    if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
+      return res.status(401).send("Unauthorized");
+    }
+    const token = authorizationHeader.substring(7);
+    // Verify and decode the token
+    const decodedToken = jwt.verify(
+      token,
+      process.env.SECRET || " "
+    ) as unknown as DecodedToken;
+
+
+    // Update the ai carts for user
+    const updatedUser = await usersService.putOnCart(aiId, decodedToken.id);
+
+    return res.json(updatedUser); // Add the "return" statement here
+  } 
+  catch (error) {
+    console.error("Error putting on cart:", error);
+    return res
+      .status(500)
+      .json({ error: "An error occurred while putting on cart" });
+  }
+});
+
+
 
 export default router;
