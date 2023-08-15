@@ -115,6 +115,6 @@ export type TypeNewUser = Omit<TypeUser, '_id'>
 
 export type TypeNewNew = Omit<TypeSingleNew, "_id">;
 
-export type TypeSubcriber ={
+export type TypeSubscriber ={
   subcriber_email: string;
 }
