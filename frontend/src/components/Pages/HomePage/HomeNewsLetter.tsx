@@ -18,6 +18,7 @@ const HomeNewsLetter = () => {
     } catch (error) {
       console.error('Error subscribing:', error);
     }
+    setEmail('');
   };
 
   return (
