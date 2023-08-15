@@ -12,6 +12,12 @@ const SingleAIDetails = () => {
   const { id } = useParams<Params>();
   const [aiDetails, setAIDetails] = useState<TypeSingleAI | null>(null);
   const [showAddReviewForm, setShowAddReviewForm] = useState(false); // State to control form visibility
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
   useEffect(() => {
     const fetchAIDetails = async () => {
@@ -65,7 +71,21 @@ const SingleAIDetails = () => {
         </li>
 
         <li>Seller: {aiDetails.ai_seller_id.seller_storeName}</li>
-        <button onClick={handleAddReviewClick}>Add Review</button>
+
+        {isLoggedIn && 
+        // User is logged in, show button to add review
+        <div>
+          <button onClick={handleAddReviewClick}>Add Review</button>
+        </div>
+        }
+        {!isLoggedIn &&
+        <div>
+        <p>
+          Please <a href="http://localhost:3000/sign-in">log in</a> to add a new review. Don't have an account yet?
+          <a href="http://localhost:3000/sign-up"> Sign up</a>
+        </p>
+        </div>
+        }
       </ul>
 
       {showAddReviewForm && (

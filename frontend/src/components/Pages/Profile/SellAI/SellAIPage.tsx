@@ -12,6 +12,10 @@ const SellAIPage = () => {
   const [user, setUser] = useState<TypeUser | null>(null); // Initialize user as null
   const [seller, setSeller] = useState<TypeSeller | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
   useEffect(() => {
     aisService
@@ -40,11 +44,6 @@ const SellAIPage = () => {
         })
         .catch((error) => console.error("Error fetching user:", error));
     }
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
   }, []);
 
   return (
