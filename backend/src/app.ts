@@ -25,6 +25,7 @@ import newRouter from './routes/news';
 import searchRouter from './routes/search';
 import filterRouter from './routes/filter';
 import loginRouter from './routes/login';
+import subcribeRouter from './routes/subscribe';
 
 app.use('/api/ais', aiRouter);
 app.use('/api/reviews', reviewRouter);
@@ -35,5 +36,6 @@ app.use('/api/news', newRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/filter', filterRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/subcribe', subcribeRouter)
 
 export default app;

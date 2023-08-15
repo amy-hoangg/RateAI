@@ -94,3 +94,7 @@ export type UserForTokenType = {
 };
 
 export type DecodedToken = UserForTokenType;
+
+export type TypeSubcriber ={
+  subcriber_email: string;
+}

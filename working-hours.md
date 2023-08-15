@@ -13,3 +13,4 @@
 | 10.08.23 | 15:00 - 22 :00|  update filter, create new ai, reviews,..| 5
 | 12.08.23 | 10:00 - 19 :30|  user authentification, still not fix the bug| 8
 | 13.08.23 | 10:00 - 22:00 |  user authentification success| 7
+| 14.08.23 | 10:00 - 17:09 |  features when user log in and not log in | 5

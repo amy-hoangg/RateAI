@@ -1,18 +1,3 @@
-POST http://localhost:3003/api/ais
-Content-Type: application/json
-
-{
-    "ai_name": "AI Model Amy",
-    "ai_star_rating": 5,
-    "ai_description": "AI model for stdy",
-    "ai_saves": 100,
-    "ai_price": "$50",
-    "ai_categories": ["Machine Learning"],
-    "ai_timecreated": "2023-08-05T00:00:00.000Z",
-    "ai_sold": 0,
-    "ai_seller_id": "64cf68540b792b2e8739390c"
-}
-####
 
 POST http://localhost:3003/api/reviews
 Content-Type: application/json
@@ -99,6 +84,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvb
     "ai_timecreated": "2023-08-05T00:00:00.000Z",
     "ai_sold": 0
 }
+####
+POST http://localhost:3003/api/subscribe
+Content-Type: application/json
+
+{
+  "subcriber_email": "subcriber01@gmail.com"
+}
+
 
 
 

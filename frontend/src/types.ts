@@ -114,3 +114,7 @@ export type TypeNewReview = Omit<TypeSingleReview, "_id">;
 export type TypeNewUser = Omit<TypeUser, '_id'>
 
 export type TypeNewNew = Omit<TypeSingleNew, "_id">;
+
+export type TypeSubcriber ={
+  subcriber_email: string;
+}
