@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { Types } from "mongoose";
+import mongoose, { Types } from "mongoose";
 import Review from "../models/review";
 import User from "../models/user";
 import AI from "../models/ai";
@@ -20,27 +20,21 @@ const getAll = async (): Promise<TypeSingleReview[]> => {
   }
 };
 
-const createNewReview = async (
-  newReview: TypeNewReview
-): Promise<TypeSingleReview> => {
+const createNewReview = async (newReview: TypeNewReview, user_id: string): Promise<TypeSingleReview> => {
   try {
+    newReview.review_reviewer_id = new mongoose.Types.ObjectId(user_id); // Convert user_id to ObjectId
     const createdReview = await Review.create(newReview);
 
-    // Get the user_id from the newly created Review
-    const user_id = createdReview.review_reviewer_id;
-    // Fetch the corresponding user from the database
+    // UPDATE USER
     const user = await User.findById(user_id);
-    // Update the user's user_list_review_id property
     if (user) {
       user.user_reviews_review_id.push(createdReview._id);
       await user.save();
     }
 
-    // Get the user_id from the newly created Review
+    // UPDATE AI
     const ai_id = createdReview.review_ai_id;
-    // Fetch the corresponding user from the database
     const ai = await AI.findById(ai_id);
-    // Update the user's user_list_review_id property
     if (ai) {
       ai.ai_reviews_review_id.push(createdReview._id);
       await ai.save();
@@ -53,6 +47,7 @@ const createNewReview = async (
     throw error; // Rethrow the error to be caught in the route handler
   }
 };
+
 
 const getOneReview = async (id: string): Promise<TypeSingleReview | undefined> => {
   try {

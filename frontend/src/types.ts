@@ -109,7 +109,7 @@ export type TypeNewSeller = Omit<TypeSeller, '_id' | 'seller_user_id'>
 
 export type TypeNewAI = Omit<TypeSingleAI, '_id' | 'ai_seller_id'>;
 
-export type TypeNewReview = Omit<TypeSingleReview, "_id">;
+export type TypeNewReview = Omit<TypeSingleReview, "_id" | "review_reviewer_id">;
 
 export type TypeNewUser = Omit<TypeUser, '_id'>
 

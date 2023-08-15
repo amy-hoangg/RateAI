@@ -74,6 +74,7 @@ const SingleAIDetails = () => {
             console.log("New review:", newReview);
             setShowAddReviewForm(false); // Hide the form after submission
           }}
+          ai_id={aiDetails._id} // Pass the ai_id prop here
         />
       )}
     </div>

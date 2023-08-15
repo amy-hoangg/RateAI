@@ -5,47 +5,23 @@ import usersService from '../../../../service/usersService';
 
 type Props = {
   onSubmit: (newReview: TypeNewReview) => void;
+  ai_id: string
 };
 
-const emptyUser: TypeUser = {
-  _id: '',
-  user_name: '',
-  user_password: '',
-  user_firstname: '',
-  user_lastname: '',
-  user_email: ''
-};
 
-const AddNewReviewForm = ({ onSubmit }: Props) => {
-  const [review_ai_id, setAppID] = useState('');
-  const [review_reviewer_id, setReviewer] = useState<TypeUser>(emptyUser);
+const AddNewReviewForm = ({ onSubmit, ai_id }: Props) => {
   const [review_star, setStar] = useState(StarRating.ONE);
   const [review_content, setContent] = useState('');
   const [review_time, setTimeReview] = useState(new Date());
   const [review_like, setLike] = useState(0);
   const [review_dislike, setDislike] = useState(0);
 
-  useEffect(() => {
-    const fetchDefaultReviewer = async () => {
-      try {
-        const users = await usersService.getAllUsers();
-        if (users.length > 0) {
-          setReviewer(users[0]); // Set the first user as the default reviewer
-        }
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    };
-
-    fetchDefaultReviewer();
-  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const newReview: TypeNewReview = {
-      review_ai_id,
-      review_reviewer_id,
+      review_ai_id: ai_id,
       review_star,
       review_content,
       review_time,// Convert to ISO date string
@@ -63,7 +39,6 @@ const AddNewReviewForm = ({ onSubmit }: Props) => {
       console.error('Error creating user:', error);
     }
 
-    setAppID('');
     setStar(StarRating.ONE);
     setContent('');
     setTimeReview(new Date);
@@ -75,12 +50,6 @@ const AddNewReviewForm = ({ onSubmit }: Props) => {
     <div>
       <h2>Add New Review</h2>
       <form onSubmit={handleSubmit}>
-        <label>AI ID:</label>
-        <input
-          type="text"
-          value={review_ai_id}
-          onChange={(e) => setAppID(e.target.value)}
-        />
 
         <label>Star Rating:</label>
         <select

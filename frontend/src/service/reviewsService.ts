@@ -1,5 +1,6 @@
 import axios from "axios";
 import { TypeNewReview, TypeSingleReview } from "../types";
+import axiosInstance from "./axiosInstance";
 
 const baseUrl = "http://localhost:3003/api/reviews";
 
@@ -10,9 +11,7 @@ const getAllReviews = () => {
 };
 
 const createNewReview = async (object: TypeNewReview) => {
-    const { data } = await axios
-    .post<TypeSingleReview>(`${baseUrl}`, object);
-  
+    const { data } = await axiosInstance.post<TypeSingleReview>("/reviews", object);
     return data;
   };
 
@@ -28,3 +27,4 @@ export default {
     createNewReview,
     getOneReview
 }
+

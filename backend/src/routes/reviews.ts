@@ -2,6 +2,10 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import express from 'express';
 import reviewsService from '../services/reviewsService';
+import { Request, Response } from 'express';
+
+import jwt from 'jsonwebtoken';
+import { DecodedToken } from '../types';
 
 const router = express.Router();
 
@@ -11,16 +15,29 @@ router.get('/', async (_req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/', async (req: Request, res: Response) => {
   try {
-    const newReview = await reviewsService.createNewReview(req.body);
+    // Extract the token from the authorization header
+    const authorizationHeader = req.get('authorization');
+    
+    if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
+      return res.status(401).send('Unauthorized');
+    }
+    const token = authorizationHeader.substring(7);
+    // Verify and decode the token
+    const decodedToken = jwt.verify(token, process.env.SECRET || " ") as unknown as DecodedToken;
+
+    const newReview = await reviewsService.createNewReview(req.body, decodedToken.id);
     res.send(newReview);
-  } catch (error: unknown) {
+    return;
+  } 
+  catch (error: unknown) {
     let errorMessage = 'Something went wrong.';
     if (error instanceof Error) {
       errorMessage += ' Error: ' + error.message;
     }
     res.status(400).send(errorMessage);
+    return;
   }
 });
 
