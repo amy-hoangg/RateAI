@@ -80,7 +80,7 @@ export interface TypeUser {
   user_lastname: string;
   user_email: string;
   user_saves_ai_id?: TypeSingleAI[];
-  user_carts_ai_id?: string[]; //kieu gi cung co bug cho nay
+  user_carts_ai_id?: TypeSingleAI[]; //kieu gi cung co bug cho nay
   user_reviews_review_id?: string[];
   user_likes_review_id?: string[];
   user_dislikes_review_id?: string[];

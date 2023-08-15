@@ -55,6 +55,13 @@ const getOneUser = async (id: string): Promise<TypeUser | undefined> => {
         model: 'Seller'
       }
     })
+    .populate({
+      path: 'user_carts_ai_id',
+      populate: {
+        path: 'ai_seller_id',
+        model: 'Seller'
+      }
+    })
     .exec();;
     console.log("User fetched by ID:", user);
     return user ? user.toObject() : undefined;
