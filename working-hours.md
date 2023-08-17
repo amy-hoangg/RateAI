@@ -15,3 +15,4 @@
 | 13.08.23 | 10:00 - 22:00 |  user authentification success| 7
 | 14.08.23 | 10:00 - 17:09 |  features when user log in and not log in | 5
 | 15.08.23 | 10:00 - 17:00|  features when user log in and not log in | 5
+| 17.08.23 | 11:00 - 14:00|  features when user log in and not log in | 3
