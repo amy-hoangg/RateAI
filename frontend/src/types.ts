@@ -118,3 +118,13 @@ export type TypeNewNew = Omit<TypeSingleNew, "_id">;
 export type TypeSubscriber ={
   subcriber_email: string;
 }
+
+
+export interface AuthProviderProps {
+  children: ReactNode; // Type the children prop
+}
+export interface AuthContextType {
+  isAuthenticated: boolean;
+  signIn: (username: string, password: string) => Promise<void>;
+  signOut: () => void;
+}

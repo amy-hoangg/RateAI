@@ -52,8 +52,7 @@ const SellAIPage = () => {
 
       {!isLoggedIn && (
         <p>
-          Please <a href="http://localhost:3000/sign-in">log in</a> to add AIs
-          to your wishlist. Don't have an account yet?
+          Please <a href="http://localhost:3000/sign-in">log in</a> to sell your AI. Don't have an account yet?
           <a href="http://localhost:3000/sign-up"> Sign up</a>
         </p>
       )}
