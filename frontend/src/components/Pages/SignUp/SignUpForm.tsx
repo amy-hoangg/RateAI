@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { TypeSignUpFormProps } from '../../../types';
 import usersService from '../../../service/usersService';
+import { useNavigate } from "react-router-dom";
 
-const SignUpForm = ({ onSubmit } : TypeSignUpFormProps) => {
+const SignUpForm = () => {
     const [username, setUsername] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
-  
+    const navigate = useNavigate(); // Initialize the navigate function
+
     const handleSignUp = async () => {
       // Check if passwords match
       if (password !== repeatPassword) {
@@ -28,8 +29,18 @@ const SignUpForm = ({ onSubmit } : TypeSignUpFormProps) => {
       try {
         const createdUser = await usersService.createNewUser(newUser);
         console.log('User created:', createdUser);
-        onSubmit();
-      } catch (error) {
+
+        setUsername('');
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+        setRepeatPassword('')
+
+        navigate("/sign-in"); // Navigate to the homepage
+
+      } 
+      catch (error) {
         console.error('Error creating user:', error);
       }
     };
