@@ -74,9 +74,43 @@ const like = async (id: string, user_id: string): Promise<TypeSingleNew | undefi
   }
 };
 
+const dislike = async (id: string, user_id: string): Promise<TypeSingleNew | undefined> => {
+  try {
+    const news = await New.findOne({ _id: new Types.ObjectId(id) });
+
+    if (!news) {
+      console.log("news not found");
+      return undefined;
+    }
+    news.new_dislikes += 1;
+    await news.save();
+
+    //increase the dislike news in user
+    const user = await User.findById(user_id);
+    if (user) {
+      // Update the seller's seller_list_ai_id property
+      user.user_dislikes_new_id?.push(news._id);
+      await user.save();
+    } 
+    else {
+      throw new Error('user not found');
+    }
+
+    console.log("news dislike updated:", news);
+    return news.toObject();
+  } 
+  
+  catch (error) {
+    console.error("Error updating news saves:", error);
+    throw error; // Rethrow the error to be caught in the route handler
+  }
+};
+
+
 export default {
   getAll,
   createNewNew,
   getOneNew,
-  like
+  like,
+  dislike
 };
