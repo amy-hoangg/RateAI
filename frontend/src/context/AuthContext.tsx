@@ -19,7 +19,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       setIsAuthenticated(true);
       console.log('Sign in successful!');
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Error signing in:', error);
     }
   };

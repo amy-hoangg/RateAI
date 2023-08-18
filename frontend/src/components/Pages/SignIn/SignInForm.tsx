@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
-import { useAuth } from '../../../context/AuthContext'; // Import useAuth from your AuthContext
+import React, { useState } from "react";
+import { useAuth } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const SignInForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  // Use the useAuth hook to get authentication functions
+  const navigate = useNavigate(); // Initialize the navigate function
   const { signIn } = useAuth();
 
   const handleSignIn = async () => {
     try {
-      await signIn(username, password); // Use the signIn function from the useAuth hook
-      setUsername('');
-      setPassword('');
+      await signIn(username, password);
+      setUsername("");
+      setPassword("");
+
+      // Navigate to the homepage
+      navigate("/"); // Navigate to the homepage
+      // Reload the page
+      window.location.reload();
     } catch (error) {
-      console.error('Error signing in:', error);
+      console.error("Error signing in:", error);
     }
   };
 
