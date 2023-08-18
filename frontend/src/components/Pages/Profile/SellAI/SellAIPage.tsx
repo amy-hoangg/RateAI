@@ -19,7 +19,7 @@ const SellAIPage = () => {
       .getAllAIs()
       .then((data) => setAIs(data))
       .catch((error) => console.error("Error fetching AIs:", error));
-  }, []);
+  }, [ais]);
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");

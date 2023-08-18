@@ -42,7 +42,7 @@ const App = () => {
           <Route path="news/:id" element={<NewsSinglePage />} />
 
           <Route path="sign-out" element={<SignOut />} />
-
+          <Route path="profile/:id" element={<ProfilePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 
