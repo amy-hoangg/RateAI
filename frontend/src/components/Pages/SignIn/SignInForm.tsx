@@ -18,7 +18,7 @@ const SignInForm = () => {
       // Navigate to the homepage
       navigate("/"); // Navigate to the homepage
       // Reload the page
-      window.location.reload();
+      //window.location.reload();
     } catch (error) {
       console.error("Error signing in:", error);
     }

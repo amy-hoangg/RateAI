@@ -13,23 +13,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const response = await loginService.login(username, password);
       const token = response.token;
       localStorage.setItem('token', token);
-
+  
       const decodedToken = jwt_decode(token) as { id: string };
       localStorage.setItem('userId', decodedToken.id);
-
+  
       setIsAuthenticated(true);
-      console.log('Sign in successful!');
+  
+      // Log the state AFTER it has been updated
+      console.log('Sign in successful!', isAuthenticated);
     } 
     catch (error) {
       console.error('Error signing in:', error);
     }
   };
-
+  
   const signOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     setIsAuthenticated(false);
+  
+    // Log the state AFTER it has been updated
+    console.log('Sign out successful', isAuthenticated);
   };
+  
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, signIn, signOut }}>

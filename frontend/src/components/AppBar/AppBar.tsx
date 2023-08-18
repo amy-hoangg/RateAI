@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AppBarTab from "./AppBarTab";
+import { useAuth } from "../../context/AuthContext"; // Update with the correct import path
 
 const AppBar = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    // Check if token is present in local storage
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
+  const { isAuthenticated, signOut } = useAuth(); // Use the isAuthenticated and signOut functions from your AuthContext
 
   const handleProfileDropdownHoverAndClick = () => {
     setShowProfileDropdown(!showProfileDropdown);
@@ -25,16 +20,16 @@ const AppBar = () => {
       <AppBarTab to="/ais">AI Tools</AppBarTab>
       <AppBarTab to="/news">News</AppBarTab>
 
-      {/* Conditionally render Sign In and Sign Up based on isLoggedIn */}
-      {!isLoggedIn && (
+      {/* Conditionally render Sign In and Sign Up based on isAuthenticated */}
+      {!isAuthenticated && (
         <>
           <AppBarTab to="/sign-in">Sign in</AppBarTab>
           <AppBarTab to="/sign-up">Sign Up</AppBarTab>
         </>
       )}
 
-      {/* Conditionally render Profile button based on isLoggedIn */}
-      {isLoggedIn && (
+      {/* Conditionally render Profile button based on isAuthenticated */}
+      {isAuthenticated && (
         <div
           onMouseEnter={handleProfileDropdownHoverAndClick}
           onMouseLeave={handleProfileDropdownMouseLeave}
@@ -42,7 +37,7 @@ const AppBar = () => {
           <button>Profile</button>
           {showProfileDropdown && (
             <div>
-              <AppBarTab to="/sign-out">Sign out</AppBarTab>
+              <AppBarTab to="/sign-out" onClick={signOut}>Sign out</AppBarTab>
               <AppBarTab to="/profile">Profile Setting</AppBarTab>
             </div>
           )}

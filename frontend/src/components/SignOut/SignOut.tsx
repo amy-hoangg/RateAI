@@ -12,7 +12,7 @@ const SignOut: React.FC = () => {
 
     // Redirect to the login page
     navigate('/sign-in');
-    window.location.reload();
+    // window.location.reload();
   }, [navigate, signOut]);
 
   return null;
