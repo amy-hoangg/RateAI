@@ -39,6 +39,10 @@ const NewsSinglePage = () => {
       <p>Likes: {aiDetails.new_likes}</p>
       <p>Dislikes: {aiDetails.new_dislikes}</p>
       <p>Date: {new Date(aiDetails.new_date).toLocaleDateString()}</p>
+
+      <button>like</button>
+      <button>dislike</button>
+      
     </div>
   );
 };
