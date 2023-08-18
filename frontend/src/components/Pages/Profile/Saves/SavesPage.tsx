@@ -2,40 +2,36 @@ import React, { useEffect, useState } from "react";
 import usersService from "../../../../service/usersService";
 import { TypeSingleAI } from "../../../../types";
 import AIsList from "../../AITools/AIsList";
+import { useAuth } from "../../../../context/AuthContext"; // Import the useAuth hook
 
 const SavesPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated } = useAuth(); // Use the useAuth hook instead of managing isLoggedIn state
   const [aisSaved, setAisSaved] = useState<TypeSingleAI[]>([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
-
-  useEffect(() => {
-    if (isLoggedIn) {
+    if (isAuthenticated) {
       const user_id = localStorage.getItem("userId");
-      console.log("user_id:", user_id); // Add this line to check if user_id is correctly retrieved
+      console.log("user_id:", user_id);
       if (user_id) {
         usersService
           .getOneUser(user_id)
           .then((user) => {
-            console.log("user:", user); // Add this line to see the user object received
+            console.log("user:", user);
             if (user.user_saves_ai_id) {
-              console.log("user.user_saves_ai_id:", user.user_saves_ai_id); // Add this line to see the saved AI IDs
+              console.log("user.user_saves_ai_id:", user.user_saves_ai_id);
               setAisSaved(user.user_saves_ai_id);
             }
           })
           .catch((error) => console.error("Error fetching user:", error));
       }
     }
-  }, [isLoggedIn]);
+  }, [isAuthenticated]);
 
-  console.log("aisSaved:", aisSaved); // Add this line to see the final aisSaved array
+  console.log("aisSaved:", aisSaved);
 
   return (
     <>
-      {!isLoggedIn ? (
+      {!isAuthenticated ? (
         <div>
           <h1>Welcome to Your Wishlist</h1>
           <p>

@@ -6,16 +6,13 @@ import { TypeSeller, TypeUser, TypeSingleAI } from "../../../../types";
 import SellerInfo from "./SellerInfo";
 import aisService from "../../../../service/aisService";
 import usersService from "../../../../service/usersService";
+import { useAuth } from "../../../../context/AuthContext"; // Update with the correct import path
 
 const SellAIPage = () => {
   const [ais, setAIs] = useState<TypeSingleAI[]>([]);
-  const [user, setUser] = useState<TypeUser | null>(null); // Initialize user as null
+  const [user, setUser] = useState<TypeUser | null>(null);
   const [seller, setSeller] = useState<TypeSeller | null>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
+  const { isAuthenticated } = useAuth(); // Use the isAuthenticated function from your AuthContext
 
   useEffect(() => {
     aisService
@@ -25,7 +22,6 @@ const SellAIPage = () => {
   }, []);
 
   useEffect(() => {
-    // Retrieve user data from local storage (assuming you store user data as "user" key)
     const userId = localStorage.getItem("userId");
 
     if (userId) {
@@ -35,7 +31,6 @@ const SellAIPage = () => {
           console.log("Fetched user data:", data);
           setUser(data);
 
-          // Set seller ID if user_seller_id exists, otherwise set it to null
           if (data.user_seller_id) {
             setSeller(data.user_seller_id);
           } else {
@@ -50,14 +45,14 @@ const SellAIPage = () => {
     <div>
       <h1>This is the Sell AI page</h1>
 
-      {!isLoggedIn && (
+      {!isAuthenticated && (
         <p>
           Please <a href="http://localhost:3000/sign-in">log in</a> to sell your AI. Don't have an account yet?
           <a href="http://localhost:3000/sign-up"> Sign up</a>
         </p>
       )}
 
-      {isLoggedIn && (
+      {isAuthenticated && (
         <>
           {!seller && <SellRegisterForm />}
           {seller && (

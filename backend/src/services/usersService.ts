@@ -63,7 +63,7 @@ const getOneUser = async (id: string): Promise<TypeUser | undefined> => {
       }
     })
     .populate('user_seller_id')
-    .exec();;
+    .exec();
     console.log("User fetched by ID:", user);
     return user ? user.toObject() : undefined;
   } catch (error) {
