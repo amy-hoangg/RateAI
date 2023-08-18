@@ -69,7 +69,6 @@ const createNewAI = async (newAI: TypeNewAI, user_id: string): Promise<TypeSingl
   }
 };
 
-
 const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
   try {
     const ai = await AI.findOne({ _id: new Types.ObjectId(id) })
@@ -95,7 +94,6 @@ const getOneAI = async (id: string): Promise<TypeSingleAI | undefined> => {
     throw error; // Rethrow the error to be caught in the route handler
   }
 };
-
 
 
 const updateSaves = async (id: string, user_id: string): Promise<TypeSingleAI | undefined> => {
@@ -130,10 +128,47 @@ const updateSaves = async (id: string, user_id: string): Promise<TypeSingleAI | 
   }
 };
 
+// ... (other code)
+
+const unSave = async (id: string, user_id: string): Promise<TypeSingleAI | undefined> => {
+  try {
+    const ai = await AI.findOne({ _id: new Types.ObjectId(id) });
+
+    if (!ai) {
+      console.log("AI not found");
+      return undefined;
+    }
+    ai.ai_saves -= 1;
+    await ai.save();
+
+    // Decrease the save in user
+    const user = await User.findById(user_id);
+    if (user) {
+      // Update the user's user_saves_ai_id property
+      user.user_saves_ai_id = user.user_saves_ai_id.filter(
+        (savedAI_id) => !savedAI_id.equals(ai._id) // Compare ObjectIds
+      );
+      await user.save();
+    } 
+
+    else {
+      throw new Error('User not found');
+    }
+
+    console.log("AI saves updated:", ai);
+    return ai.toObject();
+  } 
+  
+  catch (error) {
+    console.error("Error updating AI saves:", error);
+    throw error; // Rethrow the error to be caught in the route handler
+  }
+};
 
 export default {
   getAll,
   createNewAI,
   getOneAI,
-  updateSaves
+  updateSaves,
+  unSave
 };

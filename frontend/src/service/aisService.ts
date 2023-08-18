@@ -22,7 +22,18 @@ const updateSaves = async (id: string) => {
   try {
     const response = await axiosInstance.patch<TypeSingleAI>(`/ais/saves/${id}`);
     return response.data; // You can return any data from the response if needed
-  } catch (error) {
+  } 
+  catch (error) {
+    throw error;
+  }
+};
+
+const unSave = async (id: string) => {
+  try {
+    const response = await axiosInstance.patch<TypeSingleAI>(`/ais/unsave/${id}`);
+    return response.data; // You can return any data from the response if needed
+  } 
+  catch (error) {
     throw error;
   }
 };
@@ -32,4 +43,5 @@ export default {
   createNewAI,
   getOneAI,
   updateSaves,
+  unSave
 };

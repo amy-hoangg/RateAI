@@ -63,6 +63,7 @@ router.get('/fetch/:id', async (req, res) => {
 });
 
 router.patch('/saves/:id', async (req: Request, res: Response) => {
+  console.log("save ai")
   const aiId = req.params.id;
 
   try {
@@ -92,5 +93,39 @@ router.patch('/saves/:id', async (req: Request, res: Response) => {
     return res.status(500).json({ error: "An error occurred while updating AI saves" });
   }
 });
+
+router.patch('/unsave/:id', async (req: Request, res: Response) => {
+  const aiId = req.params.id;
+
+  try {
+    console.log('UnSave endpoint hit. AI ID:', aiId); // Add this log
+    // Extract the token from the authorization header
+    const authorizationHeader = req.get('authorization');
+    
+    if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
+      return res.status(401).send('Unauthorized');
+    }
+    const token = authorizationHeader.substring(7);
+    console.log('Token:', token); // Add this log
+    // Verify and decode the token
+    const decodedToken = jwt.verify(token, process.env.SECRET || " ") as unknown as DecodedToken;
+    console.log('Decoded Token:', decodedToken); // Add this log
+
+    // Update the saves count for the AI
+    const updatedAI = await aisService.unSave(aiId, decodedToken.id);
+
+    if (!updatedAI) {
+      return res.status(404).json({ error: "AI not found" });
+    }
+
+    // Respond with the updated AI
+    return res.json(updatedAI); // Add the "return" statement here
+  } 
+  catch (error) {
+    console.error("Error unsaving AI saves:", error);
+    return res.status(500).json({ error: "An error occurred while unsaving AI saves" });
+  }
+});
+
 
 export default router;

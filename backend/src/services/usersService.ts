@@ -93,9 +93,34 @@ const putOnCart = async (ai_id: string, user_id: string): Promise<TypeUser | und
   }
 };
 
+const removeFromCart = async (ai_id: string, user_id: string) => {
+  try {
+    // Find the user by user_id
+    const user = await User.findById(user_id);
+    
+    if (user) {
+      // Remove the ai_id from the user's user_carts_ai_id array
+      user.user_carts_ai_id = user.user_carts_ai_id.filter(
+        (cartAI_id) => cartAI_id.toString() !== ai_id
+      );
+      await user.save();
+      
+      console.log("User carts updated:", user);
+      return user.toObject(); // Return the updated user object
+    } else {
+      throw new Error('User not found');
+    }
+  } catch (error) {
+    console.error("Error updating user carts:", error);
+    throw error; // Rethrow the error to be caught in the route handler
+  }
+};
+
+
 export default {
   getAll,
   createNewUser,
   getOneUser,
-  putOnCart
+  putOnCart,
+  removeFromCart
 };
