@@ -35,9 +35,20 @@ const createNewUser = async (object: TypeNewUser) => {
     }
   };
 
+  const removeFromCart = async (id: string) => {
+    try {
+      const response = await axiosInstance.patch<TypeSingleAI>(`/users/removefromcart/${id}`);
+      return response.data;
+    }
+    catch (error) {
+      throw error;
+    }
+  };
+
 export default {
     getAllUsers,
     createNewUser,
     getOneUser,
-    putOnCart
+    putOnCart,
+    removeFromCart
 }

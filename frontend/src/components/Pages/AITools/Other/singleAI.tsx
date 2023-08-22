@@ -11,6 +11,7 @@ type Props = {
 const SingleAI = ({ eachAI }: Props) => {
 
   const [isSaved, setIsSaved] = useState(false);
+  const [isCarted, setIsCarted] = useState(false);
 
   useEffect(() => {
     const checkIfSaved = async () => {
@@ -34,6 +35,29 @@ const SingleAI = ({ eachAI }: Props) => {
     checkIfSaved();
   }, [eachAI._id]);
 
+//check whether the item is carted or not 
+  useEffect(() => {
+    const checkIfCarted = async() => {
+      const userId = localStorage.getItem('userId');
+
+      if(userId) {
+        try {
+          const user = await usersService.getOneUser(userId);
+          if (user && user.user_carts_ai_id) {
+            const isCarted = user.user_carts_ai_id.some(
+              (cartedAI) => cartedAI._id === eachAI._id
+            );
+
+            setIsCarted(isCarted);
+          }
+        } catch (error) {
+          console.error('Error checking if AI is saved:', error);
+        }
+      }
+    };
+    checkIfCarted();
+  }, [eachAI._id]);
+
 
   const handleSave = async () => {
     try {
@@ -43,7 +67,6 @@ const SingleAI = ({ eachAI }: Props) => {
         console.log('Unsaved successfully');      
       } 
       else {
-        // Handle save logic
         await aisService.updateSaves(eachAI._id);
         setIsSaved(true);
         console.log('Saved successfully');
@@ -57,10 +80,18 @@ const SingleAI = ({ eachAI }: Props) => {
 
   const handlePutOnCart = async () => {
     try {
-      await usersService.putOnCart(eachAI._id);
-      console.log("put on cart successfully");
+      if (isCarted) {
+        await usersService.removeFromCart(eachAI._id);
+        setIsCarted(false);
+        console.log('remove cart successfully');      
+      } 
+      else {
+        await usersService.putOnCart(eachAI._id);
+        setIsCarted(true);
+        console.log('add cart successfully');
+      }
     } catch (error) {
-      console.error("Error putting on cart", error);
+      console.error("Error dealing cart", error);
     }
   };
 
@@ -88,10 +119,14 @@ const SingleAI = ({ eachAI }: Props) => {
         )}
 
         <button onClick={handleSave}>
-          {isSaved ? "Unsave" : "Save"}
+          {isSaved ? "Unsave" 
+          : "Save"}
         </button>
 
-        <button onClick={handlePutOnCart}>put on cart</button>
+        <button onClick={handlePutOnCart}>
+          {isCarted ? "remove from cart"
+          : "put on cart"}
+        </button>
 
         <button>add review</button>
       </ul>

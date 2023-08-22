@@ -38,19 +38,6 @@ const HomePage = () => {
     return <div>Loading...</div>; // You can add a loading indicator while wnewting for data to load.
   }
 
-  // Fake data for HomeNewsList
-  const fakeNews = [
-    {
-      id: "news1",
-      title: "News 1",
-      content: "This is News 1",
-      likes: 12,
-      dislikes: 23,
-      date: "ffss",
-    },
-    // Add more fake news data here...
-  ];
-
   return (
     <div>
       <HomeSearchBar/>

@@ -2,42 +2,30 @@ import React, { useEffect, useState } from "react";
 import usersService from "../../../../service/usersService";
 import { TypeSingleAI } from "../../../../types";
 import AIsList from "../../AITools/AIsList";
+import { useAuth } from "../../../../context/AuthContext";
 
 const CartPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated } = useAuth();
   const [aisInCart, setAisInCart] = useState<TypeSingleAI[]>([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
-
-  useEffect(() => {
-    if (isLoggedIn) {
+    if (isAuthenticated) {
       const user_id = localStorage.getItem("userId");
-      console.log("user_id:", user_id); // Add this line to check if user_id is correctly retrieved
-
       if (user_id) {
         usersService
           .getOneUser(user_id)
           .then((user) => {
-            console.log("user:", user); // Add this line to see the user object received
-
             if (user.user_carts_ai_id) {
-              console.log("user.user_saves_ai_id:", user.user_carts_ai_id); // Add this line to see the saved AI IDs
               setAisInCart(user.user_carts_ai_id);
             }
           })
           .catch((error) => console.error("Error fetching user:", error));
       }
     }
-  }, [isLoggedIn]);
-
-  console.log("aisSaved:", aisInCart); // Add this line to see the final aisSaved array
-
+  }, [isAuthenticated, aisInCart]);
   return (
     <>
-      {!isLoggedIn ? (
+      {!isAuthenticated ? (
         <div>
           <h1>Welcome to Your Cart</h1>
           <p>
