@@ -124,6 +124,7 @@ const removeLike = async (id: string, user_id: string): Promise<TypeSingleNew | 
       user.user_likes_new_id = user.user_likes_new_id.filter(
         (likedNew_id) => !likedNew_id.equals(news._id) // Compare ObjectIds
       );
+      await user.save();
     } 
     else {
       throw new Error('user not found');
@@ -157,6 +158,7 @@ const removeDislike = async (id: string, user_id: string): Promise<TypeSingleNew
       user.user_dislikes_new_id = user.user_dislikes_new_id.filter(
         (dislikedNew_id) => !dislikedNew_id.equals(news._id) // Compare ObjectIds
       );
+      await user.save();
     } 
     else {
       throw new Error('user not found');

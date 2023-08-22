@@ -62,6 +62,8 @@ const getOneUser = async (id: string): Promise<TypeUser | undefined> => {
         model: 'Seller'
       }
     })
+    .populate('user_likes_new_id')
+    .populate('user_dislikes_new_id')
     .populate('user_seller_id')
     .exec();
     console.log("User fetched by ID:", user);

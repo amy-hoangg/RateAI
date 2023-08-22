@@ -101,10 +101,6 @@ export interface TypeSeller {
   seller_sold_ai_id?: TypeSingleAI[];
 }
 
-
-
-
-
 export type TypeNewSeller = Omit<TypeSeller, '_id' | 'seller_user_id'>
 
 export type TypeNewAI = Omit<TypeSingleAI, '_id' | 'ai_seller_id'>;
