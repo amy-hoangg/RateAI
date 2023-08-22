@@ -116,3 +116,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvb
 PATCH http://localhost:3003/api/news/dislike/64cf77883cde6715f7e3f441
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbnlhIiwiaWQiOiI2NGQ3NTZjZTIzY2Q3MDIzMTFlMjU5YmUiLCJpYXQiOjE2OTE5MTYzMDd9.We5zrS41G4z0hUtQ2uiJYpCSPIQwk-FJdHIhPbrS-9o
+
+####
+PATCH http://localhost:3003/api/news/removeDislike/64cf77883cde6715f7e3f441
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbnlhIiwiaWQiOiI2NGQ3NTZjZTIzY2Q3MDIzMTFlMjU5YmUiLCJpYXQiOjE2OTE5MTYzMDd9.We5zrS41G4z0hUtQ2uiJYpCSPIQwk-FJdHIhPbrS-9o
+
+####
+PATCH http://localhost:3003/api/news/removeLike/64cf77883cde6715f7e3f441
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbnlhIiwiaWQiOiI2NGQ3NTZjZTIzY2Q3MDIzMTFlMjU5YmUiLCJpYXQiOjE2OTE5MTYzMDd9.We5zrS41G4z0hUtQ2uiJYpCSPIQwk-FJdHIhPbrS-9o

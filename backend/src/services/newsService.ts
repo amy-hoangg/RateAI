@@ -64,7 +64,7 @@ const like = async (id: string, user_id: string): Promise<TypeSingleNew | undefi
       throw new Error('user not found');
     }
 
-    console.log("news saves updated:", news);
+    console.log("news likes updated:", news);
     return news.toObject();
   } 
   
@@ -106,11 +106,79 @@ const dislike = async (id: string, user_id: string): Promise<TypeSingleNew | und
   }
 };
 
+const removeLike = async (id: string, user_id: string): Promise<TypeSingleNew | undefined> => {
+  try {
+    const news = await New.findOne({ _id: new Types.ObjectId(id) });
+
+    if (!news) {
+      console.log("news not found");
+      return undefined;
+    }
+    news.new_likes -= 1;
+    await news.save();
+
+    //increase the like news in user
+    const user = await User.findById(user_id);
+    if (user) {
+      // Update the seller's seller_list_ai_id property
+      user.user_likes_new_id = user.user_likes_new_id.filter(
+        (likedNew_id) => !likedNew_id.equals(news._id) // Compare ObjectIds
+      );
+    } 
+    else {
+      throw new Error('user not found');
+    }
+
+    console.log("news saves updated:", news);
+    return news.toObject();
+  } 
+  
+  catch (error) {
+    console.error("Error updating news saves:", error);
+    throw error; // Rethrow the error to be caught in the route handler
+  }
+};
+
+const removeDislike = async (id: string, user_id: string): Promise<TypeSingleNew | undefined> => {
+  try {
+    const news = await New.findOne({ _id: new Types.ObjectId(id) });
+
+    if (!news) {
+      console.log("news not found");
+      return undefined;
+    }
+    news.new_dislikes -= 1;
+    await news.save();
+
+    //increase the like news in user
+    const user = await User.findById(user_id);
+    if (user) {
+      // Update the seller's seller_list_ai_id property
+      user.user_dislikes_new_id = user.user_dislikes_new_id.filter(
+        (dislikedNew_id) => !dislikedNew_id.equals(news._id) // Compare ObjectIds
+      );
+    } 
+    else {
+      throw new Error('user not found');
+    }
+
+    console.log("news dislikes updated:", news);
+    return news.toObject();
+  } 
+  
+  catch (error) {
+    console.error("Error updating news dislikes:", error);
+    throw error; // Rethrow the error to be caught in the route handler
+  }
+};
+
 
 export default {
   getAll,
   createNewNew,
   getOneNew,
   like,
-  dislike
+  dislike,
+  removeLike,
+  removeDislike
 };

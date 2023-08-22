@@ -84,8 +84,8 @@ export interface TypeUser {
   user_reviews_review_id?: string[];
   user_likes_review_id?: string[];
   user_dislikes_review_id?: string[];
-  user_likes_new_id?: string[];
-  user_dislikes_new_id?: string[];
+  user_likes_new_id?: TypeSingleNew[];
+  user_dislikes_new_id?: TypeSingleNew[];
   user_purchases_ai_id?: string[];
   user_seller_id?: TypeSeller;
 }

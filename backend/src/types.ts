@@ -53,8 +53,8 @@ export interface TypeUser extends Document {
   user_reviews_review_id: Types.ObjectId[];
   user_likes_review_id?: Types.ObjectId[];
   user_dislikes_review_id?: Types.ObjectId[];
-  user_likes_new_id?: Types.ObjectId[];
-  user_dislikes_new_id?: Types.ObjectId[];
+  user_likes_new_id: Types.ObjectId[];
+  user_dislikes_new_id: Types.ObjectId[];
   user_purchases_ai_id?: Types.ObjectId[];
   user_seller_id?: Types.ObjectId;
 }
