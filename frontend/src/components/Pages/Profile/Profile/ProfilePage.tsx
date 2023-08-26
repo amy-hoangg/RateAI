@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import usersService from "../../../../service/usersService";
 import { TypeUser } from "../../../../types";
 import { useAuth } from "../../../../context/AuthContext";
-
+import EditNameForm from "./EditProfileForm";
+import EditEmailForm from "./EditEmailForm";
 const ProfilePage = () => {
   const [user, setUser] = useState<TypeUser | null>(null);
   const { isAuthenticated } = useAuth();

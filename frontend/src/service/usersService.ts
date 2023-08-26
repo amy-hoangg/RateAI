@@ -45,10 +45,49 @@ const createNewUser = async (object: TypeNewUser) => {
     }
   };
 
+  const editEmail = async (newEmail: string) => {
+    try {
+      const response = await axiosInstance.patch<TypeUser>("/users/editEmail", {
+        email: newEmail
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+
+  const editFirstName = async (newFirstName: string) => {
+    try {
+      const response = await axiosInstance.patch<TypeUser>("/users/editFirstName", {
+        firstName: newFirstName
+      });
+      return response.data;
+    }
+    catch (error) {
+      throw error;
+    }
+  };
+
+  const editLastName = async (newLastName: string) => {
+    try {
+      const response = await axiosInstance.patch<TypeUser>("/users/editLastName", {
+        lastName: newLastName
+      });
+      return response.data;
+    }
+    catch (error) {
+      throw error;
+    }
+  };
+
 export default {
     getAllUsers,
     createNewUser,
     getOneUser,
     putOnCart,
-    removeFromCart
+    removeFromCart,
+    editEmail,
+    editFirstName,
+    editLastName
 }

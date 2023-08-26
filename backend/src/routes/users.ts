@@ -131,7 +131,7 @@ router.patch('/editEmail', async (req: Request, res: Response) => {
     // Verify and decode the token
     const decodedToken = jwt.verify(token, process.env.SECRET || " ") as unknown as DecodedToken;
 
-    const { email } = req.body; // Assuming you're sending the new email in the request body
+    const { email } = req.body; 
     
     // Update the user's email
     const updatedUser = await usersService.editUserEmail(email, decodedToken.id);

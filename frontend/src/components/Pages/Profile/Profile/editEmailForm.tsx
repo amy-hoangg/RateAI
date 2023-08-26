@@ -19,15 +19,17 @@ const EditEmailForm: React.FC<EditEmailFormProps> = ({ onSubmit }) => {
     }
   };
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewEmail(event.target.value);
-  };
-
   return (
     <form onSubmit={handleSubmit}>
       <label>
         New Email:
-        <input type="email" value={newEmail} onChange={handleEmailChange} />
+        <input
+          type="email"
+          value={newEmail}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setNewEmail(event.target.value);
+          }}
+        />
       </label>
       <button type="submit">Save</button>
     </form>
