@@ -118,11 +118,35 @@ const removeFromCart = async (ai_id: string, user_id: string) => {
   }
 };
 
+const editUserEmail = async (email: string, user_id: string) => {
+  try {
+    // Find the user by user_id
+    const user = await User.findById(user_id);
+    
+    if (user) {
+      // Update the user's email
+      user.user_email = email;
+      await user.save();
+      
+      console.log("User email updated:", user);
+      return user.toObject(); // Return the updated user object
+    } 
+    else {
+      throw new Error('User not found');
+    }
+  } 
+  catch (error) {
+    console.error("Error updating user email:", error);
+    throw error; // Rethrow the error to be caught in the route handler
+  }
+};
+
 
 export default {
   getAll,
   createNewUser,
   getOneUser,
   putOnCart,
-  removeFromCart
+  removeFromCart,
+  editUserEmail
 };

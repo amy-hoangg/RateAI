@@ -118,4 +118,34 @@ router.patch('/removefromcart/:id', async (req: Request, res: Response) => {
   }
 });
 
+router.patch('/editEmail', async (req: Request, res: Response) => {
+  try {
+    // Extract the token from the authorization header
+    const authorizationHeader = req.get('authorization');
+    
+    if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
+      return res.status(401).send('Unauthorized');
+    }
+    const token = authorizationHeader.substring(7);
+
+    // Verify and decode the token
+    const decodedToken = jwt.verify(token, process.env.SECRET || " ") as unknown as DecodedToken;
+
+    const { email } = req.body; // Assuming you're sending the new email in the request body
+    
+    // Update the user's email
+    const updatedUser = await usersService.editUserEmail(email, decodedToken.id);
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Respond with the updated user
+    return res.json(updatedUser);
+  } catch (error) {
+    console.error("Error editing user email:", error);
+    return res.status(500).json({ error: "An error occurred while editing user email" });
+  }
+});
+
 export default router;

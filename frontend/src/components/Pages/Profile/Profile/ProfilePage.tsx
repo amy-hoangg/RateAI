@@ -6,6 +6,8 @@ import { useAuth } from "../../../../context/AuthContext";
 const ProfilePage = () => {
   const [user, setUser] = useState<TypeUser | null>(null);
   const { isAuthenticated } = useAuth();
+  const [showEditNameForm, setShowEditNameForm] = useState(false);
+  const [showEditEmailForm, setShowEditEmailForm] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -23,19 +25,44 @@ const ProfilePage = () => {
     }
   }, [isAuthenticated]);
 
+  const handleEditNameClick = () => {
+    setShowEditNameForm(!showEditNameForm)
+  };
+
+  const handleEmailClick = () => {
+    setShowEditEmailForm(!showEditEmailForm)
+  }
+ 
   return (
     <div>
       {user && (
         <>
           <h1>User Profile</h1>
+
           <p>Username: {user.user_name}</p> 
-          <button>edit username</button>
+
           <p>First Name: {user.user_firstname}</p>
-          <button>edit first name</button>
           <p>Last Name: {user.user_lastname}</p>
-          <button>edit last name</button>
+
+          <button onClick={handleEditNameClick}>edit name</button>
+          {showEditNameForm && (
+            <EditNameForm onSubmit={(newName) => {
+              console.log("new name", newName);
+              setShowEditNameForm(false);
+            }} 
+            />
+          )}
+
+
           <p>Email: {user.user_email}</p>
-          <button>edit email</button>
+          <button onClick={handleEmailClick}>edit email</button>
+          {showEditEmailForm && (
+            <EditEmailForm onSubmit={(newEmail) => {
+              console.log("newEmail", newEmail);
+              setShowEditNameForm(false);
+            }} 
+            />
+          )}
         </>
       )}
     </div>

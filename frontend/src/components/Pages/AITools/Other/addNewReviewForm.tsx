@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StarRating, TypeNewReview, TypeUser } from '../../../../types';
 import reviewsService from '../../../../service/reviewsService';
-import usersService from '../../../../service/usersService';
 
 type Props = {
   onSubmit: (newReview: TypeNewReview) => void;

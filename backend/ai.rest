@@ -126,3 +126,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvb
 PATCH http://localhost:3003/api/news/removeLike/64cf77883cde6715f7e3f441
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbnlhIiwiaWQiOiI2NGQ3NTZjZTIzY2Q3MDIzMTFlMjU5YmUiLCJpYXQiOjE2OTI3MjI0ODZ9.MxWFQB1wJh9MauqU1FWhH-ZHJJv6qs5dEiHQvHMweE4
+####
+PATCH http://localhost:3003/api/users/editEmail
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbnlhIiwiaWQiOiI2NGQ3NTZjZTIzY2Q3MDIzMTFlMjU5YmUiLCJpYXQiOjE2OTI3MjI0ODZ9.MxWFQB1wJh9MauqU1FWhH-ZHJJv6qs5dEiHQvHMweE4
+
+{
+    "email": "sonyaemail@example.com"
+}
