@@ -148,4 +148,32 @@ router.patch('/editEmail', async (req: Request, res: Response) => {
   }
 });
 
+
+router.patch('/editName', async (req: Request, res: Response) => {
+  try {
+    const authorizationHeader = req.get('authorization');
+
+    if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
+      return res.status(401).send('Unauthorized');
+    }
+    const token = authorizationHeader.substring(7);
+
+    const decodedToken = jwt.verify(token, process.env.SECRET || " ") as unknown as DecodedToken;
+
+    const { firstName, lastName } = req.body;
+
+    const updatedUser = await usersService.editName(firstName, lastName, decodedToken.id);
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    return res.json(updatedUser);
+  } catch (error) {
+    console.error("Error editing user name:", error);
+    return res.status(500).json({ error: "An error occurred while editing user name" });
+  }
+});
+
+
 export default router;

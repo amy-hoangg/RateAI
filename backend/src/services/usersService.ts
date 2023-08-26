@@ -141,6 +141,25 @@ const editUserEmail = async (email: string, user_id: string) => {
   }
 };
 
+const editName = async (firstName: string, lastName: string, user_id: string) => {
+  try {
+    const user = await User.findById(user_id);
+    
+    if (user) {
+      user.user_firstname = firstName;
+      user.user_lastname = lastName;
+      await user.save();
+      
+      console.log("User name updated:", user);
+      return user.toObject();
+    } else {
+      throw new Error('User not found');
+    }
+  } catch (error) {
+    console.error("Error updating user name:", error);
+    throw error;
+  }
+};
 
 export default {
   getAll,
@@ -148,5 +167,6 @@ export default {
   getOneUser,
   putOnCart,
   removeFromCart,
-  editUserEmail
+  editUserEmail,
+  editName
 };

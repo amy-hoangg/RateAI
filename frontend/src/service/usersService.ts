@@ -57,22 +57,11 @@ const createNewUser = async (object: TypeNewUser) => {
   };
 
 
-  const editFirstName = async (newFirstName: string) => {
+  const editName = async (firstName: string, lastName: string) => {
     try {
-      const response = await axiosInstance.patch<TypeUser>("/users/editFirstName", {
-        firstName: newFirstName
-      });
-      return response.data;
-    }
-    catch (error) {
-      throw error;
-    }
-  };
-
-  const editLastName = async (newLastName: string) => {
-    try {
-      const response = await axiosInstance.patch<TypeUser>("/users/editLastName", {
-        lastName: newLastName
+      const response = await axiosInstance.patch<TypeUser>("/users/editName", {
+        firstName,
+        lastName
       });
       return response.data;
     }
@@ -88,6 +77,5 @@ export default {
     putOnCart,
     removeFromCart,
     editEmail,
-    editFirstName,
-    editLastName
+    editName
 }

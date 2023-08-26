@@ -12,12 +12,11 @@ const EditNameForm: React.FC<EditNameFormProps> = ({ onSubmit }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const editedFirstName = await usersService.editFirstName(firstName); // Assuming your usersService has an editFirstName function
-      const editedLastName = await usersService.editLastName(lastName);
-      console.log('New first name:', editedFirstName);
-      console.log('New last name:', editedLastName);
+      const editedName = await usersService.editName(firstName, lastName); // Assuming your usersService has an editFirstName function
+      console.log('New name:', editedName);
       onSubmit(firstName, lastName);
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Error editing name:', error);
     }
   };
