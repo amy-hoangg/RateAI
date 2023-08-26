@@ -28,10 +28,14 @@ const ProfilePage = () => {
       {user && (
         <>
           <h1>User Profile</h1>
-          <p>Username: {user.user_name}</p>
+          <p>Username: {user.user_name}</p> 
+          <button>edit username</button>
           <p>First Name: {user.user_firstname}</p>
+          <button>edit first name</button>
           <p>Last Name: {user.user_lastname}</p>
+          <button>edit last name</button>
           <p>Email: {user.user_email}</p>
+          <button>edit email</button>
         </>
       )}
     </div>
